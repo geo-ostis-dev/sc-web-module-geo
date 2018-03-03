@@ -2,7 +2,10 @@
   "name": "sc-web.module.geo",
   "version": "1.0.0",
   "description": "NPM module for Geo",
-  "main": "src/index.js",
+  "main": "index.js",
+  "bin": {
+    "ostis-geo": "./bin/ostis-geo.sh"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
