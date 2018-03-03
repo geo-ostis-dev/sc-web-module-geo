@@ -11,7 +11,12 @@ mode=$1
 cd $(npm root)
 cd ..
 
-case $mode in
+if [ -z $(echo $PATH | grep 'node_modules/.bin') ]
+then
+    export PATH="$PATH:./node_modules/.bin"
+fi
+
+case ${mode} in
   "place")  cp -r node_modules/sc-web.module.geo client/static/components
             echo "<script charset=\"utf-8\" src=\"/static/components/sc-web.module.geo/index.js\"></script>" >> client/templates/components.html
             puts "module placed in $(readlink -f client/static/components/sc-web.module.geo)" "green"
