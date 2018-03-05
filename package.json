@@ -1,13 +1,14 @@
 {
   "name": "sc-web.module.geo",
-  "version": "1.0.2",
+  "version": "1.0.14",
   "description": "NPM module for Geo",
   "main": "index.js",
   "bin": {
-    "ostis-geo": "./bin/ostis-geo.sh"
+    "geo": "bin/geo"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "bin/add-geo-to-bin"
   },
   "repository": {
     "type": "git",

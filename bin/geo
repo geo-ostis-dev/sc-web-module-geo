@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 function puts {
     if [ $2 == "red" ]; then echo -e "\033[0;31m$1\033[0m"; fi;
@@ -10,11 +10,6 @@ function puts {
 mode=$1
 cd $(npm root)
 cd ..
-
-if [ -z $(echo $PATH | grep 'node_modules/.bin') ]
-then
-    export PATH="$PATH:./node_modules/.bin"
-fi
 
 case ${mode} in
   "place")  cp -r node_modules/sc-web.module.geo client/static/components
@@ -31,4 +26,3 @@ case ${mode} in
         *)  puts "incorrect mode" "red"
             ;;
 esac
-
