@@ -10,8 +10,6 @@ Geo is a module for the sc-web system. It provides a cartographic interface, and
 
 
 ## Installing
-The Geo project is the npm module for the sc-web system.
-
 To install the module, go to sc-web project folder:
 ```
 cd sc-web
