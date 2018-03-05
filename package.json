@@ -1,6 +1,6 @@
 {
   "name": "sc-web.module.geo",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "NPM module for Geo",
   "main": "index.js",
   "bin": {
