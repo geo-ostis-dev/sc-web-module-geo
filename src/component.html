@@ -1,203 +1,167 @@
 <!DOCTYPE html>
-<html lang="en" style="height:100%">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <base href="/static/components/sc-web.module.geo/">
+    <title>OpenStreetMap Nominatim: Search</title>
+    <meta content="IE=edge" http-equiv="x-ua-compatible" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="vendor/ol.css">
-    <link rel="stylesheet" href="css/geo-main.css">
-    <link rel="stylesheet" href="css/geo-main.css">
-
-    <script src="vendor/ol.js"></script>
+    <base href="https://nominatim.openstreetmap.org/" />
+    <link href="nominatim.xml" rel="search" title="Nominatim Search" type="application/opensearchdescription+xml" />
+    <link href="css/leaflet.css" rel="stylesheet" />
+    <link href="css/Control.Minimap.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/common.css" rel="stylesheet" type="text/css" />
+    <link href="css/search.css" rel="stylesheet" type="text/css" />
 </head>
-<body style="margin: 0; position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
-<div id="map" class="map"></div>
+
+<body id="search-page">
+
+<header class="container-fluid">
+    <div class="row">
+        <div class="col-xs-4">
+            <div class="brand">
+                <a href="https://nominatim.openstreetmap.org/">
+                    <img alt="logo" src="images/osm_logo.120px.png" width="30" height="30"/>
+                    <h1>Nominatim</h1>
+                </a>
+            </div>
+        </div>
+        <div id="last-updated" class="col-xs-4 text-center">
+            Data last updated:
+            <br>
+            2018/03/06 21:05 GMT                    </div>
+        <div class="col-xs-4 text-right">
+            <div class="btn-group">
+                <button class="dropdown-toggle btn btn-sm btn-default" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    About &amp; Help <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="https://wiki.openstreetmap.org/wiki/Nominatim" target="_blank">Documentation</a></li>
+                    <li><a href="https://wiki.openstreetmap.org/wiki/Nominatim/FAQ" target="_blank">FAQ</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#" class="" data-toggle="modal" data-target="#report-modal">Report problem with results</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="modal fade" id="report-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Report a problem</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Before reporting problems please read the <a target="_blank" href="https://wiki.openstreetmap.org/wiki/Nominatim">user documentation</a>
+                    and
+                    <a target="_blank" href="https://wiki.openstreetmap.org/wiki/Nominatim/FAQ">FAQ</a>.
+
+                    If your problem relates to the address of a particular search result please use the 'details' link
+                    to check how the address was generated before reporting a problem.
+                </p>
+                <p>
+                    Use <a target="_blank" href="https://github.com/openstreetmap/nominatim/issues">Nominatim issues on github</a>
+                    to report problems.
+                    <!-- You can search for existing bug reports
+                        <a href="https://trac.openstreetmap.org/query?status=new&amp;status=assigned&amp;status=reopened&amp;component=nominatim&amp;order=priority">here</a>.</p>
+                     -->
+                </p>
+                <p>
+                    Please ensure that you include a full description of the problem, including the search
+                    query that you used, the problem with the result and, if the problem relates to missing data,
+                    the osm type (node, way, relation) and id of the item that is missing.
+                </p>
+                <p>
+                    Problems that contain enough detail are likely to get looked at before ones that require
+                    significant research.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form class="form-inline" role="search" accept-charset="UTF-8" action="https://nominatim.openstreetmap.org/search.php">
+    <div class="form-group">
+        <input id="q" name="q" type="text" class="form-control input-sm" placeholder="Search" value="" >
+    </div>
+    <div class="form-group search-button-group">
+        <button type="submit" class="btn btn-primary btn-sm">Search</button>
+        <input type="hidden" value="1" name="polygon_geojson" />
+        <input type="hidden" name="viewbox" value="" />
+        <div class="checkbox-inline">
+            <input type="checkbox" id="use_viewbox" >
+            <label for="use_viewbox">apply viewbox</label>
+        </div>
+    </div>
+    <div class="search-type-link">
+        <a id="switch-to-reverse" href="https://nominatim.openstreetmap.org/reverse.php?format=html">reverse search</a>
+    </div>
+</form>
+
+
+<div id="content">
+
+
+    <div id="intro" class="sidebar">
+        <h2>Welcome to Nominatim</h2>
+
+        <p>Nominatim is a search engine for <a href="https://www.openstreetmap.org">OpenStreetMap</a>
+            data. This is the debugging interface. You may search for a name or address (forward search) or
+            look up data by its geographic coordinate (reverse search). Each result comes with a
+            link to a details page where you can inspect what data about the object is saved in
+            the database and investigate how the address of the object has been computed.</p>
+
+        <p>For more information visit the <a href="https://wiki.openstreetmap.org/wiki/Nominatim">Nominatim wiki page</a>.</p>
+
+        <p>All usage of nominatim.openstreetmap.org must follow the <a href="https://operations.osmfoundation.org/policies/nominatim/">Nominatim Usage Policy</a>.</p>
+    </div>
+
+
+    <div id="map-wrapper">
+        <div id="map-position">
+            <div id="map-position-inner"></div>
+            <div id="map-position-close"><a href="#">hide</a></div>
+        </div>
+        <div id="map"></div>
+    </div>
+
+</div> <!-- /content -->
+
+
+
+
+
+
 
 <script type="text/javascript">
-    var london = ol.proj.fromLonLat([-0.12755, 51.507222]);
-    var moscow = ol.proj.fromLonLat([37.6178, 55.7517]);
-    var istanbul = ol.proj.fromLonLat([28.9744, 41.0128]);
-    var rome = ol.proj.fromLonLat([12.5, 41.9]);
-    var bern = ol.proj.fromLonLat([7.4458, 46.95]);
+    var nominatim_map_init = {
+        "zoom": 2,
+        "lat": 20,
+        "lon": 0,
+        "tile_url": "https:\/\/{s}.tile.openstreetmap.org\/{z}\/{x}\/{y}.png",
+        "tile_attribution": ""
+    };var nominatim_results = [];    </script>
+<footer>
+    <p class="disclaimer">
+        Addresses and postcodes are approximate
+    </p>
+    <p class="copyright">
+        &copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors
+    </p>
+</footer>
 
-    var view = new ol.View({
-        center: istanbul,
-        zoom: 6
-    });
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/leaflet.min.js"></script>
+<script src="js/Control.Minimap.min.js"></script>
+<script src="js/nominatim-ui.js"></script>
 
-    var map = new ol.Map({
-        target: 'map',
-        layers: [
-            new ol.layer.Tile({
-                preload: 4,
-                source: new ol.source.OSM()
-            })
-        ],
-        // Improve user experience by loading tiles while animating. Will make
-        // animations stutter on mobile or slow devices.
-        loadTilesWhileAnimating: true,
-        view: view
-    });
-
-    // A bounce easing method (from https://github.com/DmitryBaranovskiy/raphael).
-    function bounce(t) {
-        var s = 7.5625, p = 2.75, l;
-        if (t < (1 / p)) {
-            l = s * t * t;
-        } else {
-            if (t < (2 / p)) {
-                t -= (1.5 / p);
-                l = s * t * t + 0.75;
-            } else {
-                if (t < (2.5 / p)) {
-                    t -= (2.25 / p);
-                    l = s * t * t + 0.9375;
-                } else {
-                    t -= (2.625 / p);
-                    l = s * t * t + 0.984375;
-                }
-            }
-        }
-        return l;
-    }
-
-    // An elastic easing method (from https://github.com/DmitryBaranovskiy/raphael).
-    function elastic(t) {
-        return Math.pow(2, -10 * t) * Math.sin((t - 0.075) * (2 * Math.PI) / 0.3) + 1;
-    }
-
-    function onClick(id, callback) {
-        document.getElementById(id).addEventListener('click', callback);
-    }
-
-    onClick('rotate-left', function () {
-        view.animate({
-            rotation: view.getRotation() + Math.PI / 2
-        });
-    });
-
-    onClick('rotate-right', function () {
-        view.animate({
-            rotation: view.getRotation() - Math.PI / 2
-        });
-    });
-
-    onClick('rotate-around-rome', function () {
-        // Rotation animation takes the shortest arc, so animate in two parts
-        var rotation = view.getRotation();
-        view.animate({
-            rotation: rotation + Math.PI,
-            anchor: rome,
-            easing: ol.easing.easeIn
-        }, {
-            rotation: rotation + 2 * Math.PI,
-            anchor: rome,
-            easing: ol.easing.easeOut
-        });
-    });
-
-    onClick('pan-to-london', function () {
-        view.animate({
-            center: london,
-            duration: 2000
-        });
-    });
-
-    onClick('elastic-to-moscow', function () {
-        view.animate({
-            center: moscow,
-            duration: 2000,
-            easing: elastic
-        });
-    });
-
-    onClick('bounce-to-istanbul', function () {
-        view.animate({
-            center: istanbul,
-            duration: 2000,
-            easing: bounce
-        });
-    });
-
-    onClick('spin-to-rome', function () {
-        // Rotation animation takes the shortest arc, so animate in two parts
-        var center = view.getCenter();
-        view.animate({
-            center: [
-                center[0] + (rome[0] - center[0]) / 2,
-                center[1] + (rome[1] - center[1]) / 2
-            ],
-            rotation: Math.PI,
-            easing: ol.easing.easeIn
-        }, {
-            center: rome,
-            rotation: 2 * Math.PI,
-            easing: ol.easing.easeOut
-        });
-    });
-
-    function flyTo(location, done) {
-        var duration = 2000;
-        var zoom = view.getZoom();
-        var parts = 2;
-        var called = false;
-
-        function callback(complete) {
-            --parts;
-            if (called) {
-                return;
-            }
-            if (parts === 0 || !complete) {
-                called = true;
-                done(complete);
-            }
-        }
-
-        view.animate({
-            center: location,
-            duration: duration
-        }, callback);
-        view.animate({
-            zoom: zoom - 1,
-            duration: duration / 2
-        }, {
-            zoom: zoom,
-            duration: duration / 2
-        }, callback);
-    }
-
-    onClick('fly-to-bern', function () {
-        flyTo(bern, function () {
-        });
-    });
-
-    function tour() {
-        var locations = [london, bern, rome, moscow, istanbul];
-        var index = -1;
-
-        function next(more) {
-            if (more) {
-                ++index;
-                if (index < locations.length) {
-                    var delay = index === 0 ? 0 : 750;
-                    setTimeout(function () {
-                        flyTo(locations[index], next);
-                    }, delay);
-                } else {
-                    alert('Tour complete');
-                }
-            } else {
-                alert('Tour cancelled');
-            }
-        }
-
-        next(true);
-    }
-
-    onClick('tour', tour);
-</script>
-
-<div class="cleafix" style="clear:both;"></div>
 </body>
 </html>
