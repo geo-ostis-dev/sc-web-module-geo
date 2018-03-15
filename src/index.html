@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="IE=edge" http-equiv="x-ua-compatible"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/static/components/sc-web.module.geo/src/"/>
+
+    <!-- Styles -->
+    <link href="components/Base/Base.less" rel="stylesheet/less" type="text/css"/>
+    <link href="components/Content/Content.less" rel="stylesheet/less" type="text/css"/>
+    <link href="components/Map/Map.less" rel="stylesheet/less" type="text/css"/>
+    <link href="components/Results/Results.less" rel="stylesheet/less" type="text/css"/>
+    <link href="components/SearchButton/SearchButton.less" rel="stylesheet/less" type="text/css"/>
+    <link href="components/SearchInput/SearchInput.less" rel="stylesheet/less" type="text/css"/>
+    <link href="components/SearchPanel/SearchPanel.less" rel="stylesheet/less" type="text/css"/>
+    <!-- /Styles -->
+
+    <!-- Less -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/3.0.0/less.min.js"></script>
+    <!-- /Less -->
+
+    <!-- Mustache -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+    <!-- /Mustache -->
+
+    <!-- Leaflet http://leafletjs.com/ -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+          integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
+            integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
+            crossorigin=""></script>
+    <!-- /Leaflet -->
+
+    <!-- Underscore -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <!-- /Underscore -->
+
+    <!-- JQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- /JQuery -->
+
+    <!-- Control.Minimap -->
+    <script src="external/Control.Minimap.min.js"></script>
+    <link href="external/Control.Minimap.min.css" rel="stylesheet"/>
+    <!-- /Control.Minimap -->
+</head>
+<body>
+
+<div class="search-panel">
+    <input class="search-input" placeholder="Поиск">
+    <button class="search-button"> Search</button>
+</div>
+
+<div class="content" id="content">
+    <div id="intro" class="sidebar">
+        <h2> Welcome to Geo </h2>
+    </div>
+
+    <div class="map-wrapper" id="map-wrapper">
+        <div class="map" id="map"></div>
+    </div>
+
+</div>
+
+<!-- Components -->
+<script src="components/Base/Base.js"></script>
+<script src="components/Map/Map.js"></script>
+<script src="components/Results/Results.js"></script>
+<script src="components/SearchButton/SearchButton.js"></script>
+<script src="components/SearchInput/SearchInput.js"></script>
+<!-- /Components -->
+
+<!-- Init -->
+<script>
+    $(document).ready(function () {
+        var mapElement = new Map();
+        var searchButtonElement = new SearchButton();
+        var searchInputElement = new SearchInput();
+        var ResultsElement = new Results();
+    });
+</script>
+<!-- /Init -->
+
+</body>
+</html>
