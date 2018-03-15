@@ -1,51 +1,22 @@
-{
-  "_from": "sc-web.module.geo",
-  "_id": "sc-web.module.geo@1.0.18",
-  "_inBundle": false,
-  "_integrity": "sha512-1JjuJvpJMiYGXFx37s63pc61OReRgQMecOyaIt/fHfOWLbu3RLsTshM9VuTm6ztVDN0D2Mx7/RE+ZC6mUXD4lQ==",
-  "_location": "/sc-web.module.geo",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "tag",
-    "registry": true,
-    "raw": "sc-web.module.geo",
-    "name": "sc-web.module.geo",
-    "escapedName": "sc-web.module.geo",
-    "rawSpec": "",
-    "saveSpec": null,
-    "fetchSpec": "latest"
+{  
+  name: "sc-web.module.geo",
+  version: "1.0.18",
+  description: "NPM module for Geo",
+  main: "index.js",
+  bin: {
+    geo: "bin/geo"
   },
-  "_requiredBy": [
-    "#USER",
-    "/"
-  ],
-  "_resolved": "https://registry.npmjs.org/sc-web.module.geo/-/sc-web.module.geo-1.0.18.tgz",
-  "_shasum": "9be7be57310065bd45e3599b68792c146ee46d5b",
-  "_spec": "sc-web.module.geo",
-  "_where": "/home/katerina/geo.ostis/sc-web",
-  "author": {
-    "name": "Konstantin Mihlyuk"
+  scripts: {
+    postinstall: "bin/add-geo-to-bin"
   },
-  "bin": {
-    "geo": "bin/geo"
+  repository: {
+    type: "git",
+    url: "git+https://github.com/geo-ostis-dev/sc-web.module.geo.git"
   },
-  "bugs": {
-    "url": "https://github.com/geo-ostis-dev/sc-web.module.geo/issues"
+  author: "Konstantin Mihlyuk",
+  license: "ISC",
+  bugs: {
+    url: "https://github.com/geo-ostis-dev/sc-web.module.geo/issues"
   },
-  "bundleDependencies": false,
-  "deprecated": false,
-  "description": "NPM module for Geo",
-  "homepage": "https://github.com/geo-ostis-dev/sc-web.module.geo#readme",
-  "license": "ISC",
-  "main": "index.js",
-  "name": "sc-web.module.geo",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/geo-ostis-dev/sc-web.module.geo.git"
-  },
-  "scripts": {
-    "postinstall": "bin/add-geo-to-bin",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "version": "1.0.18"
+  homepage: "https://github.com/geo-ostis-dev/sc-web.module.geo#readme"
 }

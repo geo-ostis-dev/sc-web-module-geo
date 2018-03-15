@@ -1,9 +1,9 @@
 function SearchButton() {
 
     this.config = {
-        include: [
-            SearchButton
-        ],
+        include: {
+            searchInput: SearchInput
+        },
         el: '.search-panel .search-button',
         events: {
             click: 'addResultsToSidebar'
