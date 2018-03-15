@@ -28,13 +28,13 @@ To remove the Geo module from the sc-web project, use the command:
 ```
 geo clean
 ```
-### Example
-```
-➜  geo.ostis git:(master) ✗ cd sc-web 
-➜  sc-web git:(master) ✗ geo place
+### Example:
+```Bash
+➜  geo.ostis ✗ cd sc-web 
+➜  sc-web ✗ geo place
 module placed in /home/local/PROFITERO/mikhliuk.k/geo.ostis/sc-web/client/static/components/sc-web.module.geo
 module included in /home/local/PROFITERO/mikhliuk.k/geo.ostis/sc-web/client/templates/components.html
-➜  sc-web git:(master) ✗ geo clean  
+➜  sc-web ✗ geo clean  
 module has been removed from /home/local/PROFITERO/mikhliuk.k/geo.ostis/sc-web/client/static/components
 module has been unincluded from /home/local/PROFITERO/mikhliuk.k/geo.ostis/sc-web/client/templates/components.html
 ```
