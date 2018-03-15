@@ -1,27 +1,32 @@
 function Base() {
 
     this._initialize = function () {
+        // Define config
         if (!this.config) {
             this.config = {};
         }
 
-        if (this.config.require) {
-            this.config.require.forEach(function (component) {
-
-            });
-        }
-
+        // Create 
         if (!this.config.el) {
-            throw new Error("Need to define config.el");
+            throw new Error("Need to define config.el in: " + this);
         } else {
             this.el = $(this.config.el);
         }
 
+        //
+        if (this.config.include) {
+            this.config.include.forEach(function (component) {
+
+            });
+        }
+
+
+        this._registerComponent();
         this._registerEvents();
     };
 
     this.render = function (parameters) {
-        return fetch('../' + +'.mustache')
+        return fetch('./' + +'.mustache')
             .then(function (response) {
                 return response.text();
             })
@@ -33,13 +38,21 @@ function Base() {
             });
     };
 
-    // private
+    // Private methods
     this._registerEvents = function () {
-        this.config.events.forEach(function (eventName, handler) {
-            this.el.on(eventName, this[handler]);
-        });
+        if (this.config.events) {
+            for (var key in this.config.events) {
+                this.el.on(key, this[this.config.events[key]])
+            }
+        }
+    };
+
+    this._registerComponent = function () {
+
     };
 
     this._initialize();
-    this.initialize();
+    if (this.initialize) {
+        this.initialize();
+    }
 }

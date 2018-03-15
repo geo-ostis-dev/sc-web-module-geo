@@ -1,11 +1,7 @@
 function Map(options) {
-    debugger;
-    this.config = {};
-
-    var DEFAULT_TILE_URL = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
-    var DEFAULT_ZOOM = 2;
-    var DEFAULT_LAT = 20;
-    var DEFAULT_LON = 0;
+    this.config = {
+        el: ".map-wrapper"
+    };
 
     this.map = null;
     this.layerGroup = null;
@@ -13,7 +9,7 @@ function Map(options) {
     /**
      * This is initialize function
      * @param options
-     * @pro perty {object} options
+     * @property {object} options
      * @property {string} options.tile_url - Default: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
      * @property {number} options.lat - Default: 20
      * @property {number} options.lon - Default: 0
@@ -28,14 +24,17 @@ function Map(options) {
             touchZoom: false
         });
 
-        L.tileLayer(options.tile_url || DEFAULT_TILE_URL, {
+        L.tileLayer(options.tile_url || CONST.DEFAULT_TILE_URL, {
             noWrap: true, // otherwise we end up with click coordinates like latitude -728
             attribution: (options.tile_attribution || null)
         }).addTo(this.map);
 
-        this.map.setView([options.lat || DEFAULT_LAT, options.lon || DEFAULT_LON], options.zoom || DEFAULT_ZOOM);
+        this.map.setView(
+            [options.lat || CONST.DEFAULT_LAT, options.lon || CONST.DEFAULT_LON],
+            options.zoom || CONST.DEFAULT_ZOOM
+        );
 
-        var miniMap = new L.TileLayer(options.tile_url || DEFAULT_TILE_URL, {
+        var miniMap = new L.TileLayer(options.tile_url || CONST.DEFAULT_TILE_URL, {
             minZoom: 0,
             maxZoom: 13,
             attribution: (options.tile_attribution || null)

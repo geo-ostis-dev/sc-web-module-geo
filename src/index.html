@@ -64,6 +64,7 @@
 </div>
 
 <!-- Components -->
+<script src="components/Base/Constants.js"></script>
 <script src="components/Base/Base.js"></script>
 <script src="components/Map/Map.js"></script>
 <script src="components/Results/Results.js"></script>
@@ -74,10 +75,10 @@
 <!-- Init -->
 <script>
     $(document).ready(function () {
-        var mapElement = new Map();
-        var searchButtonElement = new SearchButton();
-        var searchInputElement = new SearchInput();
-        var ResultsElement = new Results();
+        new Map();
+        new SearchButton();
+        new SearchInput();
+        new Results();
     });
 </script>
 <!-- /Init -->
