@@ -19,14 +19,24 @@ Install module Geo:
 npm install sc-web.module.geo
 ```
 
-## Using
+## Using Geo in your SC-web project
 To use the module in your sc-web project, use the command:
 ```
-ostis-geo place
+geo place
 ```
 To remove the Geo module from the sc-web project, use the command:
 ```
-ostis-geo clean
+geo clean
+```
+### Example
+```
+➜  geo.ostis git:(master) ✗ cd sc-web 
+➜  sc-web git:(master) ✗ geo place
+module placed in /home/local/PROFITERO/mikhliuk.k/geo.ostis/sc-web/client/static/components/sc-web.module.geo
+module included in /home/local/PROFITERO/mikhliuk.k/geo.ostis/sc-web/client/templates/components.html
+➜  sc-web git:(master) ✗ geo clean  
+module has been removed from /home/local/PROFITERO/mikhliuk.k/geo.ostis/sc-web/client/static/components
+module has been unincluded from /home/local/PROFITERO/mikhliuk.k/geo.ostis/sc-web/client/templates/components.html
 ```
 
 ## Contributing
