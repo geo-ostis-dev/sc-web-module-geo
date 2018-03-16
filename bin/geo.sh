@@ -17,8 +17,7 @@ case ${mode} in
             puts "module placed in $(readlink -f client/static/components/sc-web.module.geo)" "green"
             puts "module included in $(readlink -f client/templates/components.html)" "green"
             ;;
-  "clean")  status="buh"
-            rm -r client/static/components/sc-web.module.geo 2>/dev/null
+  "clean")  rm -r client/static/components/sc-web.module.geo 2>/dev/null
             sed -i '/sc-web\.module\.geo/d' ./client/templates/components.html
             puts "module has been removed from $(readlink -f client/static/components)" "green"
             puts "module has been unincluded from $(readlink -f client/templates/components.html)" "green"
