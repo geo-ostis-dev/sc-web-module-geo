@@ -6,33 +6,19 @@ function Map(options) {
     this.map = null;
     this.layerGroup = null;
 
-    /**
-     * This is initialize function
-     * @param options
-     * @property {object} options
-     * @property {string} options.tile_url - Default: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-     * @property {number} options.lat - Default: 20
-     * @property {number} options.lon - Default: 0
-     * @property {number} options.zoom - Default: 0
-     * @property {string} options.tile_attribution
-     */
-    this.initialize = function (options) {
-        options = options ? options : {};
-
+    this.initialize = function () {
         this.map = new L.map('map', {
+            attributionControl: "",
             scrollWheelZoom: true,
             touchZoom: false
         });
 
-        L.tileLayer(options.tile_url || CONST.DEFAULT_TILE_URL, {
+        L.tileLayer(CONST.DEFAULT_TILE_URL, {
             noWrap: true, // otherwise we end up with click coordinates like latitude -728
-            attribution: (options.tile_attribution || null)
+            attribution: (null)
         }).addTo(this.map);
 
-        this.map.setView(
-            [options.lat || CONST.DEFAULT_LAT, options.lon || CONST.DEFAULT_LON],
-            options.zoom || CONST.DEFAULT_ZOOM
-        );
+        this.map.setView([CONST.DEFAULT_LAT, CONST.DEFAULT_LON], CONST.DEFAULT_ZOOM);
 
         var miniMap = new L.TileLayer(options.tile_url || CONST.DEFAULT_TILE_URL, {
             minZoom: 0,

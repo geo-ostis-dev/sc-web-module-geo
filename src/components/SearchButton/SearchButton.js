@@ -2,7 +2,8 @@ function SearchButton() {
 
     this.config = {
         include: {
-            searchInput: SearchInput
+            searchInput: "SearchInput",
+            map: "Map"
         },
         el: '.search-panel .search-button',
         events: {
@@ -11,16 +12,16 @@ function SearchButton() {
     };
 
     this.addResultsToSidebar = function () {
-        fetch('https://nominatim.openstreetmap.org/search.php?q=' + dom.searchInput.val + '&polygon_geojson=1&format=json')
+        fetch('https://nominatim.openstreetmap.org/search.php?q=' + this.searchInput.val + '&polygon_geojson=1&format=json')
             .then(function (result) {
                 return result.json();
             })
             .then(function (json) {
-                mapElement.highlight_result(json, 0, true);
+                this.map.highlight_result(json, 0, true);
                 return json;
             })
             .then(function (json) {
-                return template('search', json);
+                return this.map('search', json);
             })
             .then(function (page) {
                 $(".sidebar").html(page);
