@@ -6,6 +6,6 @@ SCWeb.core.ComponentManager.appendComponentInitialize({
         var container_id = sandbox.container;
         var frame_id = container_id + '_frame';
 
-        $('#'+container_id).append("<iframe id=" + frame_id + " src='/static/components/sc-web.module.geo/src/index.html' style='border: none;width:100%;height:100%;'></iframe>")
+        $('#'+container_id).append("<iframe id=" + frame_id + " src='/static/components/sc-web.module.geo/index.html' style='border: none;width:100%;height:100%;'></iframe>")
     }
 });

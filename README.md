@@ -8,35 +8,39 @@ Geo is a module for the sc-web system. It provides a cartographic interface, and
 [![GitHub forks](https://img.shields.io/github/forks/geo-ostis-dev/sc-web.module.geo.svg)](https://github.com/geo-ostis-dev/sc-web.module.geo/network)
 [![GitHub license](https://img.shields.io/github/license/geo-ostis-dev/sc-web.module.geo.svg)](https://github.com/geo-ostis-dev/sc-web.module.geo)
 
-
-## Installing
-To install the module, go to sc-web project folder:
-```
+## How to use Geo in SC-web project
+First, install the module:
+```bash
 cd sc-web
-```
-Install module Geo:
-```
 npm install sc-web.module.geo
 ```
-
-## Using Geo in your SC-web project
-To use the module in your sc-web project, use the command:
-```
+To place the source code in project, and include it, type:
+```bash
 geo place
 ```
-To remove the Geo module from the sc-web project, use the command:
-```
+To remove module from project, use the command:
+```bash
 geo clean
 ```
-### Example:
-```Bash
-➜  geo.ostis ✗ cd sc-web 
-➜  sc-web ✗ geo place
-module placed in /home/local/PROFITERO/mikhliuk.k/geo.ostis/sc-web/client/static/components/sc-web.module.geo
-module included in /home/local/PROFITERO/mikhliuk.k/geo.ostis/sc-web/client/templates/components.html
-➜  sc-web ✗ geo clean  
-module has been removed from /home/local/PROFITERO/mikhliuk.k/geo.ostis/sc-web/client/static/components
-module has been unincluded from /home/local/PROFITERO/mikhliuk.k/geo.ostis/sc-web/client/templates/components.html
+
+## How to use Geo is sc-web.module.geo project
+First, clone this repository, and install.
+```bash
+git clone https://github.com/geo-ostis-dev/sc-web.module.geo
+cd sc-web.module.geo
+npm install
+```
+After, running Geo and specify the path to the sc-web project:
+```bash
+geo place ../../geo.ostis/sc-web
+```
+To remove the Geo module from the specified sc-web project, type:
+```bash
+geo clean ../../geo.ostis/sc-web
+```
+To see help, run geo without parameters:
+```bash
+geo
 ```
 
 ## Contributing
