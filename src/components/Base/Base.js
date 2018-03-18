@@ -37,6 +37,13 @@ function Base() {
         // }
     };
 
+    this.getName = function () {
+        var funcNameRegex = /function (.{1,})\(/;
+        var results = (funcNameRegex).exec((this).constructor.toString());
+
+        return (results && results.length > 1) ? results[1] : "";
+    };
+
     this._registerEvents = function () {
         if (this.config.events) {
             for (var key in this.config.events) {
@@ -53,6 +60,7 @@ function Base() {
     };
 
     this._includeComponents = function () {
+        debugger;
         if (this.config.include) {
             for (var localComponentName in this.config.include) {
                 debugger;

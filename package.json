@@ -1,16 +1,12 @@
 {
   "name": "sc-web.module.geo",
-  "version": "1.0.18",
+  "version": "1.0.31",
   "description": "NPM module for Geo",
   "main": "index.js",
-  "bin": {
-    "geo": "bin/geo.sh"
-  },
   "scripts": {
-    "postinstall": "bin/add-geo-to-bin.sh",
-    "place": "./bin/place.sh",
-    "clean": "./bin/clean.sh",
-    "reload": "./bin/reload.sh"
+    "postinstall": "rm -f ~/.local/bin/geo; ln -s $(readlink -f bin/geo.sh) ~/.local/bin/geo",
+    "preuninstall": "geo clean; rm -f ~/.local/bin/geo",
+    "geo": "./bin/geo.sh"
   },
   "repository": {
     "type": "git",
