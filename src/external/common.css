@@ -1,0 +1,4028 @@
+/* Parameters */
+/* Styles common to large and small screens */
+/* Minimal CSS reset */
+/* line 7, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+html, body, ul, ol, li, form, fieldset, legend, h1, h2, h3, h4, h5, h6, p, input {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+}
+
+/* line 14, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+fieldset, img {
+    border: 0;
+}
+
+/* line 16, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+legend {
+    color: #000;
+}
+
+/* line 18, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+sup {
+    vertical-align: super;
+    font-size: smaller;
+}
+
+/* line 23, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+sub {
+    vertical-align: sub;
+    font-size: smaller;
+}
+
+/* line 28, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* line 33, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+li {
+    list-style: none;
+}
+
+/* line 35, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+input,
+select,
+textarea,
+body {
+    font: 14px/20px "Helvetica Neue", Arial, sans-serif;
+}
+
+/* line 40, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+abbr, acronym {
+    -webkit-text-decoration: underline dotted;
+    text-decoration: underline dotted;
+    cursor: help;
+}
+
+/* line 45, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+strong {
+    font-weight: bold;
+}
+
+/* Micro Clearfix | Details: http://nicolasgallagher.com/micro-clearfix-hack/ */
+/* line 51, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+/* line 57, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.clearfix:after {
+    clear: both;
+}
+
+/* Basic grid */
+/* line 63, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.col0 {
+    float: left;
+    width: 04.1666%;
+}
+
+/* line 64, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.col1 {
+    float: left;
+    width: 08.3333%;
+}
+
+/* line 65, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.col2 {
+    float: left;
+    width: 16.6666%;
+}
+
+/* line 66, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.col3 {
+    float: left;
+    width: 25.0000%;
+}
+
+/* line 67, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.col4 {
+    float: left;
+    width: 33.3333%;
+}
+
+/* line 68, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.col5 {
+    float: left;
+    width: 41.6666%;
+}
+
+/* line 69, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.col6 {
+    float: left;
+    width: 50.0000%;
+}
+
+/* line 70, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.col7 {
+    float: left;
+    width: 58.3333%;
+}
+
+/* line 71, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.col8 {
+    float: left;
+    width: 66.6666%;
+}
+
+/* line 72, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.col9 {
+    float: left;
+    width: 75.0000%;
+}
+
+/* line 73, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.col10 {
+    float: left;
+    width: 83.3333%;
+}
+
+/* line 74, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.col11 {
+    float: left;
+    width: 91.6666%;
+}
+
+/* line 75, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.col12 {
+    width: 100%;
+}
+
+/* line 77, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.margin0 {
+    margin-left: 04.1666%;
+}
+
+/* line 78, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.margin1 {
+    margin-left: 08.3333%;
+}
+
+/* line 79, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.margin2 {
+    margin-left: 16.6666%;
+}
+
+/* line 80, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.margin3 {
+    margin-left: 25.0000%;
+}
+
+/* line 81, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.margin4 {
+    margin-left: 33.3333%;
+}
+
+/* line 82, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.margin5 {
+    margin-left: 41.6666%;
+}
+
+/* line 83, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.margin6 {
+    margin-left: 50.0000%;
+}
+
+/* line 84, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.margin7 {
+    margin-left: 58.3333%;
+}
+
+/* line 85, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.margin8 {
+    margin-left: 66.6666%;
+}
+
+/* line 86, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.margin9 {
+    margin-left: 75.0000%;
+}
+
+/* line 87, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.margin10 {
+    margin-left: 83.3333%;
+}
+
+/* line 88, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.margin11 {
+    margin-left: 91.6666%;
+}
+
+/* line 89, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.margin12 {
+    margin-left: 100.0000%;
+}
+
+/* line 91, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.fillL {
+    background-color: white;
+}
+
+/* Default rules for the body of every page */
+/* line 95, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+* {
+    box-sizing: border-box;
+}
+
+/* line 99, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+body {
+    font-family: 'Helvetica Neue',Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.6666;
+    color: #222;
+    background-color: #fff;
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+    height: 100%;
+}
+
+/* line 111, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+h1, h2, h3 {
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+/* line 116, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+h4, h5 {
+    font-weight: 500;
+}
+
+/* line 120, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+h1 {
+    font-size: 18px;
+}
+
+/* line 124, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+h2, h3 {
+    font-size: 16px;
+}
+
+/* line 128, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+p > img {
+    width: auto;
+    max-width: 100%;
+}
+
+/* line 133, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+small, aside {
+    font-size: 12px;
+}
+
+/* line 137, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#container {
+    position: relative;
+}
+
+/* line 139, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.column-1 {
+    width: 50%;
+    margin: 0 0 10px 0;
+}
+
+/* line 144, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.small_icon {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+/* line 149, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.red {
+    color: red;
+}
+
+/* line 151, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.piwik {
+    border: 0;
+}
+
+/* Rules for icons */
+/* line 155, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.icon {
+    display: inline-block;
+    vertical-align: top;
+    width: 20px;
+    height: 20px;
+    background: transparent url(/static/components/sc-web.module.geo/images/sprite.png) no-repeat 0 0;
+    background-image: url(/static/components/sc-web.module.geo/images/sprite.svg);
+    text-indent: -9999px;
+    overflow: hidden;
+}
+
+/* line 166, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.icon.search {
+    /* no-r2 */
+    background-position: 0 0;
+}
+
+/* line 167, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.icon.donate {
+    /* no-r2 */
+    background-position: -20px 0;
+}
+
+/* line 168, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.icon.zoomin {
+    /* no-r2 */
+    background-position: -40px 0;
+}
+
+/* line 169, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.icon.zoomout {
+    /* no-r2 */
+    background-position: -60px 0;
+}
+
+/* line 170, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.icon.geolocate {
+    /* no-r2 */
+    background-position: -80px 0;
+}
+
+/* line 171, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.active .icon.geolocate {
+    /* no-r2 */
+    background-position: -80px -20px;
+}
+
+/* line 172, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.icon.layers {
+    /* no-r2 */
+    background-position: -100px 0;
+}
+
+/* line 173, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.icon.key {
+    /* no-r2 */
+    background-position: -120px 0;
+}
+
+/* line 174, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.icon.share {
+    /* no-r2 */
+    background-position: -140px 0;
+}
+
+/* line 175, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.icon.clipboard {
+    /* no-r2 */
+    background-position: -160px 0;
+}
+
+/* line 176, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.icon.link {
+    /* no-r2 */
+    background-position: -180px 0;
+}
+
+/* line 177, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.icon.close {
+    /* no-r2 */
+    background-position: -200px 0;
+}
+
+/* line 178, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.close-wrap:hover .icon.close,
+.icon.close:hover {
+    /* no-r2 */
+    background-position: -200px -20px;
+}
+
+/* line 180, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.icon.check {
+    /* no-r2 */
+    background-position: -220px 0;
+}
+
+/* line 181, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.icon.note {
+    /* no-r2 */
+    background-position: -240px 0;
+}
+
+/* line 182, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.icon.note.grey {
+    /* no-r2 */
+    background-position: -240px -20px;
+}
+
+/* line 183, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.icon.query {
+    /* no-r2 */
+    background-position: -260px 0;
+}
+
+/* Rules for links */
+/* line 187, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+a {
+    color: #24d;
+    text-decoration: none;
+    -webkit-appearance: none;
+    outline: 0;
+}
+/* line 192, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+a:hover {
+    text-decoration: underline;
+}
+
+/* Rules for horizontal lines */
+/* line 199, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+hr {
+    border: none;
+    background-color: #ccc;
+    color: #ccc;
+    height: 1px;
+}
+
+/* General styles for tables */
+/* line 208, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+/* line 211, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+table th, table td {
+    text-align: left;
+    padding: 5px;
+    line-height: 20px;
+}
+/* line 216, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+table th {
+    font-weight: 600;
+    vertical-align: top;
+}
+/* line 220, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+table td {
+    vertical-align: middle;
+}
+
+/* Utility for de-emphasizing content */
+/* line 227, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.deemphasize {
+    color: #999;
+}
+/* line 229, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.deemphasize a {
+    color: #7092FF;
+}
+
+/* Rules for the header */
+/* line 236, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#menu-icon {
+    display: none !important;
+    float: right;
+    background: url(/static/components/sc-web.module.geo/images/menu-icon-ba3407aa1c5ff7b2153008abeb7f8789165716ecc0195a606d4569d0e8e0b716.png) no-repeat;
+    background-size: 30px 30px;
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 14px 10px 0 0;
+    opacity: 0.6;
+}
+
+/* line 248, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+header {
+    height: 55px;
+    position: relative;
+    z-index: 1001;
+    font-size: 14px;
+}
+/* line 254, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+header h1, header nav, header nav > ul, header nav > ul > li, header .dropdown {
+    display: inline-block;
+}
+/* line 258, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+header > * {
+    height: 100%;
+    padding: 10px;
+}
+/* line 263, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+header h1, header nav.primary {
+    float: left;
+}
+/* line 267, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+header a, header a:hover {
+    text-decoration: none;
+}
+/* line 271, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+header img.logo {
+    width: 30px;
+    height: 30px;
+    margin-top: -2px;
+    vertical-align: middle;
+}
+/* line 278, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+header h1 {
+    margin: 0;
+    padding-top: 15px;
+}
+/* line 282, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+header h1 a {
+    color: #000;
+}
+
+/* line 289, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.primary > ul {
+    border: 1px solid #7ebc6f;
+    border-radius: 3px;
+}
+/* line 295, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.primary > ul > li {
+    border-right: 1px solid #7ebc6f;
+    float: left;
+}
+/* line 298, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.primary > ul > li:last-child {
+    border-right: 0;
+}
+/* line 301, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.primary > ul > li > a:hover {
+    background: #dcedd7;
+}
+/* line 302, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.primary > ul > li.current > a:hover {
+    background: #7ebc6f;
+}
+/* line 303, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.primary > ul > li.disabled > a:hover {
+    background: #f4faf3;
+}
+/* line 305, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.primary > ul > li.dropdown > a.tab {
+    border-right: 1px solid #dcedd7;
+}
+/* line 306, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.primary > ul > li.dropdown.current > a.tab {
+    border-right: 1px solid #9dcc92;
+}
+/* line 311, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.primary a.tab,
+nav.primary .dropdown-toggle {
+    display: inline-block;
+    font-weight: 500;
+    color: #7ebc6f;
+    padding: 5px 15px;
+}
+/* line 319, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.primary .dropdown-toggle {
+    padding: 5px 6px;
+}
+/* line 323, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.primary .caret {
+    border-top-color: #7ebc6f;
+    margin-top: 10px;
+}
+/* line 328, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.primary .disabled a {
+    color: #ccc;
+    cursor: default;
+}
+/* line 332, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.primary .disabled a .caret {
+    border-top-color: #ccc;
+}
+/* line 337, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.primary > ul li.current {
+    background-color: #7ebc6f;
+}
+/* line 340, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.primary > ul li.current .tab {
+    color: #fff;
+}
+/* line 344, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.primary > ul li.current .caret {
+    border-top-color: #fff;
+}
+
+/* line 350, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.secondary {
+    position: absolute;
+    right: 0;
+}
+/* line 354, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.secondary > ul {
+    vertical-align: middle;
+}
+/* line 356, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.secondary > ul a, nav.secondary > ul .dropdown-toggle {
+    display: inline-block;
+    text-decoration: none;
+    color: #888;
+    padding: 5px;
+}
+/* line 362, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.secondary > ul a:hover, nav.secondary > ul .dropdown-toggle:hover {
+    color: #484848;
+}
+/* line 366, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.secondary > ul li.current a {
+    color: #484848;
+}
+/* line 370, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.secondary .user-menu {
+    border: 1px solid #CCC;
+    border-radius: 3px;
+    margin-left: 10px;
+}
+/* line 376, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.secondary .user-menu > li {
+    border-right: 1px solid #CCC;
+    float: left;
+}
+/* line 379, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.secondary .user-menu > li:last-child {
+    border-right: 0;
+}
+/* line 382, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.secondary .user-menu > li:last-child > a {
+    border-radius: 0 3px 3px 0;
+}
+/* line 386, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.secondary .user-menu > li:first-child > a {
+    border-radius: 3px 0 0 3px;
+}
+/* line 387, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.secondary .user-menu > li:hover a {
+    background: #d5d5d5;
+}
+/* line 390, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.secondary .user-menu a {
+    padding: 5px 15px;
+}
+/* line 395, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.secondary .user-menu.logged-in > a {
+    padding: 0;
+}
+/* line 397, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.secondary .user-menu.logged-in > a > .user-button {
+    line-height: 1.8;
+    padding: 5px 10px 3px 6px;
+    display: inline-block;
+    color: #888;
+}
+/* line 403, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.secondary .user-menu.logged-in > a:hover > .user-button {
+    color: #7b7b7b;
+}
+/* line 407, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.secondary .caret {
+    border-top-color: #CCC;
+    margin-top: 9px;
+}
+/* line 412, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.secondary img.user_thumbnail_tiny {
+    border: 0;
+    vertical-align: top;
+    margin-top: 0px;
+    margin: 4px 0 0 4px;
+    border-radius: 2px;
+}
+/* line 420, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.secondary #inboxanchor {
+    display: inline-block;
+    vertical-align: top;
+    height: 25px;
+    margin: 3px 0 3px 3px;
+    background-color: #e6e6e6;
+    line-height: 20px;
+    border-radius: 2;
+}
+/* line 430, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.secondary .dropdown-menu {
+    left: auto;
+    right: -1px;
+    border-radius: 3px 0 3px 3px;
+}
+/* line 435, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+nav.secondary .dropdown-menu .count-number {
+    float: right;
+    padding: 0 5px;
+    margin: 0;
+}
+
+/* line 443, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#compact-secondary-nav {
+    display: none;
+}
+/* line 445, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#compact-secondary-nav ul li a {
+    width: 100%;
+    color: #333;
+}
+/* line 448, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#compact-secondary-nav ul li a:hover {
+    color: #fff;
+}
+
+/* line 453, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+body.compact #compact-secondary-nav {
+    display: inline-block;
+}
+/* line 456, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+body.compact .compact-hide {
+    display: none;
+}
+
+/* Utility for styling notification numbers */
+/* line 463, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.count-number {
+    padding: 2px 5px;
+    border-radius: 2px;
+    background: #dcedd7;
+    margin: 0 2px;
+    font-size: 11px;
+    color: #333;
+}
+
+/* Rules for the message shown in place of the map when javascript is disabled */
+/* line 474, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#noscript {
+    z-index: 20000000;
+    margin-left: 400px;
+    margin-top: 50px;
+}
+
+/* Rules for Leaflet maps */
+/* line 482, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.leaflet-control .control-button {
+    display: block;
+    height: 40px;
+    width: 40px;
+    background-color: #333;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 4px 0 0 4px;
+    margin-bottom: 10px;
+    outline: none;
+}
+/* line 492, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.leaflet-control .control-button:hover {
+    background-color: black;
+}
+/* line 496, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.leaflet-control .control-button.disabled, .leaflet-control .control-button.leaflet-disabled {
+    background-color: #333;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: default;
+}
+/* line 503, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.leaflet-control .control-button.active {
+    background-color: #9ed485;
+}
+/* line 507, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.leaflet-control .control-button .icon {
+    margin: 10px;
+}
+
+/* line 512, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.leaflet-control .zoomin,
+.control-layers .control-button {
+    margin-bottom: 0px;
+    border-radius: 4px 0 0 0;
+}
+
+/* line 518, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.leaflet-control .zoomout,
+.control-key .control-button {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+/* line 524, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.control-locate .control-button,
+.control-share .control-button {
+    border-radius: 0 0 0 4px;
+}
+
+/* Rules for the sidebar and main map area */
+/* line 532, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #content {
+    overflow: hidden;
+    position: absolute;
+    top: 55px;
+    bottom: 0;
+    width: 100%;
+}
+/* line 540, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #sidebar, .map-layout #map {
+    position: relative;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+/* line 547, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #sidebar {
+    float: left;
+    width: 350px;
+    background: #fff;
+    font-size: 12px;
+}
+/* line 553, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #sidebar #sidebar_loader {
+    display: none;
+}
+/* line 557, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #sidebar > div {
+    position: relative;
+    float: left;
+    clear: both;
+    width: 100%;
+}
+/* line 564, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #sidebar h2 {
+    padding: 20px 20px 10px;
+}
+/* line 568, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #sidebar h3, .map-layout #sidebar h4 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+/* line 574, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #sidebar .close-wrap {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+}
+/* line 582, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #sidebar .close-wrap .icon.close {
+    pointer-events: none;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+/* line 590, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #sidebar .icon.close {
+    float: right;
+    cursor: pointer;
+}
+/* line 595, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #sidebar .flash {
+    padding: 15px;
+}
+/* line 598, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #sidebar .flash picture {
+    margin-right: -25px;
+}
+/* line 602, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #sidebar .flash div.message {
+    margin-left: 30px;
+}
+/* line 608, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout .overlay-sidebar #sidebar {
+    position: absolute;
+    z-index: 1000;
+    height: auto;
+    overflow: hidden;
+}
+/* line 614, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout .overlay-sidebar #sidebar #banner,
+.map-layout .overlay-sidebar #sidebar .welcome {
+    display: block;
+}
+/* line 619, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout .overlay-sidebar #sidebar #sidebar_content {
+    display: none;
+}
+/* line 624, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout .welcome {
+    display: none;
+    padding-bottom: 5px;
+}
+/* line 628, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout .welcome p {
+    padding: 10px 20px 20px;
+    font-size: 110%;
+    font-weight: 300;
+}
+/* line 634, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout .welcome .button {
+    width: 50%;
+    float: left;
+    margin: 0;
+    border-radius: 0;
+    font-weight: normal;
+    padding: .6em;
+}
+/* line 642, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout .welcome .button.learn-more {
+    border-right: 1px solid #fff;
+}
+/* line 648, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #banner {
+    display: none;
+}
+/* line 651, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #banner img {
+    display: block;
+    width: 350px;
+}
+/* line 657, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #map {
+    height: 100%;
+    overflow: hidden;
+}
+/* line 661, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #map.query-active {
+    cursor: help;
+}
+/* line 665, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #map.query-disabled {
+    cursor: not-allowed;
+}
+/* line 669, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #map .leaflet-marker-draggable {
+    cursor: move;
+}
+/* line 674, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #map-ui {
+    display: none;
+    position: relative;
+    float: right;
+    width: 250px;
+    height: 100%;
+    background: white;
+    overflow: auto;
+}
+/* line 683, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #map-ui .section {
+    border-bottom: 1px solid #DDD;
+    padding: 10px 20px;
+}
+/* line 688, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #map-ui a.close-button {
+    float: right;
+    padding: 5px;
+    font-size: 20px;
+    line-height: 10px;
+    color: #222;
+    border: 1px solid #ddd;
+}
+/* line 697, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #map-ui .tooltip {
+    opacity: 1;
+    border: 1px solid #ccc;
+}
+/* line 700, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.map-layout #map-ui .tooltip .tooltip-arrow {
+    border-top-color: #ccc;
+}
+
+/* line 709, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.layers-ui li:last-child,
+.share-ui li:last-child {
+    margin-bottom: 0;
+}
+
+/* line 716, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.layers-ui .base-layers .leaflet-container {
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+}
+/* line 722, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.layers-ui .base-layers li {
+    overflow: hidden;
+    border-radius: 3px;
+    border: 2px solid #fff;
+    margin-bottom: 8px;
+    position: relative;
+    transition: border-color 0.08s ease-in;
+}
+/* line 730, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.layers-ui .base-layers li label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 2px 6px;
+    border-bottom-right-radius: 3px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    text-stroke: 2px #fff;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 1000;
+}
+/* line 742, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.layers-ui .base-layers li label input[type="radio"] {
+    display: none;
+}
+/* line 747, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.layers-ui .base-layers li.active {
+    border-color: #60a94f;
+}
+/* line 748, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.layers-ui .base-layers li:hover {
+    border-color: #CCC;
+}
+/* line 750, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.layers-ui .base-layers li:hover.active {
+    border-color: #4d863f;
+}
+/* line 756, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.layers-ui .overlay-layers p {
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+/* line 760, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.layers-ui .overlay-layers li.disabled {
+    color: #999;
+}
+
+/* line 765, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.share-ui .share-tabs {
+    margin-bottom: 10px;
+}
+/* line 768, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.share-ui .share-tabs a {
+    color: #fff;
+    text-decoration: none;
+    background-color: #B8C5F0;
+    padding: 5px 10px;
+    border-right: 1px solid #fff;
+}
+/* line 776, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.share-ui .share-tabs a:first-child {
+    border-right: 1px solid #fff;
+    border-radius: 4px 0 0 4px;
+}
+/* line 781, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.share-ui .share-tabs a:last-child {
+    border-radius: 0 4px 4px 0;
+}
+/* line 785, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.share-ui .share-tabs a.active {
+    background-color: #7092FF;
+}
+/* line 790, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.share-ui .share-tab {
+    display: none;
+}
+/* line 795, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.share-ui .share-link input[type=text],
+.share-ui .share-link textarea {
+    width: 100%;
+    font-family: monospace;
+    font-size: small;
+    line-height: 1.3;
+}
+/* line 805, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.share-ui .share-image label {
+    margin-right: 10px;
+}
+/* line 810, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.share-ui #embed_html {
+    resize: vertical;
+}
+/* line 814, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.share-ui #mapnik_scale {
+    width: 100px;
+}
+
+/* line 819, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.leaflet-top {
+    top: 10px !important;
+}
+/* line 821, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.leaflet-top .leaflet-control {
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+}
+
+/* line 827, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.leaflet-popup-scrolled {
+    padding-right: 20px;
+    border-bottom: 0px !important;
+    border-top: 0px !important;
+}
+
+/* line 833, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.leaflet-popup-content-wrapper {
+    border-radius: 4px !important;
+}
+
+/* Rules for attribution text under the main map shown on printouts */
+/* line 839, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#attribution {
+    display: none;
+}
+/* line 842, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#attribution table {
+    width: 100%;
+}
+
+/* line 847, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.attribution_license,
+.attribution_project {
+    text-align: left;
+}
+
+/* line 852, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.attribution_notice {
+    text-align: center;
+}
+
+/* line 856, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.donate-attr {
+    color: #60a94f !important;
+}
+
+/* Rules for the sidebar */
+/* line 860, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.sidebar_heading {
+    position: relative;
+    padding: 10px 20px;
+}
+/* line 865, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.sidebar_heading > .close {
+    float: right;
+    margin-top: 2px;
+    cursor: pointer;
+}
+
+/* line 873, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#browse_status p {
+    padding: 20px;
+}
+/* line 877, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#browse_status input {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* line 885, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar #sidebar_loader,
+#sidebar .search_more {
+    width: 100%;
+    margin: 20px auto;
+}
+/* line 891, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar .loader,
+#sidebar .load_more {
+    text-align: center;
+    margin: auto;
+    width: 40px;
+    display: block;
+}
+
+/* Rules for the search and direction forms */
+/* line 902, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+header .search_forms,
+.directions_form {
+    display: none;
+}
+
+/* line 907, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_form,
+.directions_form {
+    position: relative;
+    padding: 10px;
+    background-color: #EEE;
+}
+/* line 913, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_form .query_wrapper,
+.directions_form .query_wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px 0 0 2px;
+}
+/* line 919, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_form input[type=text],
+.directions_form input[type=text] {
+    width: 100%;
+    height: 30px;
+    transition: 300ms linear;
+}
+/* line 925, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_form input[type=text].overflow,
+.directions_form input[type=text].overflow {
+    border-right: none;
+}
+/* line 929, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_form input:focus,
+.directions_form input:focus {
+    outline: none;
+    box-shadow: 0px 0px 7px #9ED485;
+}
+/* line 934, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_form input[type=submit].float,
+.directions_form input[type=submit].float {
+    float: right;
+    width: auto;
+    min-width: 0;
+    border-radius: 0 2px 2px 0;
+}
+/* line 941, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_form select,
+.directions_form select {
+    /* this next line is to polyfill the vertical alignment of text within a select element,
+     * which is different between firefox and chrome. */
+    padding: 0.3em 0;
+}
+/* line 947, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_form .query_options,
+.directions_form .query_options {
+    text-align: right;
+    font-size: 10px;
+    color: #7092FF;
+}
+/* line 953, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_form .describe_location,
+.directions_form .describe_location {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    font-size: 10px;
+    color: #7092FF;
+}
+/* line 961, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_form .switch_link,
+.directions_form .switch_link {
+    float: right;
+    width: auto;
+    min-width: 0;
+    margin-left: 6px;
+}
+/* line 968, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_form img.button,
+.directions_form img.button {
+    display: block;
+}
+/* line 972, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_form span.force_width,
+.directions_form span.force_width {
+    width: 100%;
+    padding-right: 25px;
+    display: block;
+}
+/* line 978, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_form select.routing_engines,
+.directions_form select.routing_engines {
+    min-height: 30px;
+    margin: 0px 0px 5px 25px;
+}
+/* line 983, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_form input.routing_go,
+.directions_form input.routing_go {
+    min-width: 100px;
+    float: right;
+}
+/* line 988, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_form div.header,
+.directions_form div.header {
+    width: 100%;
+    height: 30px;
+}
+/* line 993, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_form div.line,
+.directions_form div.line {
+    width: 100%;
+    margin: 0px 0px 5px 0px;
+}
+/* line 998, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_form div.loader_copy,
+.directions_form div.loader_copy {
+    display: none;
+}
+/* line 1001, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_form div.loader_copy img,
+.directions_form div.loader_copy img {
+    vertical-align: middle;
+}
+/* line 1006, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_form a.reverse_directions,
+.directions_form a.reverse_directions {
+    cursor: pointer;
+    margin: 0px 0px 5px 25px;
+}
+
+/* Rules for the map key which appears in the popout sidebar */
+/* line 1015, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#mapkey .mapkey-table-key img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* line 1020, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#mapkey td {
+    padding: 0 5px 5px 5px;
+}
+
+/* Rules for search sidebar */
+/* line 1028, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_results_entry ul li {
+    border-bottom: 1px solid #EEE;
+    cursor: pointer;
+}
+/* line 1031, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_results_entry ul li:first-child {
+    border-top: 1px solid #EEE;
+}
+/* line 1032, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_results_entry ul li.selected {
+    background: #FFFFC0;
+}
+/* line 1035, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_results_entry .search_details {
+    display: block;
+    float: right;
+    text-align: right;
+    margin-top: 0.2em;
+    margin-left: 0.5em;
+}
+
+/* line 1044, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.search_results_error {
+    color: #f00;
+    padding: 10px 20px;
+}
+
+/* Rules for routing */
+/* line 1051, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content > table {
+    padding: 5px 20px 10px 15px;
+    width: 100%;
+    border-collapse: separate;
+}
+
+/* line 1057, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction {
+    background-image: url(/static/components/sc-web.module.geo/images/routing-sprite.png);
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i0 {
+    background-position: 0px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i1 {
+    background-position: -20px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i2 {
+    background-position: -40px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i3 {
+    background-position: -60px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i4 {
+    background-position: -80px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i5 {
+    background-position: -100px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i6 {
+    background-position: -120px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i7 {
+    background-position: -140px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i8 {
+    background-position: -160px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i9 {
+    background-position: -180px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i10 {
+    background-position: -200px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i11 {
+    background-position: -220px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i12 {
+    background-position: -240px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i13 {
+    background-position: -260px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i14 {
+    background-position: -280px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i15 {
+    background-position: -300px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i16 {
+    background-position: -320px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i17 {
+    background-position: -340px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i18 {
+    background-position: -360px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i19 {
+    background-position: -380px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i20 {
+    background-position: -400px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i21 {
+    background-position: -420px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i22 {
+    background-position: -440px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i23 {
+    background-position: -460px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i24 {
+    background-position: -480px 0px;
+}
+
+/* line 1064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.direction.i25 {
+    background-position: -500px 0px;
+}
+
+/* line 1067, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+p#routing_summary {
+    padding: 0 20px 5px;
+}
+
+/* line 1071, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+td.instruction, td.distance {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #DDD;
+}
+
+/* line 1076, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+td.distance {
+    color: #BBB;
+    text-align: right;
+    font-size: x-small;
+}
+
+/* line 1081, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+tr.turn {
+    cursor: pointer;
+}
+
+/* line 1084, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+tr.turn:hover {
+    background: #FFFFC0;
+}
+
+/* line 1087, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.routing_engines, #route_from, #route_to {
+    margin-left: 25px;
+}
+
+/* line 1088, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.routing_marker {
+    width: 15px;
+    position: absolute;
+    cursor: move;
+}
+
+/* Rules for entity history */
+/* line 1093, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .browse_details {
+    position: relative;
+    border-bottom: 1px solid #EEE;
+}
+
+/* line 1099, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.browse_status {
+    display: none;
+}
+
+/* Rules for the history sidebar */
+/* line 1106, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar .changesets li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    /* color is derived from changeset bbox fillColor in history.js */
+}
+/* line 1111, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar .changesets li.selected {
+    background: #FFFFC0;
+}
+/* line 1115, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar .changesets h4 {
+    margin: 0;
+}
+/* line 1117, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar .changesets h4 a {
+    color: #000;
+}
+/* line 1122, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar .changesets .comments {
+    float: right;
+    color: #999;
+}
+/* line 1127, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar .changesets .comments-0 {
+    opacity: 0.5;
+}
+
+/* Rules for the browse sidebar */
+/* line 1135, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .browse-section {
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+}
+/* line 1139, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .browse-section h4:first-child {
+    margin-top: 0;
+    word-wrap: break-word;
+}
+/* line 1145, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .browse-section:last-of-type {
+    border-bottom: none;
+}
+/* line 1149, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .paginate {
+    float: right;
+    padding: 1px 6px;
+    border: 1px solid #eee;
+    border-radius: 3px;
+}
+/* line 1156, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .paginate ul {
+    padding-left: 20px;
+}
+/* line 1160, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .browse-field {
+    margin-bottom: 10px;
+}
+/* line 1163, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .browse-field h4 {
+    padding: 5px 0 5px 10px;
+    font-size: 12px;
+    border: 1px solid #CCC;
+    border-radius: 4px 4px 0 0;
+    background-color: #F6F6F6;
+}
+/* line 1171, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .browse-field p {
+    padding: 7px 10px;
+    font-size: 12px;
+    background-color: #FFF;
+    border: 1px solid #CCC;
+    border-top: 0;
+    border-radius: 0 0 4px 4px;
+}
+/* line 1181, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .browse-tag-list {
+    background-color: #F6F6F6;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 12px;
+    table-layout: fixed;
+    border-collapse: separate;
+}
+/* line 1189, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .browse-tag-list th, #sidebar_content .browse-tag-list td {
+    border-bottom: 1px solid #ddd;
+}
+/* line 1193, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .browse-tag-list tr:last-child th, #sidebar_content .browse-tag-list tr:last-child td {
+    border-bottom: 0;
+}
+/* line 1197, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .browse-tag-list .browse-tag-k,
+#sidebar_content .browse-tag-list .browse-tag-v {
+    width: 50%;
+    padding: 6px 10px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+/* line 1205, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .browse-tag-list .browse-tag-k {
+    font-weight: 500;
+    background-color: #F6F6F6;
+}
+/* line 1210, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .browse-tag-list .browse-tag-v {
+    border-left: 1px solid #ddd;
+    background-color: #fff;
+}
+/* line 1216, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .warning {
+    margin: 0 0 10px 0;
+    padding: 0 10px;
+}
+/* line 1221, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .note-comments li, #sidebar_content .changeset-comments li {
+    margin: 10px 0;
+}
+/* line 1224, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .note-comments li p, #sidebar_content .changeset-comments li p {
+    margin-left: 10px;
+}
+/* line 1229, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .comments-header {
+    float: left;
+}
+/* line 1233, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .subscribe-buttons {
+    float: left;
+    margin: 18px 10px 10px;
+    min-width: 80px;
+}
+/* line 1239, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .subscribe-buttons input {
+    font-size: 90%;
+    line-height: 15px;
+    min-height: 20px;
+}
+/* line 1245, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content span.action-button:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+/* line 1250, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .note-description {
+    overflow: hidden;
+    margin: 0 0 10px 10px;
+}
+/* line 1255, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .query-intro p {
+    padding: 20px 20px 10px;
+}
+/* line 1259, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .query-results {
+    display: none;
+}
+/* line 1262, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .query-results h3 {
+    padding: 20px 20px 10px;
+    margin: 0;
+}
+/* line 1268, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .query-results ul li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+}
+/* line 1272, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .query-results ul li.query-result {
+    cursor: pointer;
+}
+/* line 1276, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content .query-results ul li.selected {
+    background: #FFFFC0;
+}
+
+/* Rules for export sidebar */
+/* line 1286, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.export_form {
+    padding: 20px;
+}
+/* line 1289, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.export_form .export_area_inputs,
+.export_form .export_button {
+    text-align: center;
+}
+/* line 1294, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.export_form .export_area_inputs {
+    margin-bottom: 10px;
+}
+/* line 1296, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.export_form .export_area_inputs input[type="text"] {
+    width: 80px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+/* line 1303, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.export_form .export_boxy {
+    background: #eee;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+/* line 1308, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.export_form .export_boxy #maxlat {
+    margin-top: -1px;
+}
+/* line 1309, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.export_form .export_boxy #minlon {
+    float: left;
+    margin-left: -1px;
+}
+/* line 1313, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.export_form .export_boxy #maxlon {
+    float: right;
+    margin-right: -1px;
+}
+/* line 1317, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.export_form .export_boxy #minlat {
+    margin-bottom: 0;
+}
+/* line 1320, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.export_form .export_bound {
+    margin: 5px;
+}
+/* line 1324, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.export_form .export_button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+/* line 1329, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.export_form dl {
+    padding-left: 10px;
+}
+/* line 1331, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.export_form dl dd {
+    margin-left: 0;
+    margin-bottom: 10px;
+}
+
+/* Rules for the routing sidebar */
+/* line 1341, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#sidebar_content #routing_credit {
+    text-align: center;
+    padding: 0.5em;
+}
+
+/* Rules for edit pages */
+/* line 1350, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-edit #content {
+    position: absolute;
+    top: 55px;
+    bottom: 0;
+    width: 100%;
+}
+/* line 1357, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-edit #map {
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Rules for non-map content pages */
+/* line 1365, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.content-heading {
+    background: #EEE;
+}
+/* line 1368, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.content-heading h1 {
+    font-size: 22px;
+}
+
+/* line 1372, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.content-body h1, .content-body h2, .content-body h3, .content-body p, .content-body ul, .content-body ol {
+    margin-bottom: 20px;
+}
+/* line 1376, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.content-body h1, .content-body h2, .content-body h3 {
+    margin-top: 10px;
+}
+
+/* line 1381, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.content-inner {
+    position: relative;
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Overrides for pages that use new layout conventions */
+/* line 1393, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.user-new .content-body .content-inner,
+.user-create .content-body .content-inner,
+.user-terms .content-body .content-inner {
+    padding: 0;
+}
+/* line 1396, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.user-new .content-body .content-inner .message,
+.user-create .content-body .content-inner .message,
+.user-terms .content-body .content-inner .message {
+    margin-top: 80px;
+    padding: 20px;
+}
+
+/* line 1407, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.user-new .content-heading .content-inner,
+.user-create .content-heading .content-inner,
+.user-terms .content-heading .content-inner,
+.user-confirm .content-heading .content-inner {
+    height: 200px;
+}
+
+/* line 1412, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.header-illustration {
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    position: absolute;
+    height: 200px;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+}
+/* line 1421, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.header-illustration.new-user-main {
+    background-image: url(/static/components/sc-web.module.geo/images/sign-up-illustration-66ab283c683ea8cb7bcea4ad0e3498e39c9ed0e5c6282523c7670b11631e6f4a.png);
+}
+/* line 1425, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.header-illustration.confirm-main {
+    background-image: url(/static/components/sc-web.module.geo/images/confirm-illustration-858822a5fed2d4024073bdb47f724dffc54eced4e96870999499aa5e29e93cd3.png);
+}
+/* line 1429, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.header-illustration.new-user-terms {
+    background-image: url(/static/components/sc-web.module.geo/images/terms-illustration-9cc1127a6f85c3492096de11e5e5b283bb26142fbb81657eaf3cf3ebcde39b0c.png);
+}
+/* line 1433, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.header-illustration.new-user-arm {
+    height: 110px;
+    width: 130px;
+    left: 260px;
+    top: 160px;
+    background-image: url(/static/components/sc-web.module.geo/images/sign-up-illustration-arm-bc55d75c66597a96d7108a114677c78451719831859eeae2853e3653a87067c2.png);
+    z-index: 100;
+}
+
+/* line 1443, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#content.maximised {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 0;
+    z-index: 2000;
+}
+
+/* Rules for small maps in content areas */
+/* line 1454, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.content_map {
+    position: relative;
+    width: 45%;
+    height: 400px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    float: right;
+}
+
+/* Rules for the trace list shown by the traces tab etc */
+/* line 1465, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#trace_list {
+    font-size: 10px;
+    border-width: 0px;
+    text-align: right;
+}
+/* line 1470, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#trace_list .trace_summary {
+    font-size: 12px;
+    color: gray;
+}
+/* line 1475, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#trace_list .trace_pending {
+    color: red;
+}
+/* line 1479, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#trace_list .trace_public {
+    color: green;
+}
+/* line 1483, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#trace_list .trace_identifiable {
+    color: green;
+}
+/* line 1487, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#trace_list .trace_trackable {
+    color: red;
+}
+/* line 1491, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#trace_list .trace_private {
+    color: red;
+}
+
+/* Rules for the trace view */
+/* line 1499, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.trace-view .trace_pending {
+    color: red;
+}
+/* line 1503, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.trace-view .geo {
+    display: inline;
+}
+
+/* Rules for the new trace form */
+/* line 1511, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#new_trace input[type=text] {
+    width: 50%;
+    width: calc(100% - 150px);
+    max-width: 500px;
+}
+
+/* Rules for the edit trace form */
+/* line 1521, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.edit_trace .form-row p {
+    margin-bottom: 0px;
+}
+/* line 1525, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.edit_trace input[type=text] {
+    width: 50%;
+    width: calc(100% - 150px);
+    max-width: 500px;
+}
+
+/* Rules for the user profile page */
+/* line 1534, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#userinformation {
+    min-height: 100px;
+}
+/* line 1537, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#userinformation .userinformation-inner {
+    float: left;
+}
+/* line 1540, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#userinformation h2 {
+    margin-top: 0;
+}
+/* line 1543, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#userinformation .user-description {
+    width: 100%;
+    clear: both;
+}
+/* line 1547, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#userinformation .deemphasize {
+    margin: 0;
+}
+
+/* line 1552, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.admin-user-info small {
+    margin-bottom: 10px;
+    display: inline;
+    margin-right: 20px;
+}
+
+/* line 1558, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.activity-block {
+    clear: left;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+    float: left;
+}
+/* line 1563, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.activity-block h3 {
+    margin-bottom: 10px;
+}
+
+/* line 1568, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.contact-activity {
+    margin-top: 20px;
+    width: 100%;
+}
+
+/* line 1573, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.activity-details p {
+    margin-left: 70px;
+    margin-bottom: 0;
+}
+
+/* line 1578, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#friends-container .contact-activity ul {
+    margin-left: 70px;
+}
+
+/* line 1584, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.user-view .content-inner {
+    max-width: none;
+}
+/* line 1587, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.user-view p#no_home_location {
+    margin: 20px;
+}
+/* line 1590, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.user-view .user_thumbnail {
+    margin-top: 5px;
+    float: left;
+}
+
+/* Rules for the user map */
+/* line 1598, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.content_map .leaflet-popup-content {
+    margin: 10px;
+    min-height: 50px;
+}
+
+/* Rules for user popups on maps */
+/* line 1605, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.user_popup {
+    min-width: 200px;
+}
+/* line 1607, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.user_popup p {
+    padding: 0 0 5px 0;
+    margin-top: 0 0 0 60px;
+    font-size: 12px;
+}
+/* line 1612, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.user_popup img.user_thumbnail {
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+/* Rules for the user list */
+/* line 1620, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#user_list {
+    font-size: 10px;
+    width: 100%;
+}
+/* line 1624, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#user_list tr {
+    vertical-align: middle;
+}
+/* line 1628, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#user_list p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+/* line 1634, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#user_list_actions {
+    float: right;
+    margin-top: 10px;
+}
+
+/* Rules for the diary list page */
+/* line 1641, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.diary_post {
+    position: relative;
+    margin-top: 10px;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+}
+/* line 1647, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.diary_post .post_heading {
+    margin-bottom: 20px;
+}
+/* line 1650, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.diary_post .post_heading h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+/* line 1657, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.diary_post img.user_thumbnail {
+    float: left;
+}
+/* line 1661, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.diary_post small.deemphasize {
+    float: left;
+    display: block;
+}
+
+/* line 1667, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.content-heading .hide_unless_logged_in {
+    display: inline;
+}
+
+/* line 1671, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.pagination {
+    padding-top: 20px;
+}
+
+/* Rules for the diary entry page */
+/* line 1678, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.diary_entry #map {
+    position: relative;
+    width: 90%;
+    height: 400px;
+    border: 1px solid #ccc;
+    display: none;
+    margin-bottom: 20px;
+}
+/* line 1686, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.diary_entry #newcomment {
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+    margin-top: 10px;
+}
+/* line 1691, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.diary_entry .comments {
+    max-width: 740px;
+}
+/* line 1694, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.diary_entry .diary-comment {
+    margin-top: 10px;
+    border-top: 1px dashed #ccc;
+    padding-top: 10px;
+}
+/* line 1698, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.diary_entry .diary-comment:first-child {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+}
+/* line 1703, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.diary_entry .diary-comment p {
+    margin-bottom: 10px;
+}
+/* line 1706, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.diary_entry .diary-comment .comment-heading {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+/* line 1713, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.diary_entry-view img.user_thumbnail {
+    float: left;
+}
+
+/* line 1718, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.diary-subscribe-buttons {
+    position: relative;
+    top: -30px;
+    left: 130px;
+}
+
+/* Rules for the log in page */
+/* line 1726, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#login_auth_buttons {
+    margin-bottom: 0;
+}
+
+/* line 1730, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#login_auth_buttons li {
+    float: left;
+    padding: 5px 10px;
+}
+
+/* Rules for the account confirmation page */
+/* line 1738, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.user-terms .legale {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    overflow: auto;
+    height: 20em;
+}
+/* line 1745, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.user-terms .legale li {
+    list-style: inherit;
+}
+/* line 1749, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.user-terms .legale ol ol {
+    list-style-type: lower-alpha;
+}
+/* line 1754, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.user-terms #decline {
+    background: #B8C5F0;
+}
+/* line 1756, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.user-terms #decline:hover {
+    background: #6480de;
+}
+
+/* Rules for the account settings page */
+/* line 1764, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#accountForm .user_map {
+    position: relative;
+    width: 500px;
+    height: 400px;
+    border: 1px solid #ccc;
+}
+
+/* line 1771, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#accountForm .user_image {
+    margin-bottom: 0;
+}
+
+/* line 1775, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#accountForm #user_image {
+    margin-left: 20px;
+}
+
+/* line 1779, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#accountForm ul.accountImage-options {
+    margin-left: 120px;
+}
+
+/* line 1783, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.nohome .location {
+    display: none;
+}
+
+/* line 1787, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#homerow .message {
+    display: none;
+}
+
+/* line 1791, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.nohome .message {
+    display: inline !important;
+}
+
+/* line 1795, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.content_map.settings_map {
+    width: 50%;
+    float: none;
+}
+
+/* Rules for the oauth settings page */
+/* line 1802, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.oauth_clients .buttons .oauth-edit {
+    border-radius: 2px 0 0 2px;
+}
+
+/* line 1806, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.oauth_clients .buttons .oauth-delete {
+    border-radius: 0 2px 2px 0;
+}
+
+/* Rules for the oauth authorization page */
+/* line 1812, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.oauth-authorize ul {
+    list-style: none;
+}
+
+/* Rules for messages pages */
+/* line 1818, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.messages {
+    width: 100%;
+    border: 1px solid #ddd;
+}
+/* line 1822, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.messages input[type="submit"] {
+    margin: auto;
+}
+/* line 1825, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.messages tbody tr {
+    border-top: 1px solid #ccc;
+}
+/* line 1829, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.messages .inbox-row {
+    background: #f8f8ff;
+}
+/* line 1833, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.messages .inbox-row-unread {
+    background: #CBEEA7;
+}
+/* line 1837, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.messages .right {
+    float: right;
+}
+/* line 1841, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.messages tr td,
+.messages tr th {
+    padding: 5px;
+}
+/* line 1845, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.messages p:last-child,
+.messages h2:last-child,
+.messages h3:last-child,
+.messages ol:last-child,
+.messages ul:last-child {
+    margin-bottom: 0;
+}
+/* line 1852, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.messages tr td {
+    height: 30px;
+    border-right: 1px solid #EEE;
+}
+
+/* line 1858, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.inbox-row .inbox-mark-read {
+    display: none;
+}
+
+/* line 1862, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.info-line {
+    margin-bottom: 20px;
+    padding: 5px 0px 4px 0px;
+    border-bottom: 1px solid #ccc;
+}
+/* line 1867, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.info-line form, .info-line form div {
+    display: inline;
+}
+
+/* line 1872, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.info-line .user_thumbnail_tiny {
+    vertical-align: middle;
+}
+
+/* line 1876, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.inbox-sent {
+    white-space: nowrap;
+}
+
+/* line 1880, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.inbox-mark-unread,
+.inbox-mark-read,
+.inbox-delete {
+    width: 1%;
+}
+
+/* line 1886, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.inbox-row-unread .inbox-mark-unread {
+    display: none;
+}
+
+/* line 1890, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.message-read .message-buttons {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #EEE;
+}
+
+/* line 1897, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.message-read .buttons .mark-unread-button {
+    border-radius: 0;
+}
+
+/* Rules for "flash" notice boxes shown at the top of the content area */
+/* line 1903, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.flash {
+    padding: 20px;
+}
+/* line 1906, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.flash.error {
+    background-color: #ff7070;
+}
+/* line 1910, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.flash.warning {
+    background-color: #ffe0cc;
+}
+/* line 1914, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.flash.notice {
+    background-color: #CBEEA7;
+}
+/* line 1918, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.flash div.message {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+/* line 1923, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.flash div.message p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+/* line 1927, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.flash div.message p:first-child {
+    margin-top: 0px;
+}
+/* line 1931, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.flash div.message p:last-child {
+    margin-bottom: 0px;
+}
+
+/* Rules for highlighting fields with rails validation errors */
+/* line 1940, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.formError {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-top: 5px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #fff;
+    background-color: #ff7070;
+}
+
+/* Rules for rails validation error boxes */
+/* line 1952, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#errorExplanation {
+    width: 400px;
+    border: 2px solid #ff7070;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+}
+/* line 1959, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#errorExplanation h2 {
+    margin: 0 -10px 10px -10px;
+    padding: 5px 5px 5px 15px;
+    font-weight: bold;
+    font-size: 12px;
+    background-color: #c00;
+    color: #fff;
+    text-align: left;
+}
+/* line 1969, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#errorExplanation p {
+    color: #333;
+    margin-bottom: 0px;
+    padding: 5px;
+}
+/* line 1975, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#errorExplanation ul {
+    padding-left: 20px;
+}
+/* line 1978, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#errorExplanation ul li {
+    font-size: 12px;
+    list-style: disc;
+}
+
+/* Rules for forms */
+/* line 1988, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.standard-form fieldset {
+    margin-bottom: 20px;
+}
+/* line 1991, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.standard-form label.standard-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.5;
+}
+/* line 1998, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.standard-form label.standard-label.secondary {
+    display: inline-block;
+    font-weight: normal;
+}
+/* line 2002, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.standard-form .form-help {
+    font-weight: normal;
+}
+/* line 2005, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.standard-form .form-column {
+    float: left;
+    margin-right: 20px;
+}
+/* line 2009, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.standard-form .form-divider {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #EEE;
+}
+/* line 2014, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.standard-form .horizontal-list .form-row {
+    float: left;
+    padding-right: 10px;
+}
+/* line 2018, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.standard-form .form-row {
+    margin-bottom: 10px;
+}
+/* line 2021, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.standard-form .form-list {
+    margin-bottom: 0;
+}
+/* line 2024, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.standard-form .form-list li {
+    margin-bottom: 5px;
+}
+/* line 2027, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.standard-form input[type="checkbox"],
+.standard-form input[type="radio"] {
+    float: left;
+    margin-top: 5px;
+}
+
+/* line 2034, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+#remember_me_openid {
+    display: block;
+}
+
+/* line 2038, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+select {
+    padding: 2px;
+}
+
+/* line 2042, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+input[type="checkbox"],
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+/* line 2047, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+textarea {
+    color: #222;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 2px 5px;
+    margin: 0;
+    width: 200px;
+}
+/* line 2059, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+input[type="text"].field_with_errors,
+input[type="email"].field_with_errors,
+input[type="url"].field_with_errors,
+input[type="password"].field_with_errors,
+textarea.field_with_errors {
+    border: 2px solid #ff7070;
+}
+
+/* line 2064, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+textarea {
+    padding: 5px;
+    width: 100%;
+}
+
+/* Rules for user images */
+/* line 2071, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+img.user_image {
+    max-width: 100px;
+    max-height: 100px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    float: left;
+    margin-right: 20px;
+}
+
+/* line 2080, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+img.user_thumbnail {
+    max-width: 50px;
+    max-height: 50px;
+    border: 1px solid #ccc;
+    margin-right: 20px;
+}
+
+/* line 2087, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+img.user_thumbnail_tiny {
+    width: auto;
+    height: auto;
+    max-width: 25px;
+    max-height: 25px;
+    border: 1px solid #ccc;
+}
+
+/* Rules for geo microformats */
+/* line 2097, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+abbr.geo {
+    border-bottom: none;
+}
+
+/* Rules for RSS buttons */
+/* line 2103, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.rsssmall {
+    position: relative;
+    top: 3px;
+}
+
+/* General styles for action lists / subnavs / pager navs */
+/* line 2110, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+ul.secondary-actions {
+    font-style: normal;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+/* line 2114, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+ul.secondary-actions.pager {
+    display: inline-block;
+    margin-right: 60px;
+}
+/* line 2118, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+ul.secondary-actions > li {
+    display: block;
+    float: left;
+    list-style: none;
+    border-left: 1px solid #ccc;
+    padding-left: 10px;
+    margin-right: 10px;
+}
+/* line 2125, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+ul.secondary-actions > li:first-child {
+    border-left: 0;
+    padding-left: 0;
+}
+/* line 2129, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+ul.secondary-actions > li:last-child {
+    margin-right: 0px;
+}
+
+/* line 2135, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+div.secondary-actions {
+    padding: 10px;
+    text-align: center;
+}
+
+/* Utility for managing inner content areas */
+/* line 2142, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.inner22 {
+    padding: 20px;
+}
+
+/* line 2144, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.inner12 {
+    padding: 10px 20px;
+}
+
+/* line 2146, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.inner11 {
+    padding: 10px;
+}
+
+/* line 2148, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.inner20 {
+    padding: 20px 0;
+}
+
+/* line 2150, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.inner02 {
+    padding: 0 20px;
+}
+
+/* Utility for general button styles */
+/* line 2154, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+a.button {
+    cursor: pointer;
+    border: 0;
+    display: inline-block;
+    padding: 5px 10px;
+    min-height: 30px;
+    min-width: 120px;
+    margin: 0 0 10px 0;
+    color: white;
+    background: #7092FF;
+    text-align: center;
+    border-radius: 2px;
+}
+/* line 2169, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+a.button:hover {
+    background: #0a44ff;
+    text-decoration: none;
+}
+/* line 2173, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+input[type="button"].deemphasize,
+input[type="submit"].deemphasize,
+input[type="reset"].deemphasize,
+a.button.deemphasize {
+    background: #B8C5F0;
+}
+/* line 2175, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+input[type="button"].deemphasize:hover,
+input[type="submit"].deemphasize:hover,
+input[type="reset"].deemphasize:hover,
+a.button.deemphasize:hover {
+    background: #6480de;
+}
+/* line 2179, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+input[type="button"]:disabled,
+input[type="submit"]:disabled,
+input[type="reset"]:disabled,
+a.button:disabled {
+    background: #EEE;
+}
+/* line 2181, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+input[type="button"]:disabled:hover,
+input[type="submit"]:disabled:hover,
+input[type="reset"]:disabled:hover,
+a.button:disabled:hover {
+    background: #EEE;
+}
+/* line 2185, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+input[type="button"]:last-child,
+input[type="submit"]:last-child,
+input[type="reset"]:last-child,
+a.button:last-child {
+    margin-bottom: 0;
+}
+
+/* line 2190, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+    line-height: normal;
+}
+
+/* line 2196, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+a.button {
+    line-height: 20px;
+}
+
+/* line 2200, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.buttons {
+    min-width: 200px;
+    /* if a 3-button set has a hidden middle button */
+    /* if a 3-button set starts with a hidden button */
+}
+/* line 2202, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.buttons input[type="submit"],
+.buttons input[type="button"],
+.buttons input[type="reset"],
+.buttons .button,
+.buttons .button_to {
+    box-sizing: border-box;
+    float: left;
+    border-radius: 0;
+    margin: 0;
+    min-width: 75px;
+    max-width: 180px;
+    border-right: 1px solid white;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+/* line 2218, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.buttons input:first-child,
+.buttons .button:first-child,
+.buttons .button_to:first-child {
+    border-radius: 2px 0 0 2px;
+}
+/* line 2223, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.buttons input:last-child,
+.buttons .button:last-child,
+.buttons .button_to:last-child {
+    border-radius: 0 2px 2px 0;
+    border-right-width: 0;
+}
+/* line 2229, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.buttons input:only-child,
+.buttons .button:only-child,
+.buttons .button_to:only-child,
+.buttons *[value="Hide"] + input:last-child,
+.buttons *[value="Hide"] + .button:last-child,
+.buttons *[value="Hide"] + .button_to:last-child {
+    border-radius: 2px;
+    border-right-width: 0;
+}
+/* line 2239, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.buttons *[value="Hide"] + input:nth-child(3),
+.buttons *[value="Hide"] + .button:nth-child(3),
+.buttons *[value="Hide"] + .button_to:nth-child(3) {
+    border-radius: 0 2px 2px 0;
+    border-right-width: 0;
+}
+/* line 2246, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.buttons *[value="Hide"] + input:nth-child(2):not(:last-child),
+.buttons *[value="Hide"] + .button:nth-child(2):not(:last-child),
+.buttons *[value="Hide"] + .button_to:nth-child(2):not(:last-child) {
+    border-radius: 2px 0 0 2px;
+    border-right-width: 1px;
+}
+
+/* Rules for doing distinct colour of alternate table rows */
+/* line 2256, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.table0,
+.item0 {
+    background: #f4f4ff;
+}
+
+/* line 2261, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.table1,
+.item1 {
+    background: #fff;
+}
+
+/* Rules for OpenID logo */
+/* line 2268, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.openid_logo {
+    vertical-align: text-bottom;
+    border: 0;
+}
+
+/* Rules for rich text */
+/* line 2277, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext h1, .richtext h2,
+.prose h1,
+.prose h2 {
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #cccccc;
+    margin-bottom: 10px;
+}
+/* line 2283, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext h1,
+.prose h1 {
+    font-size: 24px;
+}
+/* line 2287, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext h2,
+.prose h2 {
+    font-size: 18px;
+}
+/* line 2291, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext h3,
+.prose h3 {
+    font-size: 14px;
+}
+/* line 2295, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext code,
+.prose code {
+    font-size: 13px;
+    background: #e8e8e8;
+    padding: 2px 3px;
+}
+/* line 2301, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext pre,
+.prose pre {
+    font-size: 13px;
+    background: #e8e8e8;
+    padding: 2px 3px;
+}
+/* line 2306, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext pre code,
+.prose pre code {
+    padding: 0;
+}
+/* line 2311, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext img,
+.prose img {
+    padding: 20px;
+    background-color: #f4f4ff;
+    display: block;
+    max-width: 100%;
+    margin: auto;
+}
+/* line 2319, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext blockquote,
+.prose blockquote {
+    border-left: 20px solid #f4f4ff;
+    padding-left: 20px;
+    margin: 0;
+    color: #7E7E7E;
+}
+/* line 2326, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext ul, .richtext ol,
+.prose ul,
+.prose ol {
+    padding-left: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+/* line 2332, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext ul li,
+.prose ul li {
+    list-style: disc;
+}
+/* line 2336, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext ol li,
+.prose ol li {
+    list-style: decimal;
+}
+
+/* line 2341, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.diary_post .richtext {
+    margin-top: 20px;
+}
+
+/* line 2345, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.comments .richtext {
+    margin-left: 70px;
+    margin-top: 0;
+}
+
+/* Rules for rich text editors */
+/* line 2352, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+input.richtext_title[type="text"] {
+    width: 50%;
+    width: calc(100% - 235px);
+}
+@media only screen and (max-width: 768px) {
+    /* line 2352, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+    input.richtext_title[type="text"] {
+        width: 100%;
+    }
+}
+
+/* line 2361, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext_container {
+    margin-bottom: 20px;
+}
+/* line 2364, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext_container .richtext_content {
+    width: 50%;
+    width: calc(100% - 235px);
+    display: inline-block;
+    vertical-align: top;
+}
+@media only screen and (max-width: 768px) {
+    /* line 2364, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+    .richtext_container .richtext_content {
+        width: 100%;
+    }
+}
+/* line 2374, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext_container .richtext_content .richtext_preview {
+    display: inline-block;
+    padding: 20px;
+    background-color: #f4f4ff;
+    overflow-x: auto;
+}
+/* line 2380, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext_container .richtext_content .richtext_preview.loading {
+    background-image: url(/static/components/sc-web.module.geo/images/loading-2369b8cfee23b4c9d10852563071bee00bc9a4e375557e60dff40d4fa3ea9231.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+/* line 2386, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext_container .richtext_content .richtext_preview > :first-child {
+    margin-top: 0px;
+}
+/* line 2392, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext_container .richtext_help {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 15px;
+    background-color: #f8f8ff;
+    padding: 10px;
+    width: 220px;
+}
+/* line 2400, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext_container .richtext_help ul {
+    margin-bottom: 0;
+}
+/* line 2404, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext_container .richtext_help h4.heading, .richtext_container .richtext_help li {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+/* line 2410, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext_container .richtext_help li h4, .richtext_container .richtext_help li span, .richtext_container .richtext_help li p {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 11px;
+}
+/* line 2416, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext_container .richtext_help li h4 {
+    width: 40%;
+    margin: 0;
+}
+/* line 2421, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.richtext_container .richtext_help li span, .richtext_container .richtext_help li p {
+    width: 50%;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    white-space: nowrap;
+}
+
+/* Rules for the user notes list */
+/* line 2433, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.note_list tr.creator {
+    background-color: #eeeeee;
+}
+/* line 2437, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.note_list td {
+    padding: 3px;
+}
+/* line 2441, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.note_list p {
+    margin-bottom: 0px;
+}
+
+/* Rules for the iD editor */
+/* line 2448, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.id-embed {
+    width: 100%;
+    height: 100%;
+}
+
+/* Rules for dropdown menus */
+/* line 2455, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.dropdown {
+    position: relative;
+}
+
+/* line 2459, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.dropdown-toggle {
+    *margin-bottom: -3px;
+}
+
+/* line 2463, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.dropdown-toggle:active,
+.open .dropdown-toggle {
+    outline: 0;
+}
+
+/* line 2468, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    vertical-align: top;
+    border-top: 4px solid #000000;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    content: "";
+}
+
+/* line 2479, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.dropdown .caret {
+    margin-top: 8px;
+    margin-left: 2px;
+}
+
+/* line 2484, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: -1px;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 0;
+    list-style: none;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 0 3px 3px;
+    *border-right-width: 2px;
+    *border-bottom-width: 2px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    background-clip: padding-box;
+}
+
+/* line 2504, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.dropdown-menu.pull-right {
+    right: 0;
+    left: auto;
+}
+
+/* line 2509, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.dropdown-menu .divider {
+    *width: 100%;
+    height: 1px;
+    margin: 9px 1px;
+    *margin: -5px 0 5px;
+    overflow: hidden;
+    background-color: #e5e5e5;
+    border-bottom: 1px solid #ffffff;
+}
+
+/* line 2519, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.dropdown-menu > li > a {
+    display: block;
+    padding: 3px 10px;
+    clear: both;
+    font-weight: normal;
+    line-height: 20px;
+    color: #333333;
+    white-space: nowrap;
+}
+
+/* line 2529, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-submenu:hover > a,
+.dropdown-submenu:focus > a {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #7ebc6f;
+}
+
+/* line 2538, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #7ebc6f;
+    outline: 0;
+}
+
+/* line 2547, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.dropdown-menu > .disabled > a,
+.dropdown-menu > .disabled > a:hover,
+.dropdown-menu > .disabled > a:focus {
+    color: #999999;
+}
+
+/* line 2553, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.dropdown-menu > .disabled > a:hover,
+.dropdown-menu > .disabled > a:focus {
+    text-decoration: none;
+    cursor: default;
+    background-color: transparent;
+    background-image: none;
+}
+
+/* line 2561, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.open {
+    *z-index: 1000;
+}
+
+/* line 2565, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.open > .dropdown-menu {
+    display: block;
+}
+
+/* line 2569, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.dropdown-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 990;
+}
+
+/* Rules for the "Welcome" page */
+/* line 2580, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-welcome .center, .site-fixthemap .center {
+    text-align: center;
+}
+/* line 2582, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-welcome .center .sprite, .site-fixthemap .center .sprite {
+    float: none;
+    margin: auto;
+}
+/* line 2588, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-welcome .sprite, .site-fixthemap .sprite {
+    background-image: url(/static/components/sc-web.module.geo/images/welcome-sprite.png);
+    background-size: 500px 250px;
+    display: block;
+    float: left;
+}
+/* line 2595, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-welcome .icon-list, .site-fixthemap .icon-list {
+    padding-bottom: 20px;
+}
+/* line 2597, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-welcome .icon-list div, .site-fixthemap .icon-list div {
+    margin-bottom: 10px;
+}
+/* line 2599, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-welcome .icon-list div p, .site-fixthemap .icon-list div p {
+    padding-top: 10px;
+}
+/* line 2604, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-welcome .sprite.small, .site-fixthemap .sprite.small {
+    width: 50px;
+    height: 50px;
+}
+/* line 2609, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-welcome .sprite.x, .site-fixthemap .sprite.x {
+    background-position: -50px 0;
+}
+/* line 2613, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-welcome .sprite.term, .site-fixthemap .sprite.term {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+/* line 2618, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-welcome .sprite.node, .site-fixthemap .sprite.node {
+    background-position: -100px 0;
+}
+/* line 2622, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-welcome .sprite.way, .site-fixthemap .sprite.way {
+    background-position: -150px 0;
+}
+/* line 2626, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-welcome .sprite.tag, .site-fixthemap .sprite.tag {
+    background-position: -200px 0;
+}
+/* line 2630, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-welcome .sprite.editor, .site-fixthemap .sprite.editor {
+    background-position: -250px 0;
+}
+/* line 2634, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-welcome .sprite.question, .site-fixthemap .sprite.question {
+    background-position: -300px 0;
+}
+/* line 2638, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-welcome .sprite.rules, .site-fixthemap .sprite.rules {
+    background-position: -350px 0;
+}
+/* line 2642, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-welcome .start-mapping, .site-fixthemap .start-mapping {
+    margin: auto;
+    cursor: pointer;
+    border: none;
+    padding: 20px 40px;
+    font-size: 30px;
+    text-decoration: none;
+}
+/* line 2651, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-welcome .note-box, .site-fixthemap .note-box {
+    margin-top: 20px;
+    background-color: #f4f4ff;
+}
+/* line 2656, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-welcome .icon.note, .site-fixthemap .icon.note {
+    background-color: #333;
+    border-radius: 4px;
+}
+
+/* line 2662, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-about #content {
+    background-color: #eee;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+/* line 2670, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-about #content .caption {
+    max-width: 200px;
+    font: 13px/20px Helvetica, Arial, sans-serif;
+    position: fixed;
+    text-align: right;
+    right: 20px;
+    bottom: 60px;
+    text-shadow: #000 0px 1px 5px;
+    color: #eee;
+    opacity: 0.8;
+    display: none;
+}
+/* line 2683, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-about #content .caption a {
+    color: white;
+    white-space: nowrap;
+    text-decoration: none;
+}
+/* line 2689, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-about #content a.next {
+    display: block;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    text-indent: -9999px;
+    overflow: hidden;
+    background: url(/static/components/sc-web.module.geo/images/about/sprite.png) -120px 0px no-repeat;
+    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+/* line 2704, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-about #content .content-inner {
+    position: relative;
+    color: #333;
+    min-width: 320px;
+    max-width: 640px;
+}
+/* line 2710, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-about #content .content-inner .section {
+    margin-bottom: 30px;
+}
+/* line 2714, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-about #content .content-inner .section:last-child {
+    margin-bottom: 0;
+}
+/* line 2719, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-about #content .text {
+    background: white;
+    padding: 40px;
+}
+/* line 2724, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-about #content .attr {
+    position: relative;
+    padding: 170px 40px 20px;
+    background: #333;
+    background: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+    margin-top: -20px;
+}
+/* line 2732, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-about #content .attr h1 {
+    display: block;
+    color: white;
+    font-weight: 300;
+    font-size: 34px;
+}
+/* line 2737, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-about #content .attr h1 span {
+    color: #76c551;
+}
+/* line 2742, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-about #content .attr .user-image {
+    position: absolute;
+    top: 0px;
+    right: 240px;
+    left: 0px;
+    height: 150px;
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+    background-image: url(/static/components/sc-web.module.geo/images/about/osm-78c9e4400c65d7631cbd3edcc9abc40d1fc0247c05c29992541d04438d42a2d8.png);
+    background-size: cover;
+    background-color: #76c551;
+}
+/* line 2755, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-about #content .attr .byosm {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 1;
+    width: 240px;
+    height: 150px;
+    padding: 20px 20px 20px 40px;
+    font: 500 20px/24px Helvetica, Arial, sans-serif;
+    white-space: nowrap;
+    color: #fff;
+    background: #76c551;
+}
+/* line 2769, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-about #content .attr .byosm span {
+    display: inline-block;
+    width: 20px;
+    margin-left: -20px;
+}
+/* line 2776, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-about #content h2 {
+    margin-bottom: 10px;
+}
+/* line 2780, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-about #content .icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    vertical-align: middle;
+    background: 40px 40px url(/static/components/sc-web.module.geo/images/about/sprite.png) no-repeat;
+}
+/* line 2787, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-about #content .icon.local {
+    /* no-r2 */
+    background-position: 0px 0px;
+}
+/* line 2791, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-about #content .icon.community {
+    /* no-r2 */
+    background-position: 0px -40px;
+}
+/* line 2795, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-about #content .icon.open {
+    /* no-r2 */
+    background-position: 0px -80px;
+}
+/* line 2799, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-about #content .icon.partners {
+    /* no-r2 */
+    background-position: 0px -120px;
+}
+/* line 2803, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-about #content .icon.infringement {
+    /* no-r2 */
+    background-position: 0px -160px;
+}
+/* line 2807, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+.site-about #content .icon.legal {
+    /* no-r2 */
+    background-position: -45px -160px;
+}
+
+/* line 1, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section {
+    /* Make space for icons */
+    /* Deleted objects */
+    /* Nodes (and ways as areas) */
+    /* Ways */
+}
+/* line 5, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .node::before,
+.browse-section .way::before,
+.browse-section .relation::before {
+    display: inline-block;
+    width: 25px;
+    margin-left: -25px;
+}
+/* line 13, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .node, .browse-section .way, .browse-section .relation {
+    margin-left: 25px;
+}
+/* line 19, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .deleted {
+    text-decoration: line-through;
+}
+/* line 23, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .aeroway.aerodrome::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/aerodrome.p.16-270743703c3eab15eb4c80acdb1acf68b4774e5d79fdb83519aeb74db6fe7cc0.png);
+}
+/* line 25, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.atm::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_atm.16-dede100e0ac8a57505caff81dc38e4006a874a608bad9c122ac4e30336673524.png);
+}
+/* line 26, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.bank::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_bank.16-9b25ee1a618fef6c42bd71d4f1904a6e936682b8a5eec3d4360cadd8bfa4a37f.png);
+}
+/* line 27, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.bar::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_bar.16-b694acfb652f3019e25bf5d4576e3622cdbf4c268eeeb4eb68bbaac5095e6785.png);
+}
+/* line 28, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.bench::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_bench.16-02a396e5fa25ff9105fadfd499e05ea07fefc917b1438141e889e8016c2c42aa.png);
+}
+/* line 29, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.biergarten::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_biergarten.16-cd1a1ae0360fd7958585563c36c5ebb6dc9c4094ef07a7eebf339546690f6d1a.png);
+}
+/* line 30, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.bicycle_parking::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_bicycle_parking.16-e309fb2d56601f09bd4856b229eb0148ead58b7f028de7c1642382e7f5504ef0.png);
+}
+/* line 31, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.bicycle_rental::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/transport_rental_bicycle.16-2d93ad45728d13687ab47616ed0c3686e32a9e546d5a91f65cc05e819bbec738.png);
+}
+/* line 32, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.bus_station::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/bus_station.n.16-d6b2c52b29ed4d9628fc308e0584690c1f5a0755dcd96e05dad8e3018bf89980.png);
+}
+/* line 33, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.cafe::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_cafe.16-a50a0f633b72d435c2cab4c28adff7423bd19aa05b5686e71bba45b59ad90389.png);
+}
+/* line 34, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.car_rental::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/transport_rental_car.16-17dcd532162bf6b41d98fe985136dd98351c7f344c3f3da2b2689056ff49a618.png);
+}
+/* line 35, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.car_sharing::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/car_share.p.16-df48499efd419c5d4bcad028a79b0ae2fca7ee2cf88f9a2294bec4b213d983d0.png);
+}
+/* line 36, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.cinema::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_cinema.16-f1c2dd02a5b032490901414ae88e0b8b7dc9033b8502d1b0195574a74cc26b1a.png);
+}
+/* line 37, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.courthouse::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_courthouse.16-549cd0d28dbaffaa894af12ef87ce3d30a345d6c8b230410c5e368dd1ea3b75a.png);
+}
+/* line 38, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.dentist::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_dentist.16-6326c2ca5318c129457d8771a05c945213f9c5ebca361a9f4f1814cefdfa9897.png);
+}
+/* line 39, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.doctors::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_doctors.16-b78be866cf71d25105d03463630efb3c398322bb6e9a71a093938b46c5a23b20.png);
+}
+/* line 40, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.drinking_water::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_drinking_water.16-edcdad9fe878bc91a2a62cd417642ccc366f33e353cf0ee4e36aa143ddd6da53.png);
+}
+/* line 41, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.embassy::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_embassy.16-f940ed571c5fcafbd550387c7fc4f933ca1ca53273a0bed76a3457a209b85250.png);
+}
+/* line 42, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.fast_food::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_fast_food.16-12297a27adc5c45bef5281ebd297383245f82666b28aeab0a45e18802d1a8714.png);
+}
+/* line 43, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.fire_station::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_fire_station.16-1cdc7057dacfb7da9402e9e28bd64cb07413eeb99e6aedded36aba87d632f4b5.png);
+}
+/* line 44, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.fuel::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_fuel.16-9b8029d4b1a133015082129c89cffef8dc9a0e01325c27455731b3d71f7cbdc2.png);
+}
+/* line 45, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.hospital::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_hospital.16-e52f83270b48fbd2127c6d83fe3d83fb3cf3ccb1bf6790fe863eb22a1ceb921a.png);
+}
+/* line 46, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.library::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/library.p.16-c1a46006466f3e987ccae4c1c97c23974ffec5a695ac6f9fca3e15bbfa76d017.png);
+}
+/* line 47, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.nursery::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/education_nursery.p.16-52cbbac318b7efd43b4859ff0bd61451fda873dcbd0bf6f9ca089b1a474e1276.png);
+}
+/* line 48, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.nightclub::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_nightclub.16-08b73ca2ba2457575e090400666ed12b1e861c2df37f07f1d613880518065542.png);
+}
+/* line 49, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.parking::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/parking.p.16-fb8f585e3cbfcefef15e50f7f980dd178e4fc4ad923747b09bfa351f13962bda.png);
+}
+/* line 50, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.pharmacy::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_pharmacy.16-2020f0c4fbce22a5467d193ec58b91df90f70ca8f3917d360b18890a00ff9c3b.png);
+}
+/* line 51, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.place_of_worship::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_place_of_worship.16-cc8fc2dc08052d4935e947d32aee074c6d2174fbc181d580c6112c76951b9920.png);
+}
+/* line 52, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.police::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_police.16-f34e6c0aba52ae5037e16adf7dcd421b043c65e9fa0ce3f56edf44a615c4ed12.png);
+}
+/* line 53, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.post_box::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/post_box.p.16-a2c9e65429006bdfaec54429b0798c258e21443b87266144e16111115c600ede.png);
+}
+/* line 54, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.post_office::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/post_office.p.16-08098df5bf481b41b1bc660b4559b2f41842e650599de756fc8e2f36213cc8d3.png);
+}
+/* line 55, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.prison::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_prison.16-31d9eed7d9f0199c77c31f5e65405ccaa6a31d3ed2ee733370876a48b55f8b28.png);
+}
+/* line 56, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.pub::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_pub.16-98c6f4baab8fb22e992c0f8cd1377f74c8307a547e650fcce6f5415a9347ad58.png);
+}
+/* line 57, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.restaurant::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_restaurant.16-c0f5368ed70d128b58ec3e57d8651e817c93aa4b2d3e3c0dd92fbbfb570bf74e.png);
+}
+/* line 58, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.recycling::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_recycling.16-fda46c1ff2fe68a8088fe1b4de638d718951f290bb1a1c74b9cc17b68ac02b7d.png);
+}
+/* line 59, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.school::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/education_school.p.16-1a84484ffe3f4a9bfbc1888c9c94c5c0648237433adc62e9fc5f783bbc210961.png);
+}
+/* line 60, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.shelter::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shelter2.p.16-0bb50b5c92c89b041ccaba52750cfccac8b4f0466afd599b4faef364b25c8537.png);
+}
+/* line 61, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.taxi::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_taxi.16-45a391085c3b853870da8beae46f59912ba072f3c4e934c2e0171340bde782db.png);
+}
+/* line 62, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.telephone::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/telephone.p.16-0d7d9663e152a7e72c94d319fc534973e82222ff86765859aeb707668e9d4074.png);
+}
+/* line 63, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.theatre::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_theatre.16-a5dd87d14d74a1eb8c77f555014a94aad2033d538a8204ea080aeb4bfcf2cc02.png);
+}
+/* line 64, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.toilets::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_toilets.16-612bbda4c41470dd3d1146a4326d0f5593b416f5f4744923104c5570e99eea97.png);
+}
+/* line 65, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.townhall::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_townhall.16-ca7a330b8b5b12d84de7b4d990f75f7d753b258fbc30a470633a7be43c611e27.png);
+}
+/* line 66, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.university::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/education_university.p.16-111f236a2c7e37393ab9b19c4fd2929ae7742bc8c3653014594d7b9832f52cac.png);
+}
+/* line 67, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.veterinary::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/health_veterinary.p.16-e256c155d9a20cc8d16584d978e79c342c131fb4b321177290138bc155c77cf6.png);
+}
+/* line 68, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .amenity.waste_basket::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/amenity_waste_basket.16-0f3cc49307ccfff4aefc239e9db370a11ba9f41c63b58a0b80bc52a5ddf419fb.png);
+}
+/* line 70, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .barrier.gate::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/gate2.p.16-abb156b4a582fbffedc8d088a285e6b1cf349e89f7b82bd5e85c7f443e355c16.png);
+}
+/* line 72, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.bus_stop::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/highway_bus_stop.16-7aba7eb4f1881be5ef1263dea79acc5487f4f3e228222c6aae1af5bb233afc9e.png);
+}
+/* line 73, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.mini_roundabout::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/mini_round.p.16-f2fc78a8fb50295eb903e1300ae5b29da2a6e1ef9446c871c8f3b9189f3ad4fb.png);
+}
+/* line 74, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.traffic_signals::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/traffic_light-ec0ad1f099fc0744f97ab4170d06377ad37ffe843dfdd8e4726e89c5542afe8a.png);
+}
+/* line 75, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.turning_circle::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/turning_circle.p.16-bf1256d3ad72e746af37a36ebc29f473fdd85c54351a996f523c70fc4e53454f.png);
+}
+/* line 77, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .historic.archaeological_site::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/historic_archaeological_site.16-cc9cc8c144fe2dcb3e4b78bbe242269f1ae87b16f9af28d3ad42bb4da8484d63.png);
+}
+/* line 78, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .historic.castle::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/tourist_castle.p.16-546520f00d3d7c19d6929752c6ddb3e2d69f312c7db0344f0f4694b1ebfa41de.png);
+}
+/* line 79, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .historic.memorial::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/historic_memorial.16-e7f7a6901f6999afd3c3b8dbe266415163be22b5f5c83ec5c03486babf41620e.png);
+}
+/* line 80, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .historic.monument::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/historic_monument.16-3b846166c29d9f1f7d667db2a3c789d4ec21e623059c516402fa61cec7811254.png);
+}
+/* line 81, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .historic.ruins::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/tourist_ruins.p.16-193ac5851f2636f381272b7b5713c2722ba2fad32668e17f185c996f1d79c404.png);
+}
+/* line 82, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .historic.wreck::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/tourist_wreck.p.16-5ab260ef29a632e328e618330af4fa8d05479c862dd232c76cc6bf72258cc237.png);
+}
+/* line 84, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .man_made.lighthouse::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/man_made_lighthouse.16-f7386a7941efd74004da237d23c4c05d6a0d3e05c9bf76ee55fc975d204db6b5.png);
+}
+/* line 85, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .man_made.water_tower::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/man_made_water_tower.16-ca9ecd600862049dce8399493471dad32a00b02fc24ff253cb187b1ee2f016fe.png);
+}
+/* line 86, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .man_made.windmill::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/man_made_windmill.16-26f00e0b0d5bfabe53a55f06c5f54440974c019674fc64ef2d4b0272cfa59ac8.png);
+}
+/* line 88, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .natural.tree::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/tree.p.16-387da3d2b141d7da0c7390aac5caf48f8bdc0c0455f80d5199d757233f124a42.png);
+}
+/* line 90, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .railway.halt::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/halt.p.16-6c46bba70dfb67766b46d330ba0d434eb38af491fdd659e047e00a916984a11d.png);
+}
+/* line 91, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .railway.station::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/station.p.16-976660d3774e59420621e69a9ad0e0e9b9c18a3b68c373a00371f027febf73d2.png);
+}
+/* line 92, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .railway.level_crossing::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/level_crossing.p.16-fd1e902efc01c7d084a2e8cfe88363cb5fea6a930bac92214ef55d71fa806d48.png);
+}
+/* line 94, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_convenience.p.16-d397105e52d251521924cebb304e2d9fdbfd370f6f541ded676108126281cd0f.png);
+}
+/* line 95, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.alcohol::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_alcohol.16.pn);
+}
+/* line 96, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.bakery::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_bakery.16-4f42f9bc29e1c818646fe405ee05bab01d50bfd10d6f0bd5e8d2cafef2335098.png);
+}
+/* line 97, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.bicycle::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_bicycle.16-5c60e2d8f033ec8822866fc3437cae68fc11d5617aab8b0dbc7c936667c3dc2b.png);
+}
+/* line 98, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.books::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_books.16-b5515a8c182eb6ea74b96901a66fdabb6e033bfda5007bf8e9adf5a6476a6766.png);
+}
+/* line 99, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.butcher::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_butcher.p.16-e3b4f37a587adbd857f20d5625e4de62af58c57666b1ad1eac0e7bf195a458cb.png);
+}
+/* line 100, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.clothes::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_clothes.16-d658a7530865fb0124ba685328e3f7e539bd7a974dcecbbba3a9d65bce3e8ba0.png);
+}
+/* line 101, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.car_parts::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_car_parts.16-a1491a7c49f5b9b31ce7a6b7ce55e963c0f58ce156d569dd5589ca3ea822d550.png);
+}
+/* line 102, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.car_repair::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_car_repair.16-e7181476bc8c192656121c99daa7eccde08e657a065e7adb118043b124641879.png);
+}
+/* line 103, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.convenience::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_convenience.p.16-d397105e52d251521924cebb304e2d9fdbfd370f6f541ded676108126281cd0f.png);
+}
+/* line 104, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.diy::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_doityourself.16-45034082a46b9551f009ec025ef6ee379b3b80a83d67107a0ef278c8d729f21c.png);
+}
+/* line 105, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.electronics::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_electronics.16-5550f35d0598919439a982dfde3e2ebeaedd7700af1604500f096a9b27f855d4.png);
+}
+/* line 106, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.estate_agent::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_estateagent2.p.16-5ef55d3ee644188df5120241be8b892e1686219d1b79b2dd66378555c2c9a0db.png);
+}
+/* line 107, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.fashion::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_clothes.16-d658a7530865fb0124ba685328e3f7e539bd7a974dcecbbba3a9d65bce3e8ba0.png);
+}
+/* line 108, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.fish::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_fish.p.16-69540df3ab328cc9160f83181f2ffae115600521f73c74490e993be9e5a9cdf9.png);
+}
+/* line 109, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.florist::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_florist.16-7f5928e8f9d622faa8f95ebf950b1e285d9b502b9444952a1c880fd65c4825d2.png);
+}
+/* line 110, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.furniture::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_furniture.16-0ee3916d6f0d0c96ab9afed48510e523d443d2aff100dda9502e205cce007506.png);
+}
+/* line 111, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.garden_centre::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_florist.16-7f5928e8f9d622faa8f95ebf950b1e285d9b502b9444952a1c880fd65c4825d2.png);
+}
+/* line 112, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.gift::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_gift.16-452c0b474022c13ad5eddd1be5be13a2b418aa28444ba74f48739f27dae6cf10.png);
+}
+/* line 113, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.greengrocer::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_greengrocer.p.16-845824eba1ba821fc7fe526893a35551eeaecc17d7eea0cc5252176f5923f610.png);
+}
+/* line 114, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.hardware::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_doityourself.16-45034082a46b9551f009ec025ef6ee379b3b80a83d67107a0ef278c8d729f21c.png);
+}
+/* line 115, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.hairdresser::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_hairdresser.16-d1c4fb0efbd9a38fa60c3c6c692b739ecba12e7f46e4f71bf939505d93b9ed8c.png);
+}
+/* line 116, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.jewelry::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_jewellery.16-daa4dcdc15cb921c9c6b92572182bff34e605717cd042b4444e2f0d893553bdf.png);
+}
+/* line 117, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.jewellery::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_jewellery.16-daa4dcdc15cb921c9c6b92572182bff34e605717cd042b4444e2f0d893553bdf.png);
+}
+/* line 118, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.mobile_phone::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_mobile_phone.16-27f1f2ae141d40f3d3798cb11e65bac8b00a9649cf24c79139328a155927e66b.png);
+}
+/* line 119, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.optician::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_optician.16-c7c3b97b0925c1ac5e1ede1a690c41ceb95cf655536827d85022916dc8829a12.png);
+}
+/* line 120, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.pet::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_pet.16-55b3546a7bcdc6e8752d8f7ae4f4f1899b2e1eee7c6506a287f1e0b78c46d7a4.png);
+}
+/* line 121, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.shoes::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_shoes.16-b16f27263bad6a0fcd1893d85dafd4c970ede4f6bea06b1df876c34ee0180c0a.png);
+}
+/* line 122, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .shop.supermarket::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/shop_supermarket.p.16-8f9bf205d66c0444df6b06d87df80d8517c2cdf5f8aab454adcbb8c87a6e52bb.png);
+}
+/* line 124, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .tourism.alpine_hut::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/alpinehut.p.16-9455173a843393f0e382bc6d88e8cd8c7e85b238f5236a8e9991db6e59d89d8b.png);
+}
+/* line 125, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .tourism.camp_site::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/tourism_camp_site.16-dddea05592852a3ce4b49c6e940d2d8840fde0df77ef741a56a29133bd9baeba.png);
+}
+/* line 126, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .tourism.caravan_site::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/tourism_caravan_site.16-5d60600c0d95b9015474e66dd6dfda7ed1e7b502d8218ff244f936d3a9bc553a.png);
+}
+/* line 127, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .tourism.hostel::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/tourism_hostel.16-b5c3769bc9e0aa67c67a13902dc3203f7a7a60749b457f8c384df6db6d3cc110.png);
+}
+/* line 128, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .tourism.hotel::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/tourism_hotel.16-86bf205b446e0985a15b3bf51627f3d9b4bda399814a8de0cb9aa6a2fe77e368.png);
+}
+/* line 129, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .tourism.motel::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/tourism_motel.16-a34f36708603235ea875d5e1e08e58068857c20c56e1c79d7b4bd527254494ff.png);
+}
+/* line 130, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .tourism.museum::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/tourism_museum.16-fe92955799c89b57135ed61d750c1d895ccb6baf5e4762eced19f39e225b0898.png);
+}
+/* line 131, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .tourism.picnic_site::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/tourism_picnic_site.16-fe80357b9ab892f710adefaa9409b097842ea66756d90fabee900ad093f8281c.png);
+}
+/* line 132, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .tourism.viewpoint::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/view_point.p.16-072746d3a21585579cc8601d6fda57848d49803732d545b9a22588ef89f942b6.png);
+}
+/* line 136, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .aeroway.runway::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/runway.20-af71ea2fd10290061cd56134ee90b72206c19ca8c4a993a923616e90ec12eb2b.png);
+}
+/* line 137, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .aeroway.taxiway::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/taxiway.20-c21ead351b2b859ee0b7b4662a583dac72381e2452e2c98f8c04650e94a2bf65.png);
+}
+/* line 139, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .barrier.wall::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/wall.20-9da4e8413496f997631c7c0533d1695153d688309736847b8b2581bdaef4ecbd.png);
+}
+/* line 141, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .building::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/building-5fe9735d4671186b634c1c7fcffa8262b2e12ab61562aa3d95af428e2c42a980.png);
+}
+/* line 143, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.bridleway::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/bridleway.20-82b87358890557972fda697bd31ce5943c5102e8ce972d8a28985f9b229b46e9.png);
+}
+/* line 144, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.byway::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/byway.20-9ac42cea9b43db14b91b77d5a3c09aa0ea6207c08033d438304bd9f1a01ffbfb.png);
+}
+/* line 145, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.cycleway::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/cycleway.20-edf84e1dca51ed707af6a77e9acdb1980eacd33dead74c4ec2a50730a421fea6.png);
+}
+/* line 146, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.footway::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/footway.20-bfb3a54b5f8a213a016ef6ac571829c7fafba7bdca4e1805c16e9ce566fe8593.png);
+}
+/* line 147, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.motorway::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/motorway.20-92227d8c5d1860d9ec06f10f53740bdd5792c6f879602e98957541f87f0acb32.png);
+}
+/* line 148, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.motorway_link::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/motorway.20-92227d8c5d1860d9ec06f10f53740bdd5792c6f879602e98957541f87f0acb32.png);
+}
+/* line 149, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.path::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/path.20-da151ce1624b330847ccfd2fbe10b75b9baccada49598a596397b723ce7ac375.png);
+}
+/* line 150, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.pedestrian::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/service.20-58e126303647085fea33f648041f64ad58008eabe311449d1e892cbda20a8e20.png);
+}
+/* line 151, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.primary::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/primary.20-aa87d3b5fbdda36895db54714db20204f1ecb85555ba94c12dca7d3864831f6c.png);
+}
+/* line 152, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.primary_link::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/primary.20-aa87d3b5fbdda36895db54714db20204f1ecb85555ba94c12dca7d3864831f6c.png);
+}
+/* line 153, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.residential::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/unclassified.20-5a1d84cf49ee3087cd16301401e573e9112c7df1febfac8c59820cdc6c2f5cc4.png);
+}
+/* line 154, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.secondary::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/secondary.20-cfedcda6b0a1c8599a1d4025da19cc71a03ed5c1bae7ad2dcaf35e1b747741ff.png);
+}
+/* line 155, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.secondary_link::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/secondary.20-cfedcda6b0a1c8599a1d4025da19cc71a03ed5c1bae7ad2dcaf35e1b747741ff.png);
+}
+/* line 156, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.service::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/service.20-58e126303647085fea33f648041f64ad58008eabe311449d1e892cbda20a8e20.png);
+}
+/* line 157, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.tertiary::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/tertiary.20-83471f2288772e269a10d1a07b56cb4f4036aa0b731652f898a47ccfe18c6fbf.png);
+}
+/* line 158, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.track::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/track.20-1bee7fa8db2a6a5133d1d70e0c8052528a201131be50e28656f2213cfac644b8.png);
+}
+/* line 159, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.trunk::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/trunk.20-09bcfbc4bb4ffdb70af3d853896885d2a1623c8d12591d3f9ac5c66e731558a0.png);
+}
+/* line 160, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.trunk_link::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/trunk.20-09bcfbc4bb4ffdb70af3d853896885d2a1623c8d12591d3f9ac5c66e731558a0.png);
+}
+/* line 161, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .highway.unclassified::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/unclassified.20-5a1d84cf49ee3087cd16301401e573e9112c7df1febfac8c59820cdc6c2f5cc4.png);
+}
+/* line 163, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .landuse.brownfield::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/brownfield-2977f35446ec645f651a542d4a88ecca17e629dfef004d99d2c9ffe2bbed30a7.png);
+}
+/* line 164, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .landuse.cemetery::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/cemetery-ae75d4ea5de189bc8a50f990c9630d339394f2fb94e083c59a6804a32c113c86.png);
+}
+/* line 165, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .landuse.commercial::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/commercial-8079d84480683a951da024cc094f7be4dbadb0ad7ab36d63097f4d9b8e725a83.png);
+}
+/* line 166, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .landuse.farm::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/farm-9a2da0d1acfd7f0a141a4923a72a96ba087cbf6c7769d6daaeff2a3466a3348a.png);
+}
+/* line 167, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .landuse.forest::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/forest-698af1dcc6fabcf6d5bb6e016c3dd1ba1d3ce5a843ca5aa2aa1ed1080adf8138.png);
+}
+/* line 168, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .landuse.industrial::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/industrial-3a3de568e454c4581d53eda5740907f7a8ad6119c4115b4cd912e511aa41f646.png);
+}
+/* line 169, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .landuse.military::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/military-6f58dbb4d0915c8e79f3884faa03513582ab546d924abeef63a57ccaf68fac90.png);
+}
+/* line 170, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .landuse.residential::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/residential-02810260f12e2ec0c725b0e087859add0befe7184cc1d96aea8cf454e64f149e.png);
+}
+/* line 171, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .landuse.retail::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/retail-ea898df348c9c17a049dada875707ebf9186f7f981947b23d5f6ccbadc693865.png);
+}
+/* line 172, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .landuse.tourism::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/tourism-beeda440415c8046212d7b3437c5576c7e0e2c6e855235446f7778fa38adae18.png);
+}
+/* line 173, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .landuse.wood::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/wood-dd80a19ec3f6b11fc44e2e286e4841b06154594d2a478def0b31f9c3392a5b47.png);
+}
+/* line 175, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .leisure.golf_course::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/golf-e1b552b030728f53d0a12ba9145ae4c4d78c82d52eac6b74f2e1ef790bbfb25b.png);
+}
+/* line 176, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .leisure.park::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/park-f88890fdf69a07fcbe71f37ec1ada03d9049ff6fa1126d45f21173e90026822b.png);
+}
+/* line 177, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .leisure.picnic_table::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/tourism_picnic_site.16-fe80357b9ab892f710adefaa9409b097842ea66756d90fabee900ad093f8281c.png);
+}
+/* line 178, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .leisure.playground::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/leisure_playground.16-3e238779a826c6ece76deaf8c9c0cc6d6c445dbc9d0e10fb6cc4dba5492bc933.png);
+}
+/* line 179, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .leisure.pitch::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/pitch-1214e0e9a137a21b88d0e22bcedc795f54c54b2aed06a35a20519bf57243e150.png);
+}
+/* line 180, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .leisure.nature_reserve::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/reserve-f855c3f42462ebab03a8c9e86c4703445846c2d10964606186a33d3f32c5ed50.png);
+}
+/* line 181, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .leisure.water_park::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/leisure_water_park.16-2a4ade460b25cefb9cbc84f11596b038b969174e4be1553dc861609fb5f3114e.png);
+}
+/* line 183, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .natural.heath::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/heathland-8605d080f3c001b8edcfdd18fa5c0d7c7cb041ee40b42089a9e57bad6f955f50.png);
+}
+/* line 184, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .natural.water::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/lake-a8dded56030891f6cba7fd314bbcbeaffdd666e0591ee8bc81272eb147fbe87b.png);
+}
+/* line 186, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .railway.light_rail::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/light_rail.20-a8c97fecde620b3523803251db9dcc296f4428fca1c1b944a782cfe887bcbb7b.png);
+}
+/* line 187, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .railway.rail::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/rail.20-556484120dece60ce38f55583cec8691fce3660b3a4f03dcc22a211859e36462.png);
+}
+/* line 188, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .railway.subway::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/subway.20-aa5aee5dd6f1c591a77eba23cde05e61140aa68a233d0236adbc6e8652f5d3ad.png);
+}
+/* line 189, /home/katerina/openstreetmap-website/app/assets/stylesheets/browse.scss */
+.browse-section .railway.tram::before {
+    content: url(/static/components/sc-web.module.geo/images/browse/tram.20-088fa1c949fb3bacefdd0b8bda3e0d3fb49e364679481e0c0192e43006dc3fe8.png);
+}
+
+@media only screen and (max-width: 960px) {
+    /* line 2817, /home/katerina/openstreetmap-website/app/assets/stylesheets/ltr/common.scss */
+    .header-illustration.new-user-arm {
+        display: none;
+    }
+}

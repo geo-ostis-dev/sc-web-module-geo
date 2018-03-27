@@ -20,13 +20,6 @@ function Map(options) {
 
         this.map.setView([CONST.DEFAULT_LAT, CONST.DEFAULT_LON], CONST.DEFAULT_ZOOM);
 
-        var miniMap = new L.TileLayer(options.tile_url || CONST.DEFAULT_TILE_URL, {
-            minZoom: 0,
-            maxZoom: 13,
-            attribution: (options.tile_attribution || null)
-        });
-        new L.Control.MiniMap(miniMap, {toggleDisplay: true}).addTo(this.map);
-
         this.layerGroup = new L.layerGroup().addTo(this.map);
     };
 

@@ -1,16 +1,4 @@
 function Base() {
-    this.render = function (parameters) {
-        return fetch('./' + +'.mustache')
-            .then(function (response) {
-                return response.text();
-            })
-            .then(function (template) {
-                return Mustache.render(template, parameters);
-            })
-            .then(function (page) {
-                this.el.html(page);
-            });
-    };
 
     this._initialize = function () {
         // Define config
@@ -18,10 +6,10 @@ function Base() {
             this.config = {};
         }
 
-        //Define components
-        // if (!window.components) {
-        //     window.components = {};
-        // }
+        // Define components
+        if (!window.components) {
+            window.components = {};
+        }
 
         // Create element
         if (!this.config.el) {
@@ -29,12 +17,6 @@ function Base() {
         } else {
             this.el = $(this.config.el);
         }
-
-        // if (this.config.include) {
-        //     this.config.include.forEach(function (component) {
-        //
-        //     });
-        // }
     };
 
     this.getName = function () {
@@ -44,42 +26,60 @@ function Base() {
         return (results && results.length > 1) ? results[1] : "";
     };
 
+    this.render = function (parameters) {
+        var self = this;
+
+        return fetch('./components/' + self.getName() + '/' + self.getName() +'.mustache')
+            .then(function (response) {
+                return response.text();
+            })
+            .then(function (template) {
+                return Mustache.render(template, parameters);
+            })
+            .then(function (page) {
+                self.el.html(page);
+            });
+    };
+
     this._registerEvents = function () {
         if (this.config.events) {
             for (var key in this.config.events) {
-                this.el.on(key, this[this.config.events[key]])
+                this.el.on(key, this[this.config.events[key]].bind(this))
             }
         }
     };
 
     this._registerComponent = function () {
-        debugger;
         if (!window.components[this.getName()]) {
             window.components[this.getName()] = this;
         }
     };
 
     this._includeComponents = function () {
-        debugger;
-        if (this.config.include) {
-            for (var localComponentName in this.config.include) {
-                debugger;
-                var componentName = this.config.include[localComponentName];
+        var self = this;
 
-                if (!window.components[componentName]) {
-                    window.components[componentName] = null;
+        if (this.config.include) {
+            for (var componentNameLocal in self.config.include) {
+                function componentNameStore() {
+                    var componentName = self.config.include[componentNameLocal];
+
+                    return function () {
+                        return window.components[componentName];
+                    };
                 }
 
-                this[localComponentName] = window.components[componentName];
+                Object.defineProperty(self, componentNameLocal, {
+                    get: componentNameStore()
+                });
             }
         }
     };
 
     // Initialize component
     this._initialize();
-    // this._registerComponent();
-    //this._includeComponents();
-    // this._registerEvents();
+    this._registerComponent();
+    this._includeComponents();
+    this._registerEvents();
 
     if (this.initialize) {
         this.initialize();
