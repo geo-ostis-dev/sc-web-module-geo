@@ -1,12 +1,14 @@
-function Results() {
+import Base from '../Base/Base';
 
-    this.config = {
-        el: '.sidebar'
-    };
+export default class Results extends Base {
 
-    function get_result_element(position) {
-        return $('.result').eq(position);
+    constructor() {
+        super({
+            el: '.sidebar'
+        });
     }
 
-    Base.apply(this, arguments);
+    static get_result_element(position) {
+        return $('.result').eq(position);
+    }
 }

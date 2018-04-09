@@ -4,9 +4,14 @@
   "description": "NPM module for Geo",
   "main": "index.js",
   "scripts": {
-    "postinstall": "rm -f ~/.local/bin/geo; ln -s $(readlink -f bin/geo.sh) ~/.local/bin/geo",
-    "preuninstall": "geo clean; rm -f ~/.local/bin/geo",
-    "geo": "./bin/geo.sh"
+    "place": "./bin/geo.sh place",
+    "bundle": "npx browserify -t babelify src/index.js > src/index.bundle.js",
+    "bundleDev": "npx browserify -t babelify src/index.js --debug > src/index.bundle.js",
+    "geo": "./bin/geo.sh",
+    "postinstall": "npm run bundle"
+  },
+  "bin": {
+    "geo": "bin/geo.sh"
   },
   "repository": {
     "type": "git",
@@ -17,5 +22,35 @@
   "bugs": {
     "url": "https://github.com/geo-ostis-dev/sc-web.module.geo/issues"
   },
-  "homepage": "https://github.com/geo-ostis-dev/sc-web.module.geo#readme"
+  "homepage": "https://github.com/geo-ostis-dev/sc-web.module.geo#readme",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-export-default": "^7.0.0-alpha.20",
+    "babel-preset-es2015": "^6.24.1",
+    "babelify": "^8.0.0",
+    "browserify": "^16.1.1",
+    "i": "^0.3.6",
+    "jquery": "^3.3.1",
+    "jquery-simulate": "^1.0.2",
+    "jquery.cookie": "^1.4.1",
+    "leaflet": "^1.3.1",
+    "leaflet-contextmenu": "^1.4.0",
+    "leaflet.locatecontrol": "^0.62.0",
+    "leaflet.locationfilter": "^0.1.0",
+    "leaflet.pm": "^0.24.0",
+    "leaflet.polyline.snakeanim": "^0.1.1",
+    "less-watch-compiler": "^1.11.0",
+    "mustache": "^2.3.0",
+    "npm": "^5.8.0",
+    "querystring": "^0.2.0",
+    "throttle-debounce": "^1.0.1"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ],
+    "plugins": [
+      "transform-export-default"
+    ]
+  }
 }
