@@ -1,13 +1,18 @@
-SCWeb.core.ComponentManager.appendComponentInitialize({
-    ext_lang: 'geo_code',
-    formats: ['format_geo_json'],
-    struct_support: true,
-    factory: function (sandbox) {
-        var container_id = sandbox.container;
-        var frame_id = container_id + '_frame';
+import $ from 'jquery';
+window.$ = $;
+import prepareScWeb from './common/prepareScWeb';
+import Map from './components/Map/Map';
+import SearchButton from './components/SearchButton/SearchButton'
+import SearchInput from './components/SearchInput/SearchInput';
+import Results from './components/Results/Results';
 
-        $('#'+container_id).append("<iframe id=" + frame_id + " src='/static/components/sc-web.module.geo/index.html' style='border: none;width:100%;height:100%;'></iframe>")
+//TODO: Посчитать объем площадного объекта в рамках какой-то территории. Например: беловежский заповедник, площадь в минском районе столько-то гекторов, а в другом районе столько-то
+//TODO: Отобрать по териториальной принадлежности.
 
-        return Promise.resolve();
-    }
+$(document).ready(function () {
+    prepareScWeb();
+    new Map();
+    new SearchButton();
+    new SearchInput();
+    new Results();
 });

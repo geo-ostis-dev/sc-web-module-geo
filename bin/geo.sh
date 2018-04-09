@@ -41,11 +41,25 @@ function place {
 
   # Add component to scweb project
   mkdir ${geo_dest_folder}
-  cp -r ${geo_source_folder}/src/* ${geo_dest_folder}
+  mkdir -p ${geo_dest_folder}/src
+  cp -r ${geo_source_folder}/assets ${geo_dest_folder}
+  cp ${geo_source_folder}/src/index.html ${geo_dest_folder}/src/
+  cp ${geo_source_folder}/src/appendComponent.js ${geo_dest_folder}/src/
+
+  # compile javascript files
+  case $(basename $(pwd)) in
+  "sc-web") npx browserify -t babelify src/index.js > ${geo_dest_folder}/src/index.js ;;
+  "sc-web.module.geo") npx browserify -t babelify src/index.js --debug > ${geo_dest_folder}/src/index.js ;;
+  esac
+
+  # compile less files
+  dest_relative_path=$(realpath --relative-to=./ ${geo_dest_folder}/src/)
+  sed -i -E "s \"outputFolder\":\s*\".*?\" \"outputFolder\":\ \"${dest_relative_path}\" " configs/less-watch-compiler.config.json
+  npx less-watch-compiler --config configs/less-watch-compiler.config.json
 
   # Include component
   sed -i "/${geo_project_name}/d" ${scweb_components_file}
-  echo "<script charset=\"utf-8\" src=\"/static/components/${geo_project_name}/index.js\"></script>" >> ${scweb_components_file}
+  echo "<script charset=\"utf-8\" src=\"/static/components/${geo_project_name}/src/appendComponent.js\"></script>" >> ${scweb_components_file}
 
   # Print result message
   if [[ -d ${geo_dest_folder} ]]; then

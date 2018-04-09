@@ -1,19 +1,23 @@
-function SearchButton() {
+import Base from '../Base/Base.js'
 
-    this.config = {
-        include: {
-            searchInput: "SearchInput",
-            map: "Map",
-            results: "Results"
-        },
-        el: '.search-panel .search-button',
-        events: {
-            click: 'addResultsToSidebar'
-        }
-    };
-
-    this.addResultsToSidebar = function () {
-        var self = this;
+export default class SearchButton extends Base {
+    
+    constructor() {
+        super({
+            include: {
+                searchInput: "SearchInput",
+                map: "Map",
+                results: "Results"
+            },
+            el: '.search-panel .search-button',
+            events: {
+                click: 'addResultsToSidebar'
+            }
+        });
+    }
+    
+    addResultsToSidebar () {
+        let self = this;
 
         fetch('https://nominatim.openstreetmap.org/search.php?q=' + self.searchInput.el.val() + '&polygon_geojson=1&format=json')
             .then(function (result) {
@@ -29,7 +33,5 @@ function SearchButton() {
             .then(function (page) {
                 $(".sidebar").html(page);
             });
-    };
-
-    Base.apply(this, arguments);
+    }
 }

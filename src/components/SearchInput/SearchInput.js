@@ -1,7 +1,9 @@
-function SearchInput() {
-    this.config = {
-        el: ".search-input"
-    };
+import Base from '../Base/Base.js';
 
-    Base.apply(this, arguments);
+export default class SearchInput extends Base {
+    constructor() {
+        super({
+            el: ".search-input"
+        });
+    }
 }

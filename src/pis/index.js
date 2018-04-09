@@ -4,19 +4,16 @@ Array.prototype.first = function() {
 
 Array.prototype.last = function() {
     return this[this.length-1];
-}
+};
 
 function run(relation) {
     var promise = new Promise(function(resolve, reject) {
-        debugger;
         console.log("[out:json][timeout:15];(relation" + relation + ";>;);out;")
         var fetchPromise = fetch("http://overpass-api.de/api/interpreter?data=[out:json][timeout:15];(relation" + relation + ";>;);out;");
         jsonPromise = fetchPromise.then(function(response) {
-            debugger;
             return response.json();
         });
         jsonPromise.then(function(json) {
-            debugger;
             var sumArea = 0;
             var osm3sObjects = createOsm3sObjects(json);
             var polygons = createPolygons(osm3sObjects);

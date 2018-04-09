@@ -1,0 +1,8 @@
+{
+  "allowedExtensions": [".less", ".css"],
+  "sourceMap": false,
+  "runOnce": true,
+  "watchFolder": "src/",
+  "outputFolder": "../geo.ostis/sc-web/client/static/components/sc-web.module.geo/src",
+  "mainFile": "index.less"
+}

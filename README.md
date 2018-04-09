@@ -16,11 +16,11 @@ npm install sc-web.module.geo
 ```
 To place the source code in project, and include it, type:
 ```bash
-geo place
+npx geo place
 ```
 To remove module from project, use the command:
 ```bash
-geo clean
+npx geo clean
 ```
 
 ## How to use Geo is sc-web.module.geo project
@@ -32,15 +32,15 @@ npm install
 ```
 After, running Geo and specify the path to the sc-web project:
 ```bash
-geo place ../../geo.ostis/sc-web
+npm run geo place ../../geo.ostis/sc-web
 ```
 To remove the Geo module from the specified sc-web project, type:
 ```bash
-geo clean ../../geo.ostis/sc-web
+npm run geo clean ../../geo.ostis/sc-web
 ```
 To see help, run geo without parameters:
 ```bash
-geo
+npm run geo
 ```
 
 ## Contributing

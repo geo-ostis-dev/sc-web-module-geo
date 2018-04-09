@@ -1,35 +1,36 @@
-function Base() {
+import Mustache from 'mustache';
 
-    this._initialize = function () {
-        // Define config
-        if (!this.config) {
-            this.config = {};
-        }
+export default class Base {
+
+    // this.config need to define in child class
+    constructor(config) {
+        this.config = config || {};
 
         // Define components
         if (!window.components) {
             window.components = {};
         }
 
-        // Create element
-        if (!this.config.el) {
-            throw new Error("Need to define config.el in: " + this);
-        } else {
-            this.el = $(this.config.el);
-        }
-    };
+        if (!this.config.el) throw new Error("Need to define config.el in: " + this);
+        this.el = $(this.config.el);
 
-    this.getName = function () {
-        var funcNameRegex = /function (.{1,})\(/;
-        var results = (funcNameRegex).exec((this).constructor.toString());
+        if (this.config.events) this._registerEvents();
+        this._registerComponent();
+        if (this.config.include) this._includeComponents();
+        this._registerEvents();
+    }
+
+    getName() {
+        let funcNameRegex = /function (.{1,})\(/;
+        let results = (funcNameRegex).exec((this).constructor.toString());
 
         return (results && results.length > 1) ? results[1] : "";
-    };
+    }
 
-    this.render = function (parameters) {
-        var self = this;
+    render(parameters) {
+        let self = this;
 
-        return fetch('./components/' + self.getName() + '/' + self.getName() +'.mustache')
+        return fetch('./components/' + self.getName() + '/' + self.getName() + '.mustache')
             .then(function (response) {
                 return response.text();
             })
@@ -39,49 +40,33 @@ function Base() {
             .then(function (page) {
                 self.el.html(page);
             });
-    };
+    }
 
-    this._registerEvents = function () {
-        if (this.config.events) {
-            for (var key in this.config.events) {
-                this.el.on(key, this[this.config.events[key]].bind(this))
-            }
+    _registerEvents() {
+        for (let key in this.config.events) {
+            this.el.on(key, this[this.config.events[key]].bind(this))
         }
-    };
+    }
 
-    this._registerComponent = function () {
+    _registerComponent() {
         if (!window.components[this.getName()]) {
             window.components[this.getName()] = this;
         }
     };
 
-    this._includeComponents = function () {
-        var self = this;
+    _includeComponents() {
+        let self = this;
 
-        if (this.config.include) {
-            for (var componentNameLocal in self.config.include) {
-                function componentNameStore() {
-                    var componentName = self.config.include[componentNameLocal];
+        for (let componentNameLocal in self.config.include) {
+            function componentNameStore() {
+                let componentName = self.config.include[componentNameLocal];
 
-                    return function () {
-                        return window.components[componentName];
-                    };
-                }
-
-                Object.defineProperty(self, componentNameLocal, {
-                    get: componentNameStore()
-                });
+                return () => window.components[componentName];
             }
+
+            Object.defineProperty(self, componentNameLocal, {
+                get: componentNameStore()
+            });
         }
-    };
-
-    // Initialize component
-    this._initialize();
-    this._registerComponent();
-    this._includeComponents();
-    this._registerEvents();
-
-    if (this.initialize) {
-        this.initialize();
     }
 }
