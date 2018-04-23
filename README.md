@@ -9,38 +9,37 @@ Geo is a module for the sc-web system. It provides a cartographic interface, and
 [![GitHub license](https://img.shields.io/github/license/geo-ostis-dev/sc-web.module.geo.svg)](https://github.com/geo-ostis-dev/sc-web.module.geo)
 
 ## How to use Geo in SC-web project
-First, install the module:
+To **connect** the module to your **sc-web project**, it's enough to use the command:
 ```bash
 cd sc-web
 npm install sc-web.module.geo
 ```
-To place the source code in project, and include it, type:
-```bash
-npx geo place
+To **disconnect** a module from the project, use the command:
 ```
-To remove module from project, use the command:
-```bash
-npx geo clean
+npm uninstall sc-web.module.geo
 ```
 
-## How to use Geo is sc-web.module.geo project
-First, clone this repository, and install.
+## How to use Geo for development
+First, **clone** this repository, and **install**.
 ```bash
 git clone https://github.com/geo-ostis-dev/sc-web.module.geo
 cd sc-web.module.geo
 npm install
 ```
-After, running Geo and specify the path to the sc-web project:
+After, run **place** script and specify the path to the sc-web project:
 ```bash
-npm run geo place ../../geo.ostis/sc-web
+npm run place ../geo.ostis/sc-web
 ```
-To remove the Geo module from the specified sc-web project, type:
+So you **connect** Geo to a third-party sc-web project.
+
+To **watch** the Geo module, type:
 ```bash
-npm run geo clean ../../geo.ostis/sc-web
+npm run watch ../../geo.ostis/sc-web
 ```
-To see help, run geo without parameters:
+
+To **remove** the Geo module from the specified sc-web project, type:
 ```bash
-npm run geo
+npm run remove ../../geo.ostis/sc-web
 ```
 
 ## Contributing
