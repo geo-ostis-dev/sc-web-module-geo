@@ -1,22 +1,21 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = (env, argv) => {
     let mode = argv.mode || 'development';
 
     return {
-        context: path.resolve(__dirname, 'src/js'),
+        context: path.resolve(__dirname, 'src'),
         entry: 'index.js',
         output: {
-            filename: '[name].js',
+            filename: 'index.js',
             path: path.resolve(__dirname, 'public')
         },
 
         module: {
             rules: [{
                 test: /\.js$/,
-                include: path.resolve(__dirname, 'src/js'),
+                include: path.resolve(__dirname, 'src'),
                 use: {
                     loader: 'babel-loader',
                     options: {presets: ['@babel/preset-env'], plugins: ['@babel/plugin-transform-runtime']}
@@ -35,6 +34,9 @@ module.exports = (env, argv) => {
                     }
                 }]
             }, {
+                test: /\.css/,
+                use: [{loader: 'style-loader'}, {loader: 'css-loader'}]
+            }, {
                 test: /\.(png|jpg|svg|ttf)$/,
                 loader: 'file-loader?name=[path][name].[ext]'
             }]
@@ -42,7 +44,7 @@ module.exports = (env, argv) => {
 
         resolve: {
             modules: [
-                path.resolve(__dirname, 'src/js'),
+                path.resolve(__dirname, 'src'),
                 'node_modules'],
             extensions: ['.js', '.less']
         },
