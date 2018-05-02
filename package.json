@@ -1,6 +1,6 @@
 {
   "name": "sc-web.module.geo",
-  "version": "1.0.31",
+  "version": "1.0.32",
   "description": "NPM module for Geo",
   "scripts": {
     "place": "./bin/place_component.sh development",
