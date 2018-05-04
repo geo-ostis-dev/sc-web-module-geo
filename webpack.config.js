@@ -18,7 +18,12 @@ module.exports = (env, argv) => {
                 include: path.resolve(__dirname, 'src'),
                 use: {
                     loader: 'babel-loader',
-                    options: {presets: ['@babel/preset-env'], plugins: ['@babel/plugin-transform-runtime']}
+                    options: {
+                        presets: ['@babel/preset-env'], plugins: [
+                            '@babel/plugin-transform-runtime',
+                            '@babel/plugin-proposal-class-properties'
+                        ]
+                    }
                 }
             }, {
                 test: /\.less$/,
@@ -45,7 +50,6 @@ module.exports = (env, argv) => {
         resolve: {
             modules: [
                 path.resolve(__dirname, 'src'),
-                path.resolve(__dirname, 'assets'),
                 'node_modules'],
             extensions: ['.js', '.less']
         },
