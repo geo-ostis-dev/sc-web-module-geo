@@ -1,126 +1,18 @@
 import './map.less'
+import {MAP} from 'middleware/constants.js';
+import {uniqBy} from 'lodash';
 
-// import natureMonuments from './json/natureMonuments'
-// import component from './common/decorators/component'
-//
-// @component()
 class Map {
+    layers = [];
+    tempLayers = [];
+
     constructor() {
-        this.tempLayers = [];
+        this.mapInitialize();
 
-        this.map = L.map('map', {
-            contextmenu: true,
-            contextmenuWidth: 300
-        }).setView([51.505, -0.09], 13);
-        this.map.doubleClickZoom.disable();
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
-        this.map.on('layeradd', this.addNewLayer.bind(this));
+        this.map.contextmenu.disable();
 
-        this.map.on("contextmenu", (e) => {
-            this.map.contextmenu.removeAllItems();
-
-
-            let zoom = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
-                promises = zoom.map((zoom) => {
-                    return fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${e['latlng']['lat']}&lon=${e['latlng']['lng']}&polygon_geojson=1&zoom=${zoom}`);
-                });
-
-            Promise.all(promises)
-                .then((results) => {
-                    return Promise.all(results.map((result) => result.json()));
-                })
-                .then((jsons) => {
-                    if (!this.map.contextmenu.isVisible()) {
-                        this.map.contextmenu.removeAllItems();
-
-                        _.uniqBy(jsons, 'place_id').forEach((json) => {
-                            let item = $(this.map.contextmenu.addItem({
-                                text: json['name'],
-                                index: json['osm_id']
-                            }));
-
-                            item.data('geojson', json['geojson']);
-                            item.on('mousemove', (e) => {
-                                this.tempLayers.forEach((layer) => {
-                                    this.map.removeLayer(layer);
-                                });
-                                this.tempLayers = [];
-
-                                let layer = L.geoJson($(e.target).data('geojson'));
-                                this.tempLayers.push(layer);
-                                layer.addTo(this.map);
-                            });
-                        });
-
-                        this.map.contextmenu.showAt(e.latlng)
-                    }
-                })
-        });
-
-        // Sidebar
-        this.sidebar = L.control.sidebar('sidebar', {position: 'right'});
-        this.map.addControl(this.sidebar);
-
-        //define toolbar options
-        let options = {
-            position: 'topleft',
-            drawMarker: true,
-            drawPolyline: true,
-            drawRectangle: true,
-            drawPolygon: true,
-            drawCircle: true,
-            editMode: true,
-            removalMode: true,
-
-        };
-
-        // add leaflet.pm controls to the map
-        this.map.pm.addControls(options);
-
-        let controlOptions = {
-            // snapping
-            snappable: true,
-            snapDistance: 20,
-
-            // self intersection
-            allowSelfIntersection: false,
-
-            // the lines between coordinates/markers
-            templineStyle: {
-                color: 'red',
-            },
-
-            // the line from the last marker to the mouse cursor
-            hintlineStyle: {
-                color: 'red',
-                dashArray: [5, 5],
-            },
-
-            // finish drawing on double click
-            // DEPRECATED: use finishOn: 'dblclick' instead
-            finishOnDoubleClick: false,
-
-            // specify type of layer event to finish the drawn shape
-            // example events: 'mouseout', 'dblclick', 'contextmenu'
-            // List: http://leafletjs.com/reference-1.2.0.html#interactive-layer-click
-            finishOn: 'contextmenu',
-
-            // custom marker style (only for Marker draw)
-            markerStyle: {
-                opacity: 0.5,
-                draggable: true,
-            }
-        };
-
-        this.map.pm.enableDraw('Poly', controlOptions);
-        this.map.pm.enableDraw('Rectangle', controlOptions);
-        this.map.pm.enableDraw('Line', controlOptions);
-        this.map.pm.enableDraw('Marker', controlOptions);
-        this.map.pm.enableDraw('Circle', controlOptions);
-        this.map.pm.Draw.Cut.disable(controlOptions);
-
-
-
+        this.map.on('contextmenu', this.eventMapRightClick.bind(this));
+        this.map.on('contextmenu.hide', () => this.map.contextmenu.disable());
         // natureMonuments.forEach((item) => {
         //     let marker = L.marker([item['lat'], item['lon']], {
         //         contextmenu: true,
@@ -135,60 +27,93 @@ class Map {
         // });
     }
 
-    addNewLayer(event) {
-        let layer = event.layer,
-            layers = _.toArray(event.target._renderer._layers),
-            shapes = _.filter(layers, ['options.shapeType', event.shape]);
+    eventMapRightClick(event) {
+        this.map.spin(true);
 
-        layer.options.shapeType = event.shape;
-        layer.options.shapeName = `${this.resolveShapeNames(event.shape)}${shapes.length + 1}`;
+        let promises = MAP.ZOOM.map((zoom) => {
+            let apiUrl = Map.nominatimApi('reverse', {
+                lat: event['latlng']['lat'],
+                long: event['latlng']['lng'],
+                zoom: zoom
+            });
 
-        layer.bindContextMenu({
-            contextmenu: true,
-            contextmenuItems: [{
-                text: 'Найти санатории'
-            },
-                {
-                    text: 'Найти достопримечательности'
-                }]
+            return fetch(apiUrl);
         });
 
-        layer.on('click', (layer) => {
-            let targetOptions = layer.target.options,
-                target = layer.target;
+        Promise.all(promises)
+            .then(results => {
+                let jsonResults = results.map(result => result.json());
+                return Promise.all(jsonResults);
+            })
+            .then((jsons) => {
+                // this.map.contextmenu.enable();
+                this.map.contextmenu.removeAllItems();
 
-            targetOptions.active = !targetOptions.active;
+                uniqBy(jsons, 'place_id').forEach(json => {
+                    let item = this.map.contextmenu.addItem({text: json['display_name'], index: json['osm_id']});
+                    let $item = $(item);
 
-            if (targetOptions.active) {
-                target.setStyle({color: 'red', fillColor: 'blue'});
-                target.addContextMenuItem({
-                    text: 'Найти включение',
-                    index: 100,
-                    callback: this.shapeInclusion.bind(this)
+                    $item.data('geojson', json['geojson']);
+
+                    $item.on('mouseenter', event => {
+                        let geojson = $(event.target).data('geojson'),
+                            layer = L.geoJson(geojson);
+
+                        this.addTempLayer(layer);
+                    });
+
+                    $item.on('click', event => {
+                        let geojson = $(event.target).data('geojson'),
+                            layer = L.geoJson(geojson);
+
+                        this.addLayer(layer);
+                        layer.bindContextMenu({contextmenu: true, contextmenuItems: MAP.BASE_LAYER_ITEMS});
+                        layer.on('click', this.eventLayerClick.bind(this));
+                    });
+
+                    $item.on('mouseleave', () => this.removeAllTempLayers());
                 });
-                target.addContextMenuItem({
-                    text: 'Найти пересечения',
-                    index: 200,
-                    callback: this.shapeIntersection.bind(this)
-                });
-                target.addContextMenuItem({
-                    text: 'Найти граничные элементы',
-                    index: 300,
-                    callback: this.boundaryElements.bind(this)
-                });
-                target.addContextMenuItem({
-                    text: 'Найти примыкающие элементы',
-                    index: 400,
-                    callback: this.contiguity.bind(this)
-                });
-            } else {
-                target.setStyle({color: 'blue'});
-                target.removeContextMenuItemWithIndex(100);
-                target.removeContextMenuItemWithIndex(200);
-                target.removeContextMenuItemWithIndex(300);
-                target.removeContextMenuItemWithIndex(400);
-            }
-        });
+
+                this.map.contextmenu.showAt(event.latlng);
+                this.map.spin(false);
+            })
+    }
+
+    eventLayerClick(layer) {
+        let targetOptions = layer.target.options,
+            target = layer.target;
+
+        targetOptions.active = !targetOptions.active;
+
+        if (targetOptions.active) {
+            target.setStyle({color: 'red', fillColor: 'blue'});
+            target.addContextMenuItem({
+                text: 'Найти включение',
+                index: 100,
+                callback: this.shapeInclusion.bind(this)
+            });
+            target.addContextMenuItem({
+                text: 'Найти пересечения',
+                index: 200,
+                callback: this.shapeIntersection.bind(this)
+            });
+            target.addContextMenuItem({
+                text: 'Найти граничные элементы',
+                index: 300,
+                callback: this.boundaryElements.bind(this)
+            });
+            target.addContextMenuItem({
+                text: 'Найти примыкающие элементы',
+                index: 400,
+                callback: this.contiguity.bind(this)
+            });
+        } else {
+            target.setStyle({color: 'blue'});
+            target.removeContextMenuItemWithIndex(100);
+            target.removeContextMenuItemWithIndex(200);
+            target.removeContextMenuItemWithIndex(300);
+            target.removeContextMenuItemWithIndex(400);
+        }
     }
 
     resolveShapeNames(shapeName) {
@@ -370,6 +295,108 @@ class Map {
 
                 return turf.polygon([polygon]);
         }
+    }
+
+    mapInitialize() {
+        this.map = L.map('map', {
+            contextmenu: true,
+            contextmenuWidth: 300
+        });
+
+        this.map.setView([51.505, -0.09], 13);
+        this.map.doubleClickZoom.disable();
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
+
+        // Sidebar
+        this.sidebar = L.control.sidebar('sidebar', {position: 'right'});
+        this.map.addControl(this.sidebar);
+
+        //define toolbar options
+        let options = {
+            position: 'topleft',
+            drawMarker: true,
+            drawPolyline: true,
+            drawRectangle: true,
+            drawPolygon: true,
+            drawCircle: true,
+            editMode: true,
+            removalMode: true,
+
+        };
+
+        // add leaflet.pm controls to the map
+        this.map.pm.addControls(options);
+
+        let controlOptions = {
+            // snapping
+            snappable: true,
+            snapDistance: 20,
+
+            // self intersection
+            allowSelfIntersection: false,
+
+            // the lines between coordinates/markers
+            templineStyle: {
+                color: 'red',
+            },
+
+            // the line from the last marker to the mouse cursor
+            hintlineStyle: {
+                color: 'red',
+                dashArray: [5, 5],
+            },
+
+            // finish drawing on double click
+            // DEPRECATED: use finishOn: 'dblclick' instead
+            finishOnDoubleClick: false,
+
+            // specify type of layer event to finish the drawn shape
+            // example events: 'mouseout', 'dblclick', 'contextmenu'
+            // List: http://leafletjs.com/reference-1.2.0.html#interactive-layer-click
+            finishOn: 'contextmenu',
+
+            // custom marker style (only for Marker draw)
+            markerStyle: {
+                opacity: 0.5,
+                draggable: true,
+            }
+        };
+
+        this.map.pm.enableDraw('Poly', controlOptions);
+        this.map.pm.enableDraw('Rectangle', controlOptions);
+        this.map.pm.enableDraw('Line', controlOptions);
+        this.map.pm.enableDraw('Marker', controlOptions);
+        this.map.pm.enableDraw('Circle', controlOptions);
+        this.map.pm.Draw.Cut.disable(controlOptions);
+    }
+
+    static nominatimApi(api, params) {
+        let host = 'https://nominatim.openstreetmap.org/';
+
+        switch (api) {
+            case 'reverse':
+                return `${host}/reverse?format=jsonv2&lat=${params['lat']}&lon=${params['long']}&polygon_geojson=1&zoom=${params['zoom']}`;
+        }
+
+    }
+
+    getLayers() {
+        return this.layers;
+    }
+
+    addLayer(layer) {
+        this.layers.push(layer);
+        layer.addTo(this.map);
+    }
+
+    addTempLayer(layer) {
+        this.tempLayers.push(layer);
+        layer.addTo(this.map);
+    }
+
+    removeAllTempLayers() {
+        this.tempLayers.forEach(layer => this.map.removeLayer(layer));
+        this.tempLayers = [];
     }
 }
 
