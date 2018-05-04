@@ -6,19 +6,55 @@ import './map.less'
 // @component()
 class Map {
     constructor() {
+        this.tempLayers = [];
+
         this.map = L.map('map', {
             contextmenu: true,
             contextmenuWidth: 300
         }).setView([51.505, -0.09], 13);
         this.map.doubleClickZoom.disable();
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
+        this.map.on('layeradd', this.addNewLayer.bind(this));
 
-        this.map.on("mousedown", (e) => {
-            if (e.originalEvent.shiftKey) {
-                this.map.contextmenu.disable();
-            } else {
-                this.map.contextmenu.enable();
-            }
+        this.map.on("contextmenu", (e) => {
+            this.map.contextmenu.removeAllItems();
+
+
+            let zoom = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
+                promises = zoom.map((zoom) => {
+                    return fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${e['latlng']['lat']}&lon=${e['latlng']['lng']}&polygon_geojson=1&zoom=${zoom}`);
+                });
+
+            Promise.all(promises)
+                .then((results) => {
+                    return Promise.all(results.map((result) => result.json()));
+                })
+                .then((jsons) => {
+                    if (!this.map.contextmenu.isVisible()) {
+                        this.map.contextmenu.removeAllItems();
+
+                        _.uniqBy(jsons, 'place_id').forEach((json) => {
+                            let item = $(this.map.contextmenu.addItem({
+                                text: json['name'],
+                                index: json['osm_id']
+                            }));
+
+                            item.data('geojson', json['geojson']);
+                            item.on('mousemove', (e) => {
+                                this.tempLayers.forEach((layer) => {
+                                    this.map.removeLayer(layer);
+                                });
+                                this.tempLayers = [];
+
+                                let layer = L.geoJson($(e.target).data('geojson'));
+                                this.tempLayers.push(layer);
+                                layer.addTo(this.map);
+                            });
+                        });
+
+                        this.map.contextmenu.showAt(e.latlng)
+                    }
+                })
         });
 
         // Sidebar
@@ -35,6 +71,7 @@ class Map {
             drawCircle: true,
             editMode: true,
             removalMode: true,
+
         };
 
         // add leaflet.pm controls to the map
@@ -72,7 +109,7 @@ class Map {
             markerStyle: {
                 opacity: 0.5,
                 draggable: true,
-            },
+            }
         };
 
         this.map.pm.enableDraw('Poly', controlOptions);
@@ -82,61 +119,7 @@ class Map {
         this.map.pm.enableDraw('Circle', controlOptions);
         this.map.pm.Draw.Cut.disable(controlOptions);
 
-        this.map.on('pm:create', (event) => {
-            let layer = event.layer,
-                layers = _.toArray(event.target._renderer._layers),
-                shapes = _.filter(layers, ['options.shapeType', event.shape]);
 
-            layer.options.shapeType = event.shape;
-            layer.options.shapeName = `${this.resolveShapeNames(event.shape)}${shapes.length + 1}`;
-
-            layer.bindContextMenu({
-                contextmenu: true,
-                contextmenuItems: [{
-                    text: 'Найти санатории'
-                },
-                    {
-                        text: 'Найти достопримечательности'
-                    }]
-            });
-
-            layer.on('click', (layer) => {
-                let targetOptions = layer.target.options,
-                    target = layer.target;
-
-                targetOptions.active = !targetOptions.active;
-
-                if (targetOptions.active) {
-                    target.setStyle({color: 'red', fillColor: 'blue'});
-                    target.addContextMenuItem({
-                        text: 'Найти включение',
-                        index: 100,
-                        callback: this.shapeInclusion.bind(this)
-                    });
-                    target.addContextMenuItem({
-                        text: 'Найти пересечения',
-                        index: 200,
-                        callback: this.shapeIntersection.bind(this)
-                    });
-                    target.addContextMenuItem({
-                        text: 'Найти граничные элементы',
-                        index: 300,
-                        callback: this.boundaryElements.bind(this)
-                    });
-                    target.addContextMenuItem({
-                        text: 'Найти примыкающие элементы',
-                        index: 400,
-                        callback: this.contiguity.bind(this)
-                    });
-                } else {
-                    target.setStyle({color: 'blue'});
-                    target.removeContextMenuItemWithIndex(100);
-                    target.removeContextMenuItemWithIndex(200);
-                    target.removeContextMenuItemWithIndex(300);
-                    target.removeContextMenuItemWithIndex(400);
-                }
-            });
-        });
 
         // natureMonuments.forEach((item) => {
         //     let marker = L.marker([item['lat'], item['lon']], {
@@ -150,6 +133,62 @@ class Map {
         //     marker.addTo(this.map).bindPopup(item['naim']);
         //     marker.code = item['code'];
         // });
+    }
+
+    addNewLayer(event) {
+        let layer = event.layer,
+            layers = _.toArray(event.target._renderer._layers),
+            shapes = _.filter(layers, ['options.shapeType', event.shape]);
+
+        layer.options.shapeType = event.shape;
+        layer.options.shapeName = `${this.resolveShapeNames(event.shape)}${shapes.length + 1}`;
+
+        layer.bindContextMenu({
+            contextmenu: true,
+            contextmenuItems: [{
+                text: 'Найти санатории'
+            },
+                {
+                    text: 'Найти достопримечательности'
+                }]
+        });
+
+        layer.on('click', (layer) => {
+            let targetOptions = layer.target.options,
+                target = layer.target;
+
+            targetOptions.active = !targetOptions.active;
+
+            if (targetOptions.active) {
+                target.setStyle({color: 'red', fillColor: 'blue'});
+                target.addContextMenuItem({
+                    text: 'Найти включение',
+                    index: 100,
+                    callback: this.shapeInclusion.bind(this)
+                });
+                target.addContextMenuItem({
+                    text: 'Найти пересечения',
+                    index: 200,
+                    callback: this.shapeIntersection.bind(this)
+                });
+                target.addContextMenuItem({
+                    text: 'Найти граничные элементы',
+                    index: 300,
+                    callback: this.boundaryElements.bind(this)
+                });
+                target.addContextMenuItem({
+                    text: 'Найти примыкающие элементы',
+                    index: 400,
+                    callback: this.contiguity.bind(this)
+                });
+            } else {
+                target.setStyle({color: 'blue'});
+                target.removeContextMenuItemWithIndex(100);
+                target.removeContextMenuItemWithIndex(200);
+                target.removeContextMenuItemWithIndex(300);
+                target.removeContextMenuItemWithIndex(400);
+            }
+        });
     }
 
     resolveShapeNames(shapeName) {
@@ -272,12 +311,12 @@ class Map {
                     intersection = turf.lineIntersect(layer1, layer2);
 
                 try {
-                    let layer1firstPoint = _.first(layer1.geometry.coordinates).map((a)=>(_.round(a,3))),
-                        layer1lastPoint = _.last(layer1.geometry.coordinates).map((a)=>(_.round(a,3))),
-                        layer2firstPoint = _.first(layer2.geometry.coordinates).map((a)=>(_.round(a,3))),
-                        layer2lastPoint = _.last(layer2.geometry.coordinates).map((a)=>(_.round(a,3))),
+                    let layer1firstPoint = _.first(layer1.geometry.coordinates).map((a) => (_.round(a, 3))),
+                        layer1lastPoint = _.last(layer1.geometry.coordinates).map((a) => (_.round(a, 3))),
+                        layer2firstPoint = _.first(layer2.geometry.coordinates).map((a) => (_.round(a, 3))),
+                        layer2lastPoint = _.last(layer2.geometry.coordinates).map((a) => (_.round(a, 3))),
                         intersectionType = intersection.features[0].geometry.type,
-                        intersectionPoint = intersection.features[0].geometry.coordinates.map((a)=>(_.round(a,3)));
+                        intersectionPoint = intersection.features[0].geometry.coordinates.map((a) => (_.round(a, 3)));
 
                     if (intersectionType === 'Point' && (_.isEqual(intersectionPoint, layer1firstPoint) || _.isEqual(intersectionPoint, layer1lastPoint))) {
                         results.push(`${layer1Name} примыкает к элементу ${layer2Name}`);
