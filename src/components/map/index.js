@@ -8,10 +8,7 @@ class Map {
 
     constructor() {
         this.mapInitialize();
-
-        this.map.contextmenu.disable();
-
-        this.map.on('contextmenu', this.eventMapRightClick.bind(this));
+        this.map.on('contextmenu', this.eventMapContextMenu.bind(this));
         this.map.on('contextmenu.hide', () => this.map.contextmenu.disable());
         // natureMonuments.forEach((item) => {
         //     let marker = L.marker([item['lat'], item['lon']], {
@@ -27,7 +24,7 @@ class Map {
         // });
     }
 
-    eventMapRightClick(event) {
+    eventMapContextMenu(event) {
         this.map.spin(true);
 
         let promises = MAP.ZOOM.map((zoom) => {
@@ -303,6 +300,7 @@ class Map {
             contextmenuWidth: 300
         });
 
+        this.map.unbindContextMenu();
         this.map.setView([51.505, -0.09], 13);
         this.map.doubleClickZoom.disable();
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
