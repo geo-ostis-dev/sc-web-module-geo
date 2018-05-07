@@ -1,4 +1,4 @@
-export let MAP = {
+export const MAP = {
     BASE_LAYER_ITEMS: [
         {text: 'Найти санатории'},
         {text: 'Найти достопримечательности'}

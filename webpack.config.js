@@ -21,7 +21,8 @@ module.exports = (env, argv) => {
                     options: {
                         presets: ['@babel/preset-env'], plugins: [
                             '@babel/plugin-transform-runtime',
-                            '@babel/plugin-proposal-class-properties'
+                            '@babel/plugin-proposal-class-properties',
+                            '@babel/plugin-proposal-object-rest-spread'
                         ]
                     }
                 }
@@ -30,11 +31,14 @@ module.exports = (env, argv) => {
                 use: [{
                     loader: 'style-loader'
                 }, {
-                    loader: 'css-loader'
+                    loader: 'css-loader', options: {
+                        root: path.resolve(__dirname, 'src')
+                    }
                 }, {
                     loader: 'less-loader', options: {
                         paths: [
-                            path.resolve(__dirname, 'node_modules')
+                            path.resolve(__dirname, 'node_modules'),
+                            path.resolve(__dirname, 'src')
                         ]
                     }
                 }]
