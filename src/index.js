@@ -6,13 +6,18 @@ import 'leaflet-contextmenu'
 import 'leaflet.pm'
 import 'leaflet-sidebar'
 
+import {Spinner} from 'spin.js'
+window.Spinner = Spinner;
+
+import 'leaflet-spin'
+
 import prepareScWeb from 'middleware/prepareScWeb'
 
 import Base from "components/base";
 import Map from "components/map";
 import SearchButton from "components/searchButton";
 import SearchInput from "components/searchInput";
-import "components/searchPanel";
+import SearchPanel from "components/searchPanel";
 
 $(document).ready(function () {
     prepareScWeb();
@@ -20,4 +25,5 @@ $(document).ready(function () {
     new Map;
     new SearchButton;
     new SearchInput;
+    new SearchPanel;
 });
