@@ -1,39 +1,87 @@
 import './map.less'
 import 'leaflet/dist/images/marker-shadow.png'
-
 import {MAP} from 'middleware/constants.js';
+import Layer from 'components/layer';
+import component from 'middleware/decorators/component';
 import {uniqBy, filter, reject, first, values, isEmpty} from 'lodash';
+import layerInformation from './layerInformation.mustache';
+import layersComparision from './layersComparision.mustache';
 
 class Map {
     layers = [];
 
     constructor() {
         this.mapInitialize();
-        this.map.on('contextmenu', this.eventMapContextMenu.bind(this));
-        this.map.on('pm:create', this.eventCreatePMLayer.bind(this));
 
-        // natureMonuments.forEach((item) => {
-        //     let marker = L.marker([item['lat'], item['lon']], {
-        //         contextmenu: true,
-        //         contextmenuItems: [{
-        //             text: 'Показать полную информацию',
-        //             callback: this.showFullInformation.bind(this)
-        //         }]
-        //     });
-        //
-        //     marker.addTo(this.map).bindPopup(item['naim']);
-        //     marker.code = item['code'];
-        // });
+        this.el.on('contextmenu', this.eventMapContextMenu.bind(this));
+        this.el.on('pm:create', this.eventCreatePMLayer.bind(this));
+        this.el.on('click', () => this.sidebar.hide());
     }
 
     eventCreatePMLayer(event) {
-        let layer = event.layer;
+        let layer = new Layer(event.layer);
+
         layer.options.shape = event.shape;
+        layer.bindContextMenu({
+            contextmenu: true,
+            bubblingMouseEvents: false,
+            contextmenuInheritItems: false,
+            contextmenuItems: [{
+                text: 'Показать пространственную информацию',
+                callback: this.eventShowLayerInfo.bind(this)
+            }]
+        });
         this.addLayer(layer, {noAddToMap: true});
     }
 
+    eventShowLayerInfo(event) {
+        let osm = event.relatedTarget.options.osm;
+
+        let content = layerInformation({
+            name: osm.name,
+            country: osm.address.country,
+            country_code: osm.address.country_code,
+            county: osm.address.county,
+            place_rank: osm.place_rank,
+            area: turf.area(osm.geojson),
+            state: osm.address.state
+        });
+
+        this.sidebar.setContent(content);
+        this.sidebar.show();
+    }
+
+    eventCompareLayers() {
+        let activeLayers = this.getActiveLayers();
+        if (activeLayers.length !== 2) return;
+
+        let osm1 = activeLayers[0].options.osm;
+        let osm2 = activeLayers[1].options.osm;
+
+        let content = layersComparision({
+            name1: osm1.name,
+            country1: osm1.address.country,
+            country_code1: osm1.address.country_code,
+            county1: osm1.address.county,
+            place_rank1: osm1.place_rank,
+            area1: turf.area(osm1.geojson),
+            state1: osm1.address.state,
+            name2: osm2.name,
+            country2: osm2.address.country,
+            country_code2: osm2.address.country_code,
+            county2: osm2.address.county,
+            place_rank2: osm2.place_rank,
+            area2: turf.area(osm2.geojson),
+            state2: osm2.address.state
+        });
+
+        this.sidebar.setContent(content);
+        this.sidebar.show();
+
+    }
+
     eventMapContextMenu(event) {
-        this.map.spin(true);
+        this.el.spin(true);
 
         let promises = MAP.ZOOM.map((zoom) => {
             let apiUrl = Map.nominatimApi('reverse', {
@@ -51,10 +99,10 @@ class Map {
                 return Promise.all(jsonResults);
             })
             .then((jsons) => {
-                this.map.contextmenu.removeAllItems();
+                this.el.contextmenu.removeAllItems();
 
                 uniqBy(jsons, 'place_id').forEach(json => {
-                    let item = this.map.contextmenu.addItem({text: json['display_name']});
+                    let item = this.el.contextmenu.addItem({text: json['display_name']});
 
                     $(item).data('osm_info', json);
 
@@ -72,17 +120,21 @@ class Map {
                                 bubblingMouseEvents: false,
                                 contextmenuInheritItems: false,
                                 osm: $(event.target).data('osm_info'),
-                                contextmenuItems: [{text: 'Найти санатории'}, {text: 'Найти достопримечательности'}]
+                                contextmenuItems: [{
+                                    text: 'Показать пространственную информацию',
+                                    callback: this.eventShowLayerInfo.bind(this)
+                                }]
                             }).getLayers());
 
                         this.addLayer(layer);
+                        layer.bindPopup(layer.options.osm.name, {autoClose: false}).openPopup();
                     });
 
                     $(item).on('mouseleave', () => this.removeTempLayers());
                 });
 
-                this.map.contextmenu.showAt(event.latlng);
-                this.map.spin(false);
+                this.el.contextmenu.showAt(event.latlng);
+                this.el.spin(false);
             })
     }
 
@@ -112,18 +164,24 @@ class Map {
                 index: 400,
                 callback: this.contiguity.bind(this)
             });
+
+            layer.addContextMenuItem({
+                text: 'Сравнить площадные объекты',
+                index: 500,
+                callback: this.eventCompareLayers.bind(this)
+            });
         } else {
             layer.removeContextMenuItemWithIndex(100);
             layer.removeContextMenuItemWithIndex(200);
             layer.removeContextMenuItemWithIndex(300);
             layer.removeContextMenuItemWithIndex(400);
+            layer.removeContextMenuItemWithIndex(400);
         }
     }
 
     shapeInclusion() {
-        let activeLayers = _.filter(_.toArray(this.map._renderer._layers), 'options.active');
-
-        let results = [];
+        let activeLayers = this.getActiveLayers(),
+            results = [];
 
         for (let i = 0; i < activeLayers.length; i++) {
             for (let j = 0; j < activeLayers.length; j++) {
@@ -155,9 +213,8 @@ class Map {
     }
 
     shapeIntersection() {
-        let activeLayers = _.filter(_.toArray(this.map._renderer._layers), 'options.active');
-
-        let results = [];
+        let activeLayers = this.getActiveLayers(),
+            results = [];
 
         for (let i = 0; i < activeLayers.length; i++) {
             for (let j = 0; j < activeLayers.length; j++) {
@@ -183,9 +240,8 @@ class Map {
     }
 
     boundaryElements() {
-        let activeLayers = this.getActiveLayers();
-
-        let results = [];
+        let activeLayers = this.getActiveLayers(),
+            results = [];
 
         for (let i = 0; i < activeLayers.length; i++) {
             for (let j = 0; j < activeLayers.length; j++) {
@@ -210,9 +266,8 @@ class Map {
     }
 
     contiguity() {
-        let activeLayers = _.filter(_.toArray(this.map._renderer._layers), 'options.active');
-
-        let results = [];
+        let activeLayers = this.getActiveLayers(),
+            results = [];
 
         for (let i = 0; i < activeLayers.length; i++) {
             for (let j = 0; j < activeLayers.length; j++) {
@@ -266,36 +321,24 @@ class Map {
         this.sidebar.show();
     }
 
-    static toTurfObject(layer) {
-        switch (layer.options.shape) {
-            case 'Circle':
-                let center = [layer._latlng['lat'], layer._latlng['lng']],
-                    radius = layer._mRadius / 1000;
-
-                return turf.circle(center, radius);
-            case 'Line':
-                let points = layer._latlngs.map((point) => ([point['lat'], point['lng']]));
-
-                return turf.lineString(points);
-            default:
-                return turf.polygonize(layer.toGeoJSON());
-        }
-    }
-
     mapInitialize() {
-        this.map = L.map('map', {
+        this.el = L.map('map', {
             contextmenu: true,
-            contextmenuWidth: 300
+            contextmenuWidth: 300,
+            closePopupOnClick: false
         });
 
-        this.map.off('contextmenu');
-        this.map.setView([53.53, 27.34], 13);
-        this.map.doubleClickZoom.disable();
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
+        this.el.off('contextmenu');
+        this.el.setView([53.53, 27.34], 13);
+        this.el.doubleClickZoom.disable();
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.el);
 
         // Sidebar
-        this.sidebar = L.control.sidebar('sidebar', {position: 'right'});
-        this.map.addControl(this.sidebar);
+        this.sidebar = L.control.sidebar('sidebar', {
+            closeButton: true,
+            position: 'right'
+        });
+        this.el.addControl(this.sidebar);
 
         //define toolbar options
         let options = {
@@ -311,7 +354,7 @@ class Map {
         };
 
         // add leaflet.pm controls to the map
-        this.map.pm.addControls(options);
+        this.el.pm.addControls(options);
 
         let controlOptions = {
             // snapping
@@ -333,43 +376,54 @@ class Map {
             }
         };
 
-        this.map.pm.enableDraw('Poly', controlOptions);
-        this.map.pm.enableDraw('Rectangle', controlOptions);
-        this.map.pm.enableDraw('Line', controlOptions);
-        this.map.pm.enableDraw('Marker', controlOptions);
-        this.map.pm.enableDraw('Circle', controlOptions);
-        this.map.pm.enableDraw('Cut', controlOptions);
-        this.map.pm.disableDraw('Poly');
-        this.map.pm.disableDraw('Rectangle');
-        this.map.pm.disableDraw('Line');
-        this.map.pm.disableDraw('Marker');
-        this.map.pm.disableDraw('Circle');
-        this.map.pm.disableDraw('Cut');
+        this.el.pm.enableDraw('Poly', controlOptions);
+        this.el.pm.disableDraw('Poly');
+
+        this.el.pm.enableDraw('Rectangle', controlOptions);
+        this.el.pm.disableDraw('Rectangle');
+
+        this.el.pm.enableDraw('Line', controlOptions);
+        this.el.pm.disableDraw('Line');
+
+        this.el.pm.enableDraw('Marker', controlOptions);
+        this.el.pm.disableDraw('Marker');
+
+        this.el.pm.enableDraw('Circle', controlOptions);
+        this.el.pm.disableDraw('Circle');
+
+        this.el.pm.enableDraw('Cut', controlOptions);
+        this.el.pm.disableDraw('Cut');
     }
 
     addLayer(layer, options = {}) {
         layer.options.active = !!options.active;
         layer.options.temp = !!options.temp;
+        layer.once('remove', this.eventRemoveLayer.bind(this));
         if (!layer.options.temp) layer.options.name = this.resolveLayerName(layer);
         if (!layer.options.temp) layer.on('click', this.eventLayerSelect.bind(this));
-        if (!options.noAddToMap) layer.addTo(this.map);
+        if (!options.noAddToMap) layer.addTo(this.el);
 
         this.layers.push(layer);
+
+        return layer;
+    }
+
+    eventRemoveLayer(event) {
+        this.layers = reject(this.layers, ['_leaflet_id', event.target._leaflet_id]);
     }
 
     resolveLayerName(layer) {
-        if (layer.options.osm) return layer.options.osm.name;
-
         let shape = layer.options.shape;
+        let sameShapesCount = filter(this.getLayers(), ['options.shape', shape]).length;
+        let shapeNumber = (sameShapesCount === 0) ? '' : sameShapesCount;
 
-        if (shape) {
-            let sameShapesCount = filter(this.getLayers(), ['options.shape', shape]).length;
-            let shapeNumber = (sameShapesCount === 0) ? '' : sameShapesCount + 1;
-
+        if (layer.options.osm) {
+            return layer.options.osm.name;
+        } else if (shape) {
             return `${shape}${shapeNumber}`;
+        } else {
+            return 'Элемент';
         }
-
-        return 'Элемент';
     }
 
     static nominatimApi(api, params) {
@@ -400,7 +454,7 @@ class Map {
 
     removeTempLayers() {
         let tempLayers = filter(this.layers, 'options.temp');
-        tempLayers.forEach(layer => this.map.removeLayer(layer));
+        tempLayers.forEach(layer => this.el.removeLayer(layer));
 
         this.layers = reject(this.layers, ['layerType', 'temp']);
     }

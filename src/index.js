@@ -21,9 +21,9 @@ import SearchPanel from "components/searchPanel";
 
 $(document).ready(function () {
     prepareScWeb();
-    new Base;
-    new Map;
-    new SearchButton;
+    window.components.base = new Base;
+    window.components.map = new Map;
+    window.components.searchButton = new SearchButton;
     new SearchInput;
     new SearchPanel;
 });
