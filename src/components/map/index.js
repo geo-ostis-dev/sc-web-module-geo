@@ -34,6 +34,26 @@ class Map {
         this.addLayer(layer, {noAddToMap: true});
     }
 
+    addLayer(layer, options = {}) {
+        layer.options.active = !!options.active;
+        layer.options.temp = !!options.temp;
+        layer.options.search = !!options.search;
+        layer.once('remove', this.eventRemoveLayer.bind(this));
+
+        if (!layer.options.temp) {
+            // layer.bindPopup(layer.options.osm.name, {closeButton: false});
+            layer.options.name = this.resolveLayerName(layer);
+            // layer.on('mouseover', () => layer.openPopup());
+            // layer.on('mouseout', () => layer.closePopup());
+        }
+        if (!options.noAddToMap) layer.addTo(this.el);
+
+        this.layers.push(layer);
+
+        return layer;
+    }
+
+
     eventShowLayerInfo(event) {
         let osm = event.relatedTarget.options.osm;
 
@@ -106,12 +126,8 @@ class Map {
 
                     $(item).data('osm_info', json);
 
-                    $(item).on('mouseenter', event => {
-                        let geojson = $(event.target).data('osm_info')['geojson'],
-                            layer = first(L.geoJson(geojson).getLayers());
-
-                        this.addLayer(layer, {temp: true});
-                    });
+                    $(item).on('mouseenter', this.addTempLayer.bind(this));
+                    $(item).on('mouseleave', this.removeTempLayers.bind(this));
 
                     $(item).on('click', event => {
                         let geojson = $(event.target).data('osm_info')['geojson'],
@@ -127,10 +143,9 @@ class Map {
                             }).getLayers());
 
                         this.addLayer(layer);
-                        layer.bindPopup(layer.options.osm.name, {autoClose: false}).openPopup();
+                        layer.on('click', this.eventLayerSelect.bind(this));
                     });
 
-                    $(item).on('mouseleave', () => this.removeTempLayers());
                 });
 
                 this.el.contextmenu.showAt(event.latlng);
@@ -176,6 +191,7 @@ class Map {
             layer.removeContextMenuItemWithIndex(300);
             layer.removeContextMenuItemWithIndex(400);
             layer.removeContextMenuItemWithIndex(400);
+            layer.removeContextMenuItemWithIndex(500);
         }
     }
 
@@ -204,12 +220,12 @@ class Map {
                     solution2 = 'не включает';
                 }
 
-                results.push(`${activeLayers[i].options.name} ${solution1} элемент ${activeLayers[j].options.name}`);
-                results.push(`${activeLayers[j].options.name} ${solution2} элемент ${activeLayers[i].options.name}`);
+                results.push(`<b>${activeLayers[i].options.name}</b> ${solution1} элемент <b>${activeLayers[j].options.name}</b>`);
+                results.push(`<b>${activeLayers[j].options.name}</b> ${solution2} элемент <b>${activeLayers[i].options.name}</b>`);
             }
         }
 
-        alert(_.uniq(results).join('\n'));
+        L.control.window(this.el, {title: 'Результат включения элементов', content: _.uniq(results).join('<br>'), visible: true});
     }
 
     shapeIntersection() {
@@ -232,11 +248,11 @@ class Map {
                     solution = 'не пересекается';
                 }
 
-                results.push(`${activeLayers[i].options.name} ${solution} с элементом ${activeLayers[j].options.name}`);
+                results.push(`<b>${activeLayers[i].options.name}</b> ${solution} с элементом <b>${activeLayers[j].options.name}</b>`);
             }
         }
 
-        alert(_.uniq(results).join('\n'));
+        L.control.window(this.el, {title: 'Результат пересечения элементов', content: _.uniq(results).join('<br>'), visible: true});
     }
 
     boundaryElements() {
@@ -255,14 +271,14 @@ class Map {
                 let intersection = turf.intersect(layer1, layer2);
 
                 if (intersection && (intersection.geometry.type === 'LineString' || intersection.geometry.type === 'MultiLineString')) {
-                    results.push(`${layer1Name} граничит с элементом ${layer2Name}`);
+                    results.push(`<b>${layer1Name}</b> граничит с элементом <b>${layer2Name}</b>`);
                 } else {
-                    results.push(`${layer1Name} не граничит с элементом ${layer2Name}`);
+                    results.push(`<b>${layer1Name}</b> не граничит с элементом <b>${layer2Name}</b>`);
                 }
             }
         }
 
-        alert(_.uniq(results).join('\n'));
+        L.control.window(this.el, {title: 'Граничащие элементы', content: _.uniq(results).join('<br>'), visible: true});
     }
 
     contiguity() {
@@ -288,19 +304,19 @@ class Map {
                         intersectionPoint = intersection.features[0].geometry.coordinates.map((a) => (_.round(a, 3)));
 
                     if (intersectionType === 'Point' && (_.isEqual(intersectionPoint, layer1firstPoint) || _.isEqual(intersectionPoint, layer1lastPoint))) {
-                        results.push(`${layer1Name} примыкает к элементу ${layer2Name}`);
+                        results.push(`<b>${layer1Name}</b> примыкает к элементу <b>${layer2Name}</b>`);
                     } else if (intersectionType === 'Point' && (_.isEqual(intersectionPoint, layer2firstPoint) || _.isEqual(intersectionPoint, layer2lastPoint))) {
-                        results.push(`${layer2Name} примыкает к элементу ${layer1Name}`);
+                        results.push(`<b>${layer2Name}</b> примыкает к элементу <b>${layer1Name}</b>`);
                     } else {
-                        results.push(`${layer1Name} не примыкает к элементу ${layer2Name}`);
+                        results.push(`<b>${layer1Name}</b> не примыкает к элементу <b>${layer2Name}</b>`);
                     }
                 } catch (e) {
-                    results.push(`${layer1Name} не примыкает к элементу ${layer2Name}`);
+                    results.push(`<b>${layer1Name}</b> не примыкает к элементу <b>${layer2Name}</b>`);
                 }
             }
         }
 
-        alert(_.uniq(results).join('\n'));
+        L.control.window(this.el, {title: 'Результат примыкания элементов', content: _.uniq(results).join('<br>'), visible: true});
     }
 
     showFullInformation(event) {
@@ -395,18 +411,6 @@ class Map {
         this.el.pm.disableDraw('Cut');
     }
 
-    addLayer(layer, options = {}) {
-        layer.options.active = !!options.active;
-        layer.options.temp = !!options.temp;
-        layer.once('remove', this.eventRemoveLayer.bind(this));
-        if (!layer.options.temp) layer.options.name = this.resolveLayerName(layer);
-        if (!layer.options.temp) layer.on('click', this.eventLayerSelect.bind(this));
-        if (!options.noAddToMap) layer.addTo(this.el);
-
-        this.layers.push(layer);
-
-        return layer;
-    }
 
     eventRemoveLayer(event) {
         this.layers = reject(this.layers, ['_leaflet_id', event.target._leaflet_id]);
@@ -452,11 +456,22 @@ class Map {
         return !!layer.options.active;
     }
 
+    addTempLayer(event) {
+        let geojson = $(event.target).data('osm_info')['geojson'],
+            layer = first(L.geoJson(geojson).getLayers());
+
+        this.addLayer(layer, {temp: true});
+
+    }
+
     removeTempLayers() {
         let tempLayers = filter(this.layers, 'options.temp');
         tempLayers.forEach(layer => this.el.removeLayer(layer));
+    }
 
-        this.layers = reject(this.layers, ['layerType', 'temp']);
+    removeSearchLayers() {
+        let tempLayers = filter(this.layers, 'options.search');
+        tempLayers.forEach(layer => this.el.removeLayer(layer));
     }
 }
 
