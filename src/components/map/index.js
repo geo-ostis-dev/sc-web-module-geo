@@ -1,14 +1,13 @@
 import './map.less'
 import 'leaflet/dist/images/marker-shadow.png'
 import {MAP} from 'middleware/constants.js';
-import Layer from 'components/layer';
-import component from 'middleware/decorators/component';
 import {uniqBy, filter, reject, first, values, isEmpty} from 'lodash';
 import layerInformation from './layerInformation.mustache';
 import layersComparision from './layersComparision.mustache';
 
 class Map {
     layers = [];
+    api = window.components.api;
 
     constructor() {
         this.mapInitialize();
@@ -41,10 +40,7 @@ class Map {
         layer.once('remove', this.eventRemoveLayer.bind(this));
 
         if (!layer.options.temp) {
-            // layer.bindPopup(layer.options.osm.name, {closeButton: false});
             layer.options.name = this.resolveLayerName(layer);
-            // layer.on('mouseover', () => layer.openPopup());
-            // layer.on('mouseout', () => layer.closePopup());
         }
         if (!options.noAddToMap) layer.addTo(this.el);
 
@@ -53,21 +49,27 @@ class Map {
         return layer;
     }
 
-
     eventShowLayerInfo(event) {
-        let osm = event.relatedTarget.options.osm;
+        debugger;
+        let nominatimInfo = event.relatedTarget.options.nominatimInfo,
+            wikiInfo = event.relatedTarget.options.wikiInfo,
+            area_km2 = turf.area(nominatimInfo.geojson) / 1000000;
 
-        let content = layerInformation({
-            name: osm.name,
-            country: osm.address.country,
-            country_code: osm.address.country_code,
-            county: osm.address.county,
-            place_rank: osm.place_rank,
-            area: turf.area(osm.geojson),
-            state: osm.address.state
-        });
+        let content = {
+            name: nominatimInfo.name,
+            country: nominatimInfo.address.country,
+            country_code: nominatimInfo.address.country_code,
+            county: nominatimInfo.address.county,
+            place_rank: nominatimInfo.place_rank,
+            area: Math.round(area_km2 * 1000) / 1000,
+            state: nominatimInfo.address.state
+        };
 
-        this.sidebar.setContent(content);
+        if (wikiInfo) {
+
+        }
+
+        this.sidebar.setContent(layerInformation(content));
         this.sidebar.show();
     }
 
@@ -75,8 +77,11 @@ class Map {
         let activeLayers = this.getActiveLayers();
         if (activeLayers.length !== 2) return;
 
-        let osm1 = activeLayers[0].options.osm;
-        let osm2 = activeLayers[1].options.osm;
+        let osm1 = activeLayers[0].options.osm,
+            osm2 = activeLayers[1].options.osm;
+
+        let area1_km2 = turf.area(osm1.geojson) / 1000000,
+            area2_km2 = turf.area(osm2.geojson) / 1000000;
 
         let content = layersComparision({
             name1: osm1.name,
@@ -84,14 +89,14 @@ class Map {
             country_code1: osm1.address.country_code,
             county1: osm1.address.county,
             place_rank1: osm1.place_rank,
-            area1: turf.area(osm1.geojson),
+            area1: Math.round(area1_km2 * 1000) / 1000,
             state1: osm1.address.state,
             name2: osm2.name,
             country2: osm2.address.country,
             country_code2: osm2.address.country_code,
             county2: osm2.address.county,
             place_rank2: osm2.place_rank,
-            area2: turf.area(osm2.geojson),
+            area2: Math.round(area2_km2 * 1000) / 1000,
             state2: osm2.address.state
         });
 
@@ -104,13 +109,11 @@ class Map {
         this.el.spin(true);
 
         let promises = MAP.ZOOM.map((zoom) => {
-            let apiUrl = Map.nominatimApi('reverse', {
-                lat: event['latlng']['lat'],
-                long: event['latlng']['lng'],
-                zoom: zoom
-            });
-
-            return fetch(apiUrl);
+            return fetch(this.api.nominatim({
+                path: 'reverse',
+                lat: event['latlng']['lat'], long: event['latlng']['lng'],
+                geojson: 1, extra: 1, address: 1, zoom: zoom
+            }));
         });
 
         Promise.all(promises)
@@ -120,37 +123,54 @@ class Map {
             })
             .then((jsons) => {
                 this.el.contextmenu.removeAllItems();
+                this._nominatimTempResults = {};
 
                 uniqBy(jsons, 'place_id').forEach(json => {
                     let item = this.el.contextmenu.addItem({text: json['display_name']});
 
-                    $(item).data('osm_info', json);
+                    this._nominatimTempResults[json['place_id']] = json;
+                    $(item).data('place_id', json['place_id']);
 
                     $(item).on('mouseenter', this.addTempLayer.bind(this));
                     $(item).on('mouseleave', this.removeTempLayers.bind(this));
-
-                    $(item).on('click', event => {
-                        let geojson = $(event.target).data('osm_info')['geojson'],
-                            layer = first(L.geoJson(geojson, {
-                                contextmenu: true,
-                                bubblingMouseEvents: false,
-                                contextmenuInheritItems: false,
-                                osm: $(event.target).data('osm_info'),
-                                contextmenuItems: [{
-                                    text: 'Показать пространственную информацию',
-                                    callback: this.eventShowLayerInfo.bind(this)
-                                }]
-                            }).getLayers());
-
-                        this.addLayer(layer);
-                        layer.on('click', this.eventLayerSelect.bind(this));
-                    });
-
+                    $(item).on('click', this.eventAddProposedLayer.bind(this));
                 });
 
                 this.el.contextmenu.showAt(event.latlng);
                 this.el.spin(false);
             })
+    }
+
+    eventAddProposedLayer(event) {
+        this.el.spin(true);
+
+        let place_id = $(event.target).data('place_id');
+        this._nominatimInfo = this._nominatimTempResults[place_id];
+
+        let wiki_id = this._nominatimInfo['extratags']['wikidata'],
+            wikidataPromise = wiki_id ? fetch(this.api.wikidata({ids: wiki_id})) : Promise.resolve(false);
+
+        wikidataPromise
+            .then((wikiResult) => wikiResult ? wikiResult.json() : false)
+            .then((wikiJSON) => {
+                let layerGroup = L.geoJson(this._nominatimInfo['geojson'], {
+                        contextmenu: true,
+                        bubblingMouseEvents: false,
+                        contextmenuInheritItems: false,
+                        nominatimInfo: this._nominatimInfo,
+                        wikiInfo: wikiJSON ? first(values(wikiJSON.entities)) : null,
+                        contextmenuItems: [{
+                            text: 'Показать пространственную информацию',
+                            callback: this.eventShowLayerInfo.bind(this)
+                        }]
+                    }),
+                    layer = first(layerGroup.getLayers());
+
+                this.addLayer(layer);
+                layer.on('click', this.eventLayerSelect.bind(this));
+
+                this.el.spin(false);
+            });
     }
 
     eventLayerSelect(event) {
@@ -225,7 +245,11 @@ class Map {
             }
         }
 
-        L.control.window(this.el, {title: 'Результат включения элементов', content: _.uniq(results).join('<br>'), visible: true});
+        L.control.window(this.el, {
+            title: 'Результат включения элементов',
+            content: _.uniq(results).join('<br>'),
+            visible: true
+        });
     }
 
     shapeIntersection() {
@@ -252,7 +276,11 @@ class Map {
             }
         }
 
-        L.control.window(this.el, {title: 'Результат пересечения элементов', content: _.uniq(results).join('<br>'), visible: true});
+        L.control.window(this.el, {
+            title: 'Результат пересечения элементов',
+            content: _.uniq(results).join('<br>'),
+            visible: true
+        });
     }
 
     boundaryElements() {
@@ -278,7 +306,11 @@ class Map {
             }
         }
 
-        L.control.window(this.el, {title: 'Граничащие элементы', content: _.uniq(results).join('<br>'), visible: true});
+        L.control.window(this.el, {
+            title: 'Граничащие элементы',
+            content: _.uniq(results).join('<br>'),
+            visible: true
+        });
     }
 
     contiguity() {
@@ -316,25 +348,11 @@ class Map {
             }
         }
 
-        L.control.window(this.el, {title: 'Результат примыкания элементов', content: _.uniq(results).join('<br>'), visible: true});
-    }
-
-    showFullInformation(event) {
-        let object = _.find(window.result, ['code', event.relatedTarget.code]),
-            naim = object['naim'],
-            img1 = object['img1'],
-            img2 = object['img2'],
-            img3 = object['img3'],
-            oblast = object['oblast'];
-
-        this.sidebar.setContent('<table>' +
-            '  <tr><td>' + 'Наименование' + '</td><td>' + naim + '</td></tr>' +
-            '  <tr><td>' + 'Область' + '</td><td>' + oblast + '</td></tr>' +
-            '  <tr><td>' + 'Изображение1' + '</td><td><img src="' + img1 + '" /></td></tr>' +
-            '  <tr><td>' + 'Изображение2' + '</td><td><img src="' + img2 + '" /></td></tr>' +
-            '  <tr><td>' + 'Изображение3' + '</td><td><img src="' + img3 + '" /></td></tr>' +
-            '</table>');
-        this.sidebar.show();
+        L.control.window(this.el, {
+            title: 'Результат примыкания элементов',
+            content: _.uniq(results).join('<br>'),
+            visible: true
+        });
     }
 
     mapInitialize() {
@@ -411,7 +429,6 @@ class Map {
         this.el.pm.disableDraw('Cut');
     }
 
-
     eventRemoveLayer(event) {
         this.layers = reject(this.layers, ['_leaflet_id', event.target._leaflet_id]);
     }
@@ -427,15 +444,6 @@ class Map {
             return `${shape}${shapeNumber}`;
         } else {
             return 'Элемент';
-        }
-    }
-
-    static nominatimApi(api, params) {
-        let host = 'https://nominatim.openstreetmap.org/';
-
-        switch (api) {
-            case 'reverse':
-                return `${host}/reverse?format=jsonv2&lat=${params['lat']}&lon=${params['long']}&polygon_geojson=1&zoom=${params['zoom']}`;
         }
     }
 
@@ -457,20 +465,15 @@ class Map {
     }
 
     addTempLayer(event) {
-        let geojson = $(event.target).data('osm_info')['geojson'],
+        let place_id = $(event.target).data('place_id'),
+            geojson = this._nominatimTempResults[place_id]['geojson'],
             layer = first(L.geoJson(geojson).getLayers());
 
         this.addLayer(layer, {temp: true});
-
     }
 
     removeTempLayers() {
         let tempLayers = filter(this.layers, 'options.temp');
-        tempLayers.forEach(layer => this.el.removeLayer(layer));
-    }
-
-    removeSearchLayers() {
-        let tempLayers = filter(this.layers, 'options.search');
         tempLayers.forEach(layer => this.el.removeLayer(layer));
     }
 }
