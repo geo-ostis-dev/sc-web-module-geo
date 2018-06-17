@@ -3,13 +3,20 @@
 <head>
     <meta content="IE=edge" http-equiv="x-ua-compatible"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <base href="/static/components/sc-web.module.geo/"/>
 </head>
 <body>
 
 <div class="search-panel">
-    <input class="search-input" placeholder="Поиск">
-    <button class="search-button"> Search</button>
+    <div class="input-group">
+        <input id="search-input" type="text" class="form-control" placeholder="Поиск..." aria-label="Recipient's username" aria-describedby="basic-addon2" list="suggestions">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">Поиск</button>
+        </div>
+    </div>
+    <datalist id="suggestions"></datalist>
+
     <div class="button-partition"></div>
     <div class="menu"></div>
     <div class="hide-history"></div>
