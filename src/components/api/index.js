@@ -1,3 +1,6 @@
+import {get} from "lodash";
+import md5 from 'md5';
+
 class Api {
     nominatimHost = 'https://nominatim.openstreetmap.org';
     wikidataHost = 'https://www.wikidata.org';
@@ -38,6 +41,54 @@ class Api {
                 return `${this.wikidataHost}/wiki/Special:EntityData/${ids}.json`;
         }
     }
+
+    getWikiImages(wikiInfo) {
+        return get(wikiInfo, 'claims.P18', []).map((imageObject) => {
+            let image = get(imageObject, 'mainsnak.datavalue.value').split(' ').join('_'),
+                md5Hash = md5(image);
+
+            return {
+                src: `https://upload.wikimedia.org/wikipedia/commons/${md5Hash[0]}/${md5Hash[0]}${md5Hash[1]}/${image}`,
+                href: `https://commons.wikimedia.org/wiki/File:${image}`
+            }
+        });
+    }
+
+    getWikiWebsite(wikiInfo) {
+        return get(wikiInfo, 'claims.P856[0].mainsnak.datavalue.value');
+    }
+
+    getWikiFlagImage(wikiInfo) {
+        let imageValue = get(wikiInfo, 'claims.P41[0].mainsnak.datavalue.value');
+        if (!imageValue) return null;
+
+        let image = imageValue.split(' ').join('_'),
+            md5Hash = md5(image);
+
+        return {
+            src: `https://upload.wikimedia.org/wikipedia/commons/${md5Hash[0]}/${md5Hash[0]}${md5Hash[1]}/${image}`,
+            href: `https://commons.wikimedia.org/wiki/File:${image}`
+        }
+    }
+
+    getWikiPostalCode(wikiInfo) {
+        return get(wikiInfo, 'claims.P281[0].mainsnak.datavalue.value');
+    }
+
+    getWikiCoord(wikiInfo) {
+        let lat = +get(wikiInfo, 'claims.P625[0].mainsnak.datavalue.value.latitude'),
+            long = +get(wikiInfo, 'claims.P625[0].mainsnak.datavalue.value.longitude');
+
+        return {
+            lat: Math.round(lat * 1000) / 1000,
+            long: Math.round(long * 1000) / 1000
+        }
+    }
+
+    getWikiRuLink(wikiInfo) {
+        return get(wikiInfo,'sitelinks.ruwiki.url');
+    }
+
 }
 
 export default Api;

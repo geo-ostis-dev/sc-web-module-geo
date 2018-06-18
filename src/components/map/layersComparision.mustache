@@ -2,20 +2,30 @@
     <thead>
     <tr>
         <th scope="col"></th>
-        <th scope="col">{{name1}}</th>
-        <th scope="col">{{name2}}</th>
+        <th scope="col"><a href="{{wikiLink1}}">{{name1}}</a></th>
+        <th scope="col"><a href="{{wikiLink2}}">{{name2}}</a></th>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <th scope="row">Площадь</th>
-        <td>{{area1}} км<sup>2</sup></td>
-        <td>{{area2}} км<sup>2</sup></td>
+        <th scope="row">Площадь, км<sup>2</sup></th>
+        <td>{{area1}}</td>
+        <td>{{area2}}</td>
     </tr>
     <tr>
-        <th scope="row">Тип объекта</th>
-        <td>{{place_rank1}}</td>
-        <td>{{place_rank2}}</td>
+        <th scope="row">Население</th>
+        <td>{{population1}}</td>
+        <td>{{population2}}</td>
+    </tr>
+    <tr>
+        <th scope="row">Почтовый индекс</th>
+        <td>{{postalCode1}}</td>
+        <td>{{postalCode2}}</td>
+    </tr>
+    <tr>
+        <th scope="row">Координаты</th>
+        <td>{{coord1.lat}}, {{coord1.long}}</td>
+        <td>{{coord2.lat}}, {{coord2.long}}</td>
     </tr>
     <tr>
         <th scope="row">Страна</th>
@@ -36,6 +46,30 @@
         <th scope="row">Область</th>
         <td>{{state1}}</td>
         <td>{{state2}}</td>
+    </tr>
+    <tr>
+        <th scope="row">Изображения</th>
+        <td>
+            {{#images1}}
+                <a href="{{href}}"><img class='images' src="{{src}}"></a>
+            {{/images1}}
+        </td>
+        <td>
+            {{#images2}}
+                <a href="{{href}}"><img class='images' src="{{src}}"></a>
+            {{/images2}}
+        </td>
+    </tr>
+
+    <tr>
+        <th scope="row">Флаг</th>
+        <td><a href="{{flagImage1.href}}"><img class='flagImage' src="{{flagImage1.src}}"></a></td>
+        <td><a href="{{flagImage2.href}}"><img class='flagImage' src="{{flagImage2.src}}"></a></td>
+    </tr>
+    <tr>
+        <th scope="row">Вебсайт</th>
+        <td><a href="{{website1}}">{{website1}}</a></td>
+        <td><a href="{{website2}}">{{website2}}</a></td>
     </tr>
     </tbody>
 </table>
