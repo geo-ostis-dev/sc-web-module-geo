@@ -1,9 +1,10 @@
 import './map.less'
 import 'leaflet/dist/images/marker-shadow.png'
 import {MAP} from 'middleware/constants.js';
-import {uniqBy, filter, reject, first, values, isEmpty} from 'lodash';
+import {uniqBy, filter, reject, first, values, isEmpty, keys, get, replace} from 'lodash';
 import layerInformation from './layerInformation.mustache';
 import layersComparision from './layersComparision.mustache';
+import md5 from 'md5';
 
 class Map {
     layers = [];
@@ -18,30 +19,25 @@ class Map {
     }
 
     eventCreatePMLayer(event) {
-        let layer = new Layer(event.layer);
-
+        let layer = event.layer;
         layer.options.shape = event.shape;
         layer.bindContextMenu({
             contextmenu: true,
             bubblingMouseEvents: false,
-            contextmenuInheritItems: false,
-            contextmenuItems: [{
-                text: 'Показать пространственную информацию',
-                callback: this.eventShowLayerInfo.bind(this)
-            }]
+            contextmenuInheritItems: false
         });
-        this.addLayer(layer, {noAddToMap: true});
+
+        layer.on('click', this.eventLayerSelect.bind(this));
+        this.addLayer(layer, {noAddToMap: true, pm: true});
     }
 
     addLayer(layer, options = {}) {
         layer.options.active = !!options.active;
         layer.options.temp = !!options.temp;
-        layer.options.search = !!options.search;
+        layer.options.pm = !!options.pm;
         layer.once('remove', this.eventRemoveLayer.bind(this));
 
-        if (!layer.options.temp) {
-            layer.options.name = this.resolveLayerName(layer);
-        }
+        if (!layer.options.temp) layer.options.name = this.resolveLayerName(layer);
         if (!options.noAddToMap) layer.addTo(this.el);
 
         this.layers.push(layer);
@@ -50,24 +46,35 @@ class Map {
     }
 
     eventShowLayerInfo(event) {
-        debugger;
-        let nominatimInfo = event.relatedTarget.options.nominatimInfo,
-            wikiInfo = event.relatedTarget.options.wikiInfo,
+        let nominatimInfo = get(event, 'relatedTarget.options.nominatimInfo'),
+            wikiInfo = get(event, 'relatedTarget.options.wikiInfo'),
             area_km2 = turf.area(nominatimInfo.geojson) / 1000000;
 
         let content = {
-            name: nominatimInfo.name,
-            country: nominatimInfo.address.country,
-            country_code: nominatimInfo.address.country_code,
-            county: nominatimInfo.address.county,
-            place_rank: nominatimInfo.place_rank,
+            name: get(nominatimInfo, 'name') || get(nominatimInfo, 'display_name'),
+            population: get(nominatimInfo, 'extratags.population'),
+            country: get(nominatimInfo, 'address.country'),
+            country_code: get(nominatimInfo, 'address.country_code'),
+            county: get(nominatimInfo, 'address.county'),
+            place_rank: get(nominatimInfo, 'place_rank'),
             area: Math.round(area_km2 * 1000) / 1000,
-            state: nominatimInfo.address.state
+            state: get(nominatimInfo, 'address.state')
         };
 
         if (wikiInfo) {
-
+            content.website = this.api.getWikiWebsite(wikiInfo);
+            content.images = this.api.getWikiImages(wikiInfo);
+            content.flagImage = this.api.getWikiFlagImage(wikiInfo);
+            content.postalCode = this.api.getWikiPostalCode(wikiInfo);
+            content.coord = this.api.getWikiCoord(wikiInfo);
+            content.wikiLink = this.api.getWikiRuLink(wikiInfo);
         }
+
+        keys(content).map((key, _) => {
+            if (!content[key] || content[key] === '' || content[key].length === 0) {
+                content[key] = '-';
+            }
+        });
 
         this.sidebar.setContent(layerInformation(content));
         this.sidebar.show();
@@ -75,32 +82,61 @@ class Map {
 
     eventCompareLayers() {
         let activeLayers = this.getActiveLayers();
+
         if (activeLayers.length !== 2) return;
 
-        let osm1 = activeLayers[0].options.osm,
-            osm2 = activeLayers[1].options.osm;
+        let nominatimInfo1 = activeLayers[0].options.nominatimInfo,
+            wikiInfo1 = activeLayers[0].options.wikiInfo,
+            nominatimInfo2 = activeLayers[1].options.nominatimInfo,
+            wikiInfo2 = activeLayers[1].options.wikiInfo,
+            area1_km2 = turf.area(nominatimInfo1.geojson) / 1000000,
+            area2_km2 = turf.area(nominatimInfo2.geojson) / 1000000;
 
-        let area1_km2 = turf.area(osm1.geojson) / 1000000,
-            area2_km2 = turf.area(osm2.geojson) / 1000000;
-
-        let content = layersComparision({
-            name1: osm1.name,
-            country1: osm1.address.country,
-            country_code1: osm1.address.country_code,
-            county1: osm1.address.county,
-            place_rank1: osm1.place_rank,
+        let content = {
+            name1: nominatimInfo1.name,
+            population1: get(nominatimInfo1, 'extratags.population'),
+            country1: nominatimInfo1.address.country,
+            country_code1: nominatimInfo1.address.country_code,
+            county1: nominatimInfo1.address.county,
+            place_rank1: nominatimInfo1.place_rank,
             area1: Math.round(area1_km2 * 1000) / 1000,
-            state1: osm1.address.state,
-            name2: osm2.name,
-            country2: osm2.address.country,
-            country_code2: osm2.address.country_code,
-            county2: osm2.address.county,
-            place_rank2: osm2.place_rank,
+            state1: nominatimInfo1.address.state,
+
+            name2: nominatimInfo2.name,
+            population2: get(nominatimInfo2, 'extratags.population'),
+            country2: nominatimInfo2.address.country,
+            country_code2: nominatimInfo2.address.country_code,
+            county2: nominatimInfo2.address.county,
+            place_rank2: nominatimInfo2.place_rank,
             area2: Math.round(area2_km2 * 1000) / 1000,
-            state2: osm2.address.state
+            state2: nominatimInfo2.address.state
+        };
+
+        if (wikiInfo1) {
+            content.website1 = this.api.getWikiWebsite(wikiInfo1);
+            content.images1 = this.api.getWikiImages(wikiInfo1);
+            content.flagImage1 = this.api.getWikiFlagImage(wikiInfo1);
+            content.postalCode1 = this.api.getWikiPostalCode(wikiInfo1);
+            content.coord1 = this.api.getWikiCoord(wikiInfo1);
+            content.wikiLink1 = this.api.getWikiRuLink(wikiInfo1);
+        }
+
+        if (wikiInfo2) {
+            content.website2 = this.api.getWikiWebsite(wikiInfo2);
+            content.images2 = this.api.getWikiImages(wikiInfo2);
+            content.flagImage2 = this.api.getWikiFlagImage(wikiInfo2);
+            content.postalCode2 = this.api.getWikiPostalCode(wikiInfo2);
+            content.coord2 = this.api.getWikiCoord(wikiInfo2);
+            content.wikiLink2 = this.api.getWikiRuLink(wikiInfo2);
+        }
+
+        keys(content).map((key, _) => {
+            if (!content[key] || content[key] === '') {
+                content[key] = '-';
+            }
         });
 
-        this.sidebar.setContent(content);
+        this.sidebar.setContent(layersComparision(content));
         this.sidebar.show();
 
     }
@@ -438,8 +474,8 @@ class Map {
         let sameShapesCount = filter(this.getLayers(), ['options.shape', shape]).length;
         let shapeNumber = (sameShapesCount === 0) ? '' : sameShapesCount;
 
-        if (layer.options.osm) {
-            return layer.options.osm.name;
+        if (layer.options.nominatimInfo) {
+            return layer.options.nominatimInfo.name || layer.options.nominatimInfo.display_name;
         } else if (shape) {
             return `${shape}${shapeNumber}`;
         } else {
@@ -448,7 +484,8 @@ class Map {
     }
 
     getActiveLayers() {
-        return filter(this.layers, 'options.active');
+        let layers = filter(this.layers, 'options.active');
+        return reject(layers, 'options.pm');
     }
 
     getLayers() {
@@ -475,6 +512,10 @@ class Map {
     removeTempLayers() {
         let tempLayers = filter(this.layers, 'options.temp');
         tempLayers.forEach(layer => this.el.removeLayer(layer));
+    }
+
+    getImages() {
+
     }
 }
 

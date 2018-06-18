@@ -1,4 +1,4 @@
-<h3>{{name}}</h3>
+<h3><a href="{{wikiLink}}">{{name}}</a></h3>
 <table class="table table-striped">
     <tbody>
     <tr>
@@ -6,8 +6,16 @@
         <td>{{area}}</td>
     </tr>
     <tr>
-        <th scope="row">Тип объекта</th>
-        <td>{{place_rank}}</td>
+        <th scope="row">Население</th>
+        <td>{{population}}</td>
+    </tr>
+    <tr>
+        <th scope="row">Почтовый индекс</th>
+        <td>{{postalCode}}</td>
+    </tr>
+    <tr>
+        <th scope="row">Координаты</th>
+        <td>{{coord.lat}}, {{coord.long}}</td>
     </tr>
     <tr>
         <th scope="row">Страна</th>
@@ -24,6 +32,23 @@
     <tr>
         <th scope="row">Область</th>
         <td>{{state}}</td>
+    </tr>
+    <tr>
+        <th scope="row">Изображения</th>
+        <td>
+            {{#images}}
+                <a href="{{href}}"><img class='images' src="{{src}}"></a>
+            {{/images}}
+        </td>
+    </tr>
+
+    <tr>
+        <th scope="row">Флаг</th>
+        <td><a href="{{flagImage.href}}"><img class='flagImage' src="{{flagImage.src}}"></a></td>
+    </tr>
+    <tr>
+        <th scope="row">Вебсайт</th>
+        <td><a href="{{website}}">{{website}}</a></td>
     </tr>
     </tbody>
 </table>

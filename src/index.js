@@ -6,6 +6,9 @@ import 'leaflet-contextmenu'
 import 'leaflet.pm'
 import 'leaflet-sidebar'
 
+import 'vendor/leaflet-control-window/L.Control.Window.css'
+import 'vendor/leaflet-control-window/L.Control.Window.js'
+
 import {Spinner} from 'spin.js'
 window.Spinner = Spinner;
 
