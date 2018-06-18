@@ -81,7 +81,7 @@ class Map {
     }
 
     eventCompareLayers() {
-        let activeLayers = this.getActiveLayers();
+        let activeLayers = this.getActiveOSMLayers();
 
         if (activeLayers.length !== 2) return;
 
@@ -483,9 +483,13 @@ class Map {
         }
     }
 
-    getActiveLayers() {
+    getActiveOSMLayers() {
         let layers = filter(this.layers, 'options.active');
         return reject(layers, 'options.pm');
+    }
+
+    getActiveLayers() {
+        return filter(this.layers, 'options.active');
     }
 
     getLayers() {
@@ -512,10 +516,6 @@ class Map {
     removeTempLayers() {
         let tempLayers = filter(this.layers, 'options.temp');
         tempLayers.forEach(layer => this.el.removeLayer(layer));
-    }
-
-    getImages() {
-
     }
 }
 
