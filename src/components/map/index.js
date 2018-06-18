@@ -1,14 +1,14 @@
 import './map.less'
 import 'leaflet/dist/images/marker-shadow.png'
 import {MAP} from 'middleware/constants.js';
-import Layer from 'components/layer';
-import component from 'middleware/decorators/component';
-import {uniqBy, filter, reject, first, values, isEmpty} from 'lodash';
+import {uniqBy, filter, reject, first, values, isEmpty, keys, get, replace} from 'lodash';
 import layerInformation from './layerInformation.mustache';
 import layersComparision from './layersComparision.mustache';
+import md5 from 'md5';
 
 class Map {
     layers = [];
+    api = window.components.api;
 
     constructor() {
         this.mapInitialize();
@@ -19,33 +19,25 @@ class Map {
     }
 
     eventCreatePMLayer(event) {
-        let layer = new Layer(event.layer);
-
+        let layer = event.layer;
         layer.options.shape = event.shape;
         layer.bindContextMenu({
             contextmenu: true,
             bubblingMouseEvents: false,
-            contextmenuInheritItems: false,
-            contextmenuItems: [{
-                text: 'Показать пространственную информацию',
-                callback: this.eventShowLayerInfo.bind(this)
-            }]
+            contextmenuInheritItems: false
         });
-        this.addLayer(layer, {noAddToMap: true});
+
+        layer.on('click', this.eventLayerSelect.bind(this));
+        this.addLayer(layer, {noAddToMap: true, pm: true});
     }
 
     addLayer(layer, options = {}) {
         layer.options.active = !!options.active;
         layer.options.temp = !!options.temp;
-        layer.options.search = !!options.search;
+        layer.options.pm = !!options.pm;
         layer.once('remove', this.eventRemoveLayer.bind(this));
 
-        if (!layer.options.temp) {
-            // layer.bindPopup(layer.options.osm.name, {closeButton: false});
-            layer.options.name = this.resolveLayerName(layer);
-            // layer.on('mouseover', () => layer.openPopup());
-            // layer.on('mouseout', () => layer.closePopup());
-        }
+        if (!layer.options.temp) layer.options.name = this.resolveLayerName(layer);
         if (!options.noAddToMap) layer.addTo(this.el);
 
         this.layers.push(layer);
@@ -53,49 +45,98 @@ class Map {
         return layer;
     }
 
-
     eventShowLayerInfo(event) {
-        let osm = event.relatedTarget.options.osm;
+        let nominatimInfo = get(event, 'relatedTarget.options.nominatimInfo'),
+            wikiInfo = get(event, 'relatedTarget.options.wikiInfo'),
+            area_km2 = turf.area(nominatimInfo.geojson) / 1000000;
 
-        let content = layerInformation({
-            name: osm.name,
-            country: osm.address.country,
-            country_code: osm.address.country_code,
-            county: osm.address.county,
-            place_rank: osm.place_rank,
-            area: turf.area(osm.geojson),
-            state: osm.address.state
+        let content = {
+            name: get(nominatimInfo, 'name') || get(nominatimInfo, 'display_name'),
+            population: get(nominatimInfo, 'extratags.population'),
+            country: get(nominatimInfo, 'address.country'),
+            country_code: get(nominatimInfo, 'address.country_code'),
+            county: get(nominatimInfo, 'address.county'),
+            place_rank: get(nominatimInfo, 'place_rank'),
+            area: Math.round(area_km2 * 1000) / 1000,
+            state: get(nominatimInfo, 'address.state')
+        };
+
+        if (wikiInfo) {
+            content.website = this.api.getWikiWebsite(wikiInfo);
+            content.images = this.api.getWikiImages(wikiInfo);
+            content.flagImage = this.api.getWikiFlagImage(wikiInfo);
+            content.postalCode = this.api.getWikiPostalCode(wikiInfo);
+            content.coord = this.api.getWikiCoord(wikiInfo);
+            content.wikiLink = this.api.getWikiRuLink(wikiInfo);
+        }
+
+        keys(content).map((key, _) => {
+            if (!content[key] || content[key] === '' || content[key].length === 0) {
+                content[key] = '-';
+            }
         });
 
-        this.sidebar.setContent(content);
+        this.sidebar.setContent(layerInformation(content));
         this.sidebar.show();
     }
 
     eventCompareLayers() {
         let activeLayers = this.getActiveLayers();
+
         if (activeLayers.length !== 2) return;
 
-        let osm1 = activeLayers[0].options.osm;
-        let osm2 = activeLayers[1].options.osm;
+        let nominatimInfo1 = activeLayers[0].options.nominatimInfo,
+            wikiInfo1 = activeLayers[0].options.wikiInfo,
+            nominatimInfo2 = activeLayers[1].options.nominatimInfo,
+            wikiInfo2 = activeLayers[1].options.wikiInfo,
+            area1_km2 = turf.area(nominatimInfo1.geojson) / 1000000,
+            area2_km2 = turf.area(nominatimInfo2.geojson) / 1000000;
 
-        let content = layersComparision({
-            name1: osm1.name,
-            country1: osm1.address.country,
-            country_code1: osm1.address.country_code,
-            county1: osm1.address.county,
-            place_rank1: osm1.place_rank,
-            area1: turf.area(osm1.geojson),
-            state1: osm1.address.state,
-            name2: osm2.name,
-            country2: osm2.address.country,
-            country_code2: osm2.address.country_code,
-            county2: osm2.address.county,
-            place_rank2: osm2.place_rank,
-            area2: turf.area(osm2.geojson),
-            state2: osm2.address.state
+        let content = {
+            name1: nominatimInfo1.name,
+            population1: get(nominatimInfo1, 'extratags.population'),
+            country1: nominatimInfo1.address.country,
+            country_code1: nominatimInfo1.address.country_code,
+            county1: nominatimInfo1.address.county,
+            place_rank1: nominatimInfo1.place_rank,
+            area1: Math.round(area1_km2 * 1000) / 1000,
+            state1: nominatimInfo1.address.state,
+
+            name2: nominatimInfo2.name,
+            population2: get(nominatimInfo2, 'extratags.population'),
+            country2: nominatimInfo2.address.country,
+            country_code2: nominatimInfo2.address.country_code,
+            county2: nominatimInfo2.address.county,
+            place_rank2: nominatimInfo2.place_rank,
+            area2: Math.round(area2_km2 * 1000) / 1000,
+            state2: nominatimInfo2.address.state
+        };
+
+        if (wikiInfo1) {
+            content.website1 = this.api.getWikiWebsite(wikiInfo1);
+            content.images1 = this.api.getWikiImages(wikiInfo1);
+            content.flagImage1 = this.api.getWikiFlagImage(wikiInfo1);
+            content.postalCode1 = this.api.getWikiPostalCode(wikiInfo1);
+            content.coord1 = this.api.getWikiCoord(wikiInfo1);
+            content.wikiLink1 = this.api.getWikiRuLink(wikiInfo1);
+        }
+
+        if (wikiInfo2) {
+            content.website2 = this.api.getWikiWebsite(wikiInfo2);
+            content.images2 = this.api.getWikiImages(wikiInfo2);
+            content.flagImage2 = this.api.getWikiFlagImage(wikiInfo2);
+            content.postalCode2 = this.api.getWikiPostalCode(wikiInfo2);
+            content.coord2 = this.api.getWikiCoord(wikiInfo2);
+            content.wikiLink2 = this.api.getWikiRuLink(wikiInfo2);
+        }
+
+        keys(content).map((key, _) => {
+            if (!content[key] || content[key] === '') {
+                content[key] = '-';
+            }
         });
 
-        this.sidebar.setContent(content);
+        this.sidebar.setContent(layersComparision(content));
         this.sidebar.show();
 
     }
@@ -104,13 +145,11 @@ class Map {
         this.el.spin(true);
 
         let promises = MAP.ZOOM.map((zoom) => {
-            let apiUrl = Map.nominatimApi('reverse', {
-                lat: event['latlng']['lat'],
-                long: event['latlng']['lng'],
-                zoom: zoom
-            });
-
-            return fetch(apiUrl);
+            return fetch(this.api.nominatim({
+                path: 'reverse',
+                lat: event['latlng']['lat'], long: event['latlng']['lng'],
+                geojson: 1, extra: 1, address: 1, zoom: zoom
+            }));
         });
 
         Promise.all(promises)
@@ -120,37 +159,54 @@ class Map {
             })
             .then((jsons) => {
                 this.el.contextmenu.removeAllItems();
+                this._nominatimTempResults = {};
 
                 uniqBy(jsons, 'place_id').forEach(json => {
                     let item = this.el.contextmenu.addItem({text: json['display_name']});
 
-                    $(item).data('osm_info', json);
+                    this._nominatimTempResults[json['place_id']] = json;
+                    $(item).data('place_id', json['place_id']);
 
                     $(item).on('mouseenter', this.addTempLayer.bind(this));
                     $(item).on('mouseleave', this.removeTempLayers.bind(this));
-
-                    $(item).on('click', event => {
-                        let geojson = $(event.target).data('osm_info')['geojson'],
-                            layer = first(L.geoJson(geojson, {
-                                contextmenu: true,
-                                bubblingMouseEvents: false,
-                                contextmenuInheritItems: false,
-                                osm: $(event.target).data('osm_info'),
-                                contextmenuItems: [{
-                                    text: 'Показать пространственную информацию',
-                                    callback: this.eventShowLayerInfo.bind(this)
-                                }]
-                            }).getLayers());
-
-                        this.addLayer(layer);
-                        layer.on('click', this.eventLayerSelect.bind(this));
-                    });
-
+                    $(item).on('click', this.eventAddProposedLayer.bind(this));
                 });
 
                 this.el.contextmenu.showAt(event.latlng);
                 this.el.spin(false);
             })
+    }
+
+    eventAddProposedLayer(event) {
+        this.el.spin(true);
+
+        let place_id = $(event.target).data('place_id');
+        this._nominatimInfo = this._nominatimTempResults[place_id];
+
+        let wiki_id = this._nominatimInfo['extratags']['wikidata'],
+            wikidataPromise = wiki_id ? fetch(this.api.wikidata({ids: wiki_id})) : Promise.resolve(false);
+
+        wikidataPromise
+            .then((wikiResult) => wikiResult ? wikiResult.json() : false)
+            .then((wikiJSON) => {
+                let layerGroup = L.geoJson(this._nominatimInfo['geojson'], {
+                        contextmenu: true,
+                        bubblingMouseEvents: false,
+                        contextmenuInheritItems: false,
+                        nominatimInfo: this._nominatimInfo,
+                        wikiInfo: wikiJSON ? first(values(wikiJSON.entities)) : null,
+                        contextmenuItems: [{
+                            text: 'Показать пространственную информацию',
+                            callback: this.eventShowLayerInfo.bind(this)
+                        }]
+                    }),
+                    layer = first(layerGroup.getLayers());
+
+                this.addLayer(layer);
+                layer.on('click', this.eventLayerSelect.bind(this));
+
+                this.el.spin(false);
+            });
     }
 
     eventLayerSelect(event) {
@@ -225,7 +281,11 @@ class Map {
             }
         }
 
-        L.control.window(this.el, {title: 'Результат включения элементов', content: _.uniq(results).join('<br>'), visible: true});
+        L.control.window(this.el, {
+            title: 'Результат включения элементов',
+            content: _.uniq(results).join('<br>'),
+            visible: true
+        });
     }
 
     shapeIntersection() {
@@ -252,7 +312,11 @@ class Map {
             }
         }
 
-        L.control.window(this.el, {title: 'Результат пересечения элементов', content: _.uniq(results).join('<br>'), visible: true});
+        L.control.window(this.el, {
+            title: 'Результат пересечения элементов',
+            content: _.uniq(results).join('<br>'),
+            visible: true
+        });
     }
 
     boundaryElements() {
@@ -278,7 +342,11 @@ class Map {
             }
         }
 
-        L.control.window(this.el, {title: 'Граничащие элементы', content: _.uniq(results).join('<br>'), visible: true});
+        L.control.window(this.el, {
+            title: 'Граничащие элементы',
+            content: _.uniq(results).join('<br>'),
+            visible: true
+        });
     }
 
     contiguity() {
@@ -316,25 +384,11 @@ class Map {
             }
         }
 
-        L.control.window(this.el, {title: 'Результат примыкания элементов', content: _.uniq(results).join('<br>'), visible: true});
-    }
-
-    showFullInformation(event) {
-        let object = _.find(window.result, ['code', event.relatedTarget.code]),
-            naim = object['naim'],
-            img1 = object['img1'],
-            img2 = object['img2'],
-            img3 = object['img3'],
-            oblast = object['oblast'];
-
-        this.sidebar.setContent('<table>' +
-            '  <tr><td>' + 'Наименование' + '</td><td>' + naim + '</td></tr>' +
-            '  <tr><td>' + 'Область' + '</td><td>' + oblast + '</td></tr>' +
-            '  <tr><td>' + 'Изображение1' + '</td><td><img src="' + img1 + '" /></td></tr>' +
-            '  <tr><td>' + 'Изображение2' + '</td><td><img src="' + img2 + '" /></td></tr>' +
-            '  <tr><td>' + 'Изображение3' + '</td><td><img src="' + img3 + '" /></td></tr>' +
-            '</table>');
-        this.sidebar.show();
+        L.control.window(this.el, {
+            title: 'Результат примыкания элементов',
+            content: _.uniq(results).join('<br>'),
+            visible: true
+        });
     }
 
     mapInitialize() {
@@ -411,7 +465,6 @@ class Map {
         this.el.pm.disableDraw('Cut');
     }
 
-
     eventRemoveLayer(event) {
         this.layers = reject(this.layers, ['_leaflet_id', event.target._leaflet_id]);
     }
@@ -421,8 +474,8 @@ class Map {
         let sameShapesCount = filter(this.getLayers(), ['options.shape', shape]).length;
         let shapeNumber = (sameShapesCount === 0) ? '' : sameShapesCount;
 
-        if (layer.options.osm) {
-            return layer.options.osm.name;
+        if (layer.options.nominatimInfo) {
+            return layer.options.nominatimInfo.name || layer.options.nominatimInfo.display_name;
         } else if (shape) {
             return `${shape}${shapeNumber}`;
         } else {
@@ -430,17 +483,9 @@ class Map {
         }
     }
 
-    static nominatimApi(api, params) {
-        let host = 'https://nominatim.openstreetmap.org/';
-
-        switch (api) {
-            case 'reverse':
-                return `${host}/reverse?format=jsonv2&lat=${params['lat']}&lon=${params['long']}&polygon_geojson=1&zoom=${params['zoom']}`;
-        }
-    }
-
     getActiveLayers() {
-        return filter(this.layers, 'options.active');
+        let layers = filter(this.layers, 'options.active');
+        return reject(layers, 'options.pm');
     }
 
     getLayers() {
@@ -457,11 +502,11 @@ class Map {
     }
 
     addTempLayer(event) {
-        let geojson = $(event.target).data('osm_info')['geojson'],
+        let place_id = $(event.target).data('place_id'),
+            geojson = this._nominatimTempResults[place_id]['geojson'],
             layer = first(L.geoJson(geojson).getLayers());
 
         this.addLayer(layer, {temp: true});
-
     }
 
     removeTempLayers() {
@@ -469,9 +514,8 @@ class Map {
         tempLayers.forEach(layer => this.el.removeLayer(layer));
     }
 
-    removeSearchLayers() {
-        let tempLayers = filter(this.layers, 'options.search');
-        tempLayers.forEach(layer => this.el.removeLayer(layer));
+    getImages() {
+
     }
 }
 

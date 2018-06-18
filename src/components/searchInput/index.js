@@ -1,16 +1,17 @@
 import './searchInput.less'
-import {first} from "lodash";
+import {first, values, trim, replace} from 'lodash';
 
 class SearchInput {
+    $el = $("#search-input");
+    $suggestions = $("#suggestions");
+    map = window.components.map;
+    api = window.components.api;
+
     constructor() {
-        this.$el = $("#search-input");
-        this.$suggestions = $("#suggestions");
-
         this.$el.on('input', (event) => {
-            let inputText = event.target.value;
-            inputText = _.trim(_.replace(inputText, /[^a-zA-Zа-яА-Я0-9]+/g, ' '));
+            let inputText = trim(replace(event.target.value, /[^a-zA-Zа-яА-Я0-9]+/g, ' '));
 
-            fetch(`https://nominatim.openstreetmap.org/search.php?q=${inputText}&format=jsonv2&limit=5`)
+            fetch(this.api.nominatim({query: inputText, limit: 5}))
                 .then((result) => result.json())
                 .then((result) => {
                     let suggestions = result.map((element) => element['display_name']);
@@ -20,26 +21,37 @@ class SearchInput {
         });
 
         this.$el.on('change', (event) => {
-            let inputText = event.target.value;
-            fetch(`https://nominatim.openstreetmap.org/search.php?q=${inputText}&polygon_geojson=1&format=jsonv2&limit=1&&addressdetails=1`)
-                .then((result) => result.json())
-                .then((result) => {
-                    let layer = _.first(L.geoJson(_.first(result)['geojson'], {
+            let inputText = event.target.value,
+                nominatimQuery = this.api.nominatim({query: inputText, geojson: 1, address: 1, extra: 1});
+
+            fetch(nominatimQuery)
+                .then((nominatimResult) => nominatimResult.json())
+                .then((nominatimJSON) => {
+                    this._nominatimInfo = first(nominatimJSON);
+                    let wiki_id = this._nominatimInfo['extratags']['wikidata'];
+
+                    return wiki_id ? fetch(this.api.wikidata({ids: wiki_id})) : false;
+                })
+                .then((wikiResult) => wikiResult ? wikiResult.json() : false)
+                .then((wikiJSON) => {
+                    let geoJson = this._nominatimInfo['geojson'],
+                        layerGroup = L.geoJson(geoJson, {
                             contextmenu: true,
                             bubblingMouseEvents: false,
                             contextmenuInheritItems: false,
-                            osm: _.first(result),
+                            nominatimInfo: this._nominatimInfo,
+                            wikiInfo: wikiJSON ? first(values(wikiJSON.entities)) : null,
                             contextmenuItems: [{
                                 text: 'Показать пространственную информацию',
-                                callback: window.components.map.eventShowLayerInfo.bind(this)
+                                callback: this.map.eventShowLayerInfo.bind(this.map)
                             }]
-                        }).getLayers());
+                        }),
+                        layer = first(layerGroup.getLayers());
 
-                    let map = window.components.map;
-                    map.addLayer(layer, {search: true});
-                    map.el.fitBounds(layer.getBounds());
+                    this.map.addLayer(layer, {search: true});
+                    this.map.el.fitBounds(layer.getBounds());
 
-                    layer.on('click', map.eventLayerSelect.bind(map));
+                    layer.on('click', this.map.eventLayerSelect.bind(this.map));
                 });
         })
     }

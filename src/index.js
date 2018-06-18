@@ -5,6 +5,7 @@ import "leaflet-contextmenu/dist/leaflet.contextmenu.css";
 import 'leaflet-contextmenu'
 import 'leaflet.pm'
 import 'leaflet-sidebar'
+
 import 'vendor/leaflet-control-window/L.Control.Window.css'
 import 'vendor/leaflet-control-window/L.Control.Window.js'
 
@@ -15,6 +16,7 @@ import 'leaflet-spin'
 
 import prepareScWeb from 'middleware/prepareScWeb'
 
+import Api from 'components/api';
 import Base from "components/base";
 import Map from "components/map";
 import SearchButton from "components/searchButton";
@@ -23,10 +25,13 @@ import SearchPanel from "components/searchPanel";
 
 $(document).ready(function () {
     prepareScWeb();
+
     window.components = {};
+    window.components.api = new Api;
     window.components.base = new Base;
     window.components.map = new Map;
     window.components.searchButton = new SearchButton;
-    new SearchInput;
-    new SearchPanel;
+    window.components.searchInput = new SearchInput;
+    window.components.searchPanel = new SearchPanel;
+
 });
